@@ -59,20 +59,18 @@
 a variable can point to another variable or function
 e.g:
 
-\>-> var i = 1
-1
-\>-> var j = i
-1
+\>-> var i = 1     
+1      
+\>-> var j = i     
+1     
 
 or 
 
-\>-> define add(num1, num2) -> num1 + num2
-<function add>
-
-\>-> var add2 = add
-<function add>
-
-\>-> add2(2, 5)
+\>-> define add(num1, num2) -> num1 + num2     
+<function add>     
+\>-> var add2 = add         
+<function add>        
+\>-> add2(2, 5)     
 7
 
 ## faq:
