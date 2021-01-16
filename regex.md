@@ -37,10 +37,10 @@
 
 
 * == -> equals to
-* > -> greater than
-* < -> smaller than
-* >= -> greater than or equal
-* <= -> smaller than or equal
+* \> -> greater than
+* \< -> smaller than
+* \>= -> greater than or equal
+* \<= -> smaller than or equal
 * and -> if both results are true 
 * or -> if any of the results are true
 * not -> reverse case (true becomes false and vice-versa)
