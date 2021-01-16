@@ -5,13 +5,13 @@ namespace vapp
 {
     public class Vapp{
         
-        private string DIGITS = "0123456789";
+        public string DIGITS = "0123456789";
 
         public class Error{
-            private Position pos_start;
-            private Position pos_end;
-            private string error_name;
-            private string details;
+            public Position pos_start;
+            public Position pos_end;
+            public string error_name;
+            public string details;
             public Error(Position pos_start, Position pos_end, string error_name, string details){
                 this.pos_start = pos_start;
                 this.pos_end = pos_end;
@@ -28,31 +28,35 @@ namespace vapp
             }
         }
 
-#######################################
-# POSITION
-#######################################
+        public class Position{                        
 
-class Position:
-    def __init__(self, idx, ln, col, fn, ftxt):
-        self.idx = idx
-        self.ln = ln
-        self.col = col
-        self.fn = fn
-        self.ftxt = ftxt
+            public int idx;
+            public int ln;
+            public int col;
+            public string fn;
+            public string ftxt;
 
-    def advance(self, current_char):
-        self.idx += 1
-        self.col += 1
+            public Position(int idx, int ln, int col, string fn, string ftxt){
+                this.idx = idx;
+                this.ln = ln;
+                this.col = col;
+                this.fn = fn;
+                this.ftxt = ftxt;
+            }
+            public Position advance(char current_char){
+                idx += 1;
+                col += 1;
 
-        if current_char == '\n':
-            self.ln += 1
-            self.col = 0
-
-        return self
-
-    def copy(self):
-        return Position(self.idx, self.ln, self.col, self.fn, self.ftxt)
-
+                if (current_char == '\n'){
+                    ln += 1;
+                    col = 0;
+                }
+                return this;
+            }
+            public Position copy(){
+                return new Position(idx, ln, col, fn, ftxt);
+            }
+        }
 #######################################
 # TOKENS
 #######################################
@@ -164,10 +168,10 @@ def run(fn, text):
         public string digits      = "1234567890";
 
         public class Error{
-            private Position pos_start;
-            private Position pos_end;
-            private string error_name;
-            private string details;
+            public Position pos_start;
+            public Position pos_end;
+            public string error_name;
+            public string details;
 
             public Error(Position pos_start, Position pos_end, string error_name, string details){
                 this.pos_start = pos_start;
@@ -189,8 +193,8 @@ def run(fn, text):
 
         
         public class Token{
-            private string type;
-            private dynamic value;
+            public string type;
+            public dynamic value;
             public Token(string type, dynamic value){
                 this.type = type;
                 this.value = value;
@@ -209,10 +213,10 @@ def run(fn, text):
 
         public class Lexer
         {
-            private string text;
-            private Position pos;
-            private char current_char;
-            private string fn;
+            public string text;
+            public Position pos;
+            public char current_char;
+            public string fn;
 
             public Lexer(string text, string fn){
                 this.fn = fn;
@@ -221,7 +225,7 @@ def run(fn, text):
                 advance();
             }
 
-            private void advance(){
+            public void advance(){
                 pos.advance(current_char);
                 if (pos.idx < text.Length){
                     current_char = text[pos.idx];
@@ -264,7 +268,7 @@ def run(fn, text):
                 }
                 return new List<dynamic>{0, tokens};
             }
-            private Token make_number(){
+            public Token make_number(){
                 string numStr = "";
                 bool dot_count = false;
 
