@@ -55,7 +55,7 @@
 * isList(arg) -> returns true if argument is (or refers to) a list
 * isFunc(arg) -> returns true if argument is (or refers to) a function
 
-##referenciation:
+## referenciation:
 a variable can point to another variable or function
 e.g:
 
@@ -66,21 +66,24 @@ e.g:
 
 or 
 
->-> define add(num1, num2) -> num1 + num2
+\>-> define add(num1, num2) -> num1 + num2
 <function add>
->-> var add2 = add
+
+\>-> var add2 = add
 <function add>
->-> add2(2, 5)
+
+\>-> add2(2, 5)
 7
 
 ## faq:
 
 ### what does '>->' mean in the examples?
->-> means that the line was used in vapp shell
+\>-> means that the line was used in vapp shell
 
 ### how do i run a .vapp file:
 1. make sure the shell and  the .vapp file are in the same folder
 1. then, go to the shell and type (suppose the name of your file is bot.vapp):
->-> run("bot.vapp")
+
+\>-> run("bot.vapp")
 
 there it is
