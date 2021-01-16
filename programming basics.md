@@ -137,12 +137,12 @@ while loops are like if statements that run what is inside until the condition i
 
 ### important: make sure the condition can be false, else the loop will never finish and your computer will start to be slow
 
-they are very simple:  
-var count = 0
-while count < 10 then
-  print(count)
-  count + 1
-end
+they are very simple:      
+var count = 0       
+while count < 10 then       
+  print(count)        
+  count + 1        
+end      
 
 ## obs: the end word is just used in multi-line code for showing that the loop ends there
 
@@ -160,12 +160,12 @@ there are things to do that, the break and continue keywords:
 
 a function is a way to reuse useful code. e.g:
 
-define squareRoot (radicand) 
-  var result = radicand ^ 0.5
-  return result
-end
+define squareRoot (radicand)    
+  var result = radicand ^ 0.5     
+  return result      
+end   
 
-print(squareRoot(4))
+print(squareRoot(4))     
 2
 
 but how does it work?
