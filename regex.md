@@ -59,9 +59,9 @@
 a variable can point to another variable or function
 e.g:
 
->-> var i = 1
+\>-> var i = 1
 1
->-> var j = i
+\>-> var j = i
 1
 
 or 
