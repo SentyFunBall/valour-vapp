@@ -19,7 +19,10 @@ compare expressions:
 ...
 
 if statements:
-...
+if (expr)
+(code)
+elif (expr)
+(code)
 
 function assignment:
 ...
