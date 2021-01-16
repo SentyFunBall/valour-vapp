@@ -1,7 +1,10 @@
 import interpreter as basic
-print("Valour Application Shell 1.0.0\n     type help for help")
+from colorama import init
+init()
+print("Valour Application Shell 1.0.1\n looking good update     type help for help")
 while True:
-	text = input('>-> ')
+	print("\033[36m" + ">->" + "\033[0m", end="")  # color codes don't work with input text
+	text = input()
 	if text.strip() == "":
 		continue
 	if text.strip() == "help":
@@ -9,7 +12,7 @@ while True:
 		continue
 	result, error = basic.run('<stdin>', text)
 	if error:
-		print(error.as_string())
+		print("\033[31m" + error.as_string() + "\033[0m")
 	elif result:
 		if len(result.elements) == 1:
 			print(repr(result.elements[0]))
