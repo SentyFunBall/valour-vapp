@@ -1,9 +1,14 @@
 math:
-...
++ (plus), -(minus/negate), *(multiply), /(divide) **(power)
+valid types:
+num: (int) 123, (float) 123.456
+str: "text"
+bool: 0 (false) 1 (true)
+lists: ["1", 2]
 
 var assignment:
-...
-
+var (var name) = (value)
+var i = 0
 for loops:
 ...
 
