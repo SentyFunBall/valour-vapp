@@ -1,7 +1,7 @@
-from _Position import *
-from _Token import *
-from _Constants import *
-from _Errors import *
+from vapp._Position import *
+from vapp._Token import *
+from vapp._Constants import *
+from vapp._Errors import *
 
 
 class Lexer:

@@ -1,4 +1,4 @@
-from strings_with_arrows import *
+from vapp.strings_with_arrows import *
 
 
 class Error:

@@ -1,7 +1,7 @@
-from _Errors import *
-from _Constants import *
-from _ParseResult import *
-from _Nodes import *
+from vapp._Errors import *
+from vapp._Constants import *
+from vapp._ParseResult import *
+from vapp._Nodes import *
 
 
 class Parser:
