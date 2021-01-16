@@ -57,90 +57,92 @@ namespace vapp
                 return new Position(idx, ln, col, fn, ftxt);
             }
         }
-#######################################
-# TOKENS
-#######################################
 
-TT_INT		= 'INT'
-TT_FLOAT    = 'FLOAT'
-TT_PLUS     = 'PLUS'
-TT_MINUS    = 'MINUS'
-TT_MUL      = 'MUL'
-TT_DIV      = 'DIV'
-TT_LPAREN   = 'LPAREN'
-TT_RPAREN   = 'RPAREN'
+    string TT_INT	   = "INT";
+    string TT_FLOAT    = "FLOAT";
+    string TT_PLUS     = "PLUS";
+    string TT_MINUS    = "MINUS";
+    string TT_MUL      = "MUL";
+    string TT_DIV      = "DIV";
+    string TT_LPAREN   = "LPAREN";
+    string TT_RPAREN   = "RPAREN";
 
-class Token:
-    def __init__(self, type_, value=None):
-        self.type = type_
-        self.value = value
-    
-    def __repr__(self):
-        if self.value: return f'{self.type}:{self.value}'
-        return f'{self.type}'
-
+    class Token{
+        public string type;
+        public dynamic value;
+        public Token(string type, dynamic value=null){
+            this.type = type;
+            this.value = value;
+        }
+        public override string ToString(){
+            if (this.value != null){
+                return $"{this.type}:{this.value}";
+            }
+            return $"{this.type}";
+        }    
+    }
 #######################################
 # LEXER
 #######################################
 
 class Lexer:
-    def __init__(self, fn, text):
-        self.fn = fn
-        self.text = text
-        self.pos = Position(-1, 0, -1, fn, text)
-        self.current_char = None
-        self.advance()
+    def __init__(this, fn, text):
+        this.fn = fn
+        this.text = text
+        this.pos = Position(-1, 0, -1, fn, text)
+        this.current_char = None
+        this.advance()
     
-    def advance(self):
-        self.pos.advance(self.current_char)
-        self.current_char = self.text[self.pos.idx] if self.pos.idx < len(self.text) else None
+    def advance(this):
+        this.pos.advance(this.current_char)
+        this.current_char = this.text[this.pos.idx] if this.pos.idx < len(this.text) else None
 
-    def make_tokens(self):
+    def make_tokens(this):
         tokens = []
 
-        while self.current_char != None:
-            if self.current_char in ' \t':
-                self.advance()
-            elif self.current_char in DIGITS:
-                tokens.append(self.make_number())
-            elif self.current_char == '+':
+        while this.current_char != None:
+            if this.current_char in ' \t':
+                this.advance()
+            elif this.current_char in DIGITS:
+                tokens.append(this.make_number())
+            elif this.current_char == '+':
                 tokens.append(Token(TT_PLUS))
-                self.advance()
-            elif self.current_char == '-':
+                this.advance()
+            elif this.current_char == '-':
                 tokens.append(Token(TT_MINUS))
-                self.advance()
-            elif self.current_char == '*':
+                this.advance()
+            elif this.current_char == '*':
                 tokens.append(Token(TT_MUL))
-                self.advance()
-            elif self.current_char == '/':
+                this.advance()
+            elif this.current_char == '/':
                 tokens.append(Token(TT_DIV))
-                self.advance()
-            elif self.current_char == '(':
+                this.advance()
+            elif this.current_char == '(':
                 tokens.append(Token(TT_LPAREN))
-                self.advance()
-            elif self.current_char == ')':
+                this.advance()
+            elif this.current_char == ')':
                 tokens.append(Token(TT_RPAREN))
-                self.advance()
+                this.advance()
             else:
-                pos_start = self.pos.copy()
-                char = self.current_char
-                self.advance()
-                return [], IllegalCharError(pos_start, self.pos, "'" + char + "'")
+                pos_start = this.pos.copy()
+                char = this.current_char
+                this.advance()
+                return [], IllegalCharError(pos_start, this.pos, "'" + char + "'")
 
         return tokens, None
 
-    def make_number(self):
+    def make_number(this):
         num_str = ''
         dot_count = 0
 
-        while self.current_char != None and self.current_char in DIGITS + '.':
-            if self.current_char == '.':
+        while this.current_char != None and this.current_char in DIGITS + '.':
+            if this.current_char == '.':
                 if dot_count == 1: break
                 dot_count += 1
                 num_str += '.'
             else:
-                num_str += self.current_char
-            self.advance()
+                num_str += this.current_char
+            this.advance()
 
         if dot_count == 0:
             return Token(TT_INT, int(num_str))
