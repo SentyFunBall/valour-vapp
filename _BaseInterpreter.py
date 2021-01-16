@@ -1302,12 +1302,12 @@ class RTResult:
 
     def success(self, value):
         self.reset()
-        self.value = value
+        self.value = value or None
         return self
 
     def success_return(self, value):
         self.reset()
-        self.func_return_value = value
+        self.func_return_value = value or None
         return self
 
     def success_continue(self):
