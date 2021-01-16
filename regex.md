@@ -45,6 +45,21 @@
 * or -> if any of the results are true
 * not -> reverse case (true becomes false and vice-versa)
 
+## loops
+
+there are two kinds of loops is vapp, and they are:    
+
+#### while loops:
+ while (condition) then (code)   
+ while count < 10 then count + 1     
+
+#### for loops:     
+ (for loops in vapp need a variable before starting)      
+ for (variable) = (start position) until (final position) (opcional: step (step count)) then (code)      
+ var i = 0     
+ for i = 0 until 5 then print(i) #prints 0 1 2 3 4        
+ for i = 0 until 5 step 2 then print(i) # prints 0 2 4        
+ 
 ## built in functions:
 
 * print(text) -> prints arguments to the console
