@@ -2,40 +2,11 @@
 # IMPORTS
 #######################################
 
+from strings_with_arrows import *
+
 import string
 import os
 import math
-
-
-def string_with_arrows(text, pos_start, pos_end):
-    result = ''
-
-    # Calculate indices
-    idx_start = max(text.rfind('\n', 0, pos_start.idx), 0)
-    idx_end = text.find('\n', idx_start + 1)
-    if idx_end < 0:
-        idx_end = len(text)
-
-    # Generate each line
-    line_count = pos_end.ln - pos_start.ln + 1
-    for i in range(line_count):
-        # Calculate line columns
-        line = text[idx_start:idx_end]
-        col_start = pos_start.col if i == 0 else 0
-        col_end = pos_end.col if i == line_count - 1 else len(line) - 1
-
-        # Append to result
-        result += line + '\n'
-        result += ' ' * col_start + '^' * (col_end - col_start)
-
-        # Re-calculate indices
-        idx_start = idx_end
-        idx_end = text.find('\n', idx_start + 1)
-        if idx_end < 0:
-            idx_end = len(text)
-
-    return result.replace('\t', '')
-
 
 #######################################
 # CONSTANTS
@@ -159,25 +130,25 @@ TT_ARROW = 'ARROW'
 TT_NEWLINE = 'NEWLINE'
 TT_EOF = 'EOF'
 
-KEYWORDS = (
+KEYWORDS = [
     'var',
     'and',
     'or',
-    'not',
+    'NOT',
     'if',
     'elif',
     'else',
     'for',
     'until',
-    'STEP',
+    'step',
     'while',
-    'function',
+    'define',
     'then',
     'end',
     'return',
     'continue',
     'break',
-)
+]
 
 
 class Token:
@@ -241,10 +212,13 @@ class Lexer:
             elif self.current_char == '-':
                 tokens.append(self.make_minus_or_arrow())
             elif self.current_char == '*':
-                tokens.append(self.make_mul_or_pow())
+                tokens.append(Token(TT_MUL, pos_start=self.pos))
                 self.advance()
             elif self.current_char == '/':
                 tokens.append(Token(TT_DIV, pos_start=self.pos))
+                self.advance()
+            elif self.current_char == '^':
+                tokens.append(Token(TT_POW, pos_start=self.pos))
                 self.advance()
             elif self.current_char == '(':
                 tokens.append(Token(TT_LPAREN, pos_start=self.pos))
@@ -260,8 +234,7 @@ class Lexer:
                 self.advance()
             elif self.current_char == '!':
                 token, error = self.make_not_equals()
-                if error:
-                    return [], error
+                if error: return [], error
                 tokens.append(token)
             elif self.current_char == '=':
                 tokens.append(self.make_equals())
@@ -310,7 +283,7 @@ class Lexer:
             't': '\t'
         }
 
-        while self.current_char is not None and (self.current_char != '"' or escape_character):
+        while self.current_char != None and (self.current_char != '"' or escape_character):
             if escape_character:
                 string += escape_characters.get(self.current_char, self.current_char)
             else:
@@ -328,7 +301,7 @@ class Lexer:
         id_str = ''
         pos_start = self.pos.copy()
 
-        while self.current_char is not None and self.current_char in LETTERS_DIGITS + '_':
+        while self.current_char != None and self.current_char in LETTERS_DIGITS + '_':
             id_str += self.current_char
             self.advance()
 
@@ -343,17 +316,6 @@ class Lexer:
         if self.current_char == '>':
             self.advance()
             tok_type = TT_ARROW
-
-        return Token(tok_type, pos_start=pos_start, pos_end=self.pos)
-
-    def make_mul_or_pow(self):
-        tok_type = TT_MUL
-        pos_start = self.pos.copy()
-        self.advance()
-
-        if self.current_char == '*':
-            self.advance()
-            tok_type = TT_POW
 
         return Token(tok_type, pos_start=pos_start, pos_end=self.pos)
 
@@ -587,8 +549,7 @@ class ParseResult:
     def register(self, res):
         self.last_registered_advance_count = res.advance_count
         self.advance_count += res.advance_count
-        if res.error:
-            self.error = res.error
+        if res.error: self.error = res.error
         return res.node
 
     def try_register(self, res):
@@ -707,7 +668,7 @@ class Parser:
         if res.error:
             return res.failure(InvalidSyntaxError(
                 self.current_tok.pos_start, self.current_tok.pos_end,
-                "Expected 'return', 'continue', 'break', 'var', 'if', 'for', 'while', 'function', int, float, identifier, '+', '-', '(', '[' or 'not'"
+                "Expected 'return', 'continue', 'break', 'var', 'if', 'for', 'while', 'define', int, float, identifier, '+', '-', '(', '[' or 'NOT'"
             ))
         return res.success(expr)
 
@@ -745,7 +706,7 @@ class Parser:
         if res.error:
             return res.failure(InvalidSyntaxError(
                 self.current_tok.pos_start, self.current_tok.pos_end,
-                "Expected 'var', 'if', 'for', 'while', 'function', int, float, identifier, '+', '-', '(', '[' or 'not'"
+                "Expected 'var', 'if', 'for', 'while', 'define', int, float, identifier, '+', '-', '(', '[' or 'NOT'"
             ))
 
         return res.success(node)
@@ -753,7 +714,7 @@ class Parser:
     def comp_expr(self):
         res = ParseResult()
 
-        if self.current_tok.matches(TT_KEYWORD, 'not'):
+        if self.current_tok.matches(TT_KEYWORD, 'NOT'):
             op_tok = self.current_tok
             res.register_advancement()
             self.advance()
@@ -767,7 +728,7 @@ class Parser:
         if res.error:
             return res.failure(InvalidSyntaxError(
                 self.current_tok.pos_start, self.current_tok.pos_end,
-                "Expected int, float, identifier, '+', '-', '(', '[', 'if', 'for', 'while', 'function' or 'not'"
+                "Expected int, float, identifier, '+', '-', '(', '[', 'if', 'for', 'while', 'define' or 'NOT'"
             ))
 
         return res.success(node)
@@ -812,7 +773,7 @@ class Parser:
                 if res.error:
                     return res.failure(InvalidSyntaxError(
                         self.current_tok.pos_start, self.current_tok.pos_end,
-                        "Expected ')', 'var', 'if', 'for', 'while', 'function', int, float, identifier, '+', '-', '(', '[' or 'not'"
+                        "Expected ')', 'var', 'if', 'for', 'while', 'define', int, float, identifier, '+', '-', '(', '[' or 'NOT'"
                     ))
 
                 while self.current_tok.type == TT_COMMA:
@@ -869,37 +830,32 @@ class Parser:
 
         elif tok.type == TT_LSQUARE:
             list_expr = res.register(self.list_expr())
-            if res.error:
-                return res
+            if res.error: return res
             return res.success(list_expr)
 
         elif tok.matches(TT_KEYWORD, 'if'):
             if_expr = res.register(self.if_expr())
-            if res.error:
-                return res
+            if res.error: return res
             return res.success(if_expr)
 
         elif tok.matches(TT_KEYWORD, 'for'):
             for_expr = res.register(self.for_expr())
-            if res.error:
-                return res
+            if res.error: return res
             return res.success(for_expr)
 
         elif tok.matches(TT_KEYWORD, 'while'):
             while_expr = res.register(self.while_expr())
-            if res.error:
-                return res
+            if res.error: return res
             return res.success(while_expr)
 
-        elif tok.matches(TT_KEYWORD, 'function'):
+        elif tok.matches(TT_KEYWORD, 'define'):
             func_def = res.register(self.func_def())
-            if res.error:
-                return res
+            if res.error: return res
             return res.success(func_def)
 
         return res.failure(InvalidSyntaxError(
             tok.pos_start, tok.pos_end,
-            "Expected int, float, identifier, '+', '-', '(', '[', if', 'for', 'while', 'function'"
+            "Expected int, float, identifier, '+', '-', '(', '[', if', 'for', 'while', 'define'"
         ))
 
     def list_expr(self):
@@ -924,7 +880,7 @@ class Parser:
             if res.error:
                 return res.failure(InvalidSyntaxError(
                     self.current_tok.pos_start, self.current_tok.pos_end,
-                    "Expected ']', 'var', 'if', 'for', 'while', 'function', int, float, identifier, '+', '-', '(', '[' or 'not'"
+                    "Expected ']', 'var', 'if', 'for', 'while', 'define', int, float, identifier, '+', '-', '(', '[' or 'NOT'"
                 ))
 
             while self.current_tok.type == TT_COMMA:
@@ -1104,7 +1060,7 @@ class Parser:
         end_value = res.register(self.expr())
         if res.error: return res
 
-        if self.current_tok.matches(TT_KEYWORD, 'STEP'):
+        if self.current_tok.matches(TT_KEYWORD, 'step'):
             res.register_advancement()
             self.advance()
 
@@ -1195,10 +1151,10 @@ class Parser:
     def func_def(self):
         res = ParseResult()
 
-        if not self.current_tok.matches(TT_KEYWORD, 'function'):
+        if not self.current_tok.matches(TT_KEYWORD, 'define'):
             return res.failure(InvalidSyntaxError(
                 self.current_tok.pos_start, self.current_tok.pos_end,
-                f"Expected 'function'"
+                f"Expected 'define'"
             ))
 
         res.register_advancement()
@@ -1547,7 +1503,7 @@ class Number(Value):
         else:
             return None, Value.illegal_operation(self, other)
 
-    def notted(self, other):
+    def notted(self):
         return Number(1 if self.value == 0 else 0).set_context(self.context), None
 
     def copy(self):
@@ -2063,13 +2019,10 @@ class Interpreter:
 
     def visit_BinOpNode(self, node, context):
         res = RTResult()
-        error = result = None
         left = res.register(self.visit(node.left_node, context))
-        if res.should_return():
-            return res
+        if res.should_return(): return res
         right = res.register(self.visit(node.right_node, context))
-        if res.should_return():
-            return res
+        if res.should_return(): return res
 
         if node.op_tok.type == TT_PLUS:
             result, error = left.added_to(right)
@@ -2112,7 +2065,7 @@ class Interpreter:
 
         if node.op_tok.type == TT_MINUS:
             number, error = number.multed_by(Number(-1))
-        elif node.op_tok.matches(TT_KEYWORD, 'not'):
+        elif node.op_tok.matches(TT_KEYWORD, 'NOT'):
             number, error = number.notted()
 
         if error:
@@ -2264,25 +2217,24 @@ class Interpreter:
 #######################################
 
 global_symbol_table = SymbolTable()
-global_symbol_table.set("NULL", Number.null)
-global_symbol_table.set("FALSE", Number.false)
-global_symbol_table.set("TRUE", Number.true)
-global_symbol_table.set("MATH_PI", Number.math_PI)
-global_symbol_table.set("PRINT", BuiltInFunction.print)
-global_symbol_table.set("PRINT_RET", BuiltInFunction.print_ret)
-global_symbol_table.set("INPUT", BuiltInFunction.input)
-global_symbol_table.set("INPUT_INT", BuiltInFunction.input_int)
-global_symbol_table.set("CLEAR", BuiltInFunction.clear)
-global_symbol_table.set("CLS", BuiltInFunction.clear)
-global_symbol_table.set("IS_NUM", BuiltInFunction.is_number)
-global_symbol_table.set("IS_STR", BuiltInFunction.is_string)
-global_symbol_table.set("IS_LIST", BuiltInFunction.is_list)
-global_symbol_table.set("IS_FUN", BuiltInFunction.is_function)
-global_symbol_table.set("APPEND", BuiltInFunction.append)
-global_symbol_table.set("POP", BuiltInFunction.pop)
-global_symbol_table.set("EXTEND", BuiltInFunction.extend)
-global_symbol_table.set("LEN", BuiltInFunction.len)
-global_symbol_table.set("RUN", BuiltInFunction.run)
+global_symbol_table.set("null", Number.null)
+global_symbol_table.set("false", Number.false)
+global_symbol_table.set("true", Number.true)
+global_symbol_table.set("print", BuiltInFunction.print)
+global_symbol_table.set("printRet", BuiltInFunction.print_ret)
+global_symbol_table.set("input", BuiltInFunction.input)
+global_symbol_table.set("InputInt", BuiltInFunction.input_int)
+global_symbol_table.set("clear", BuiltInFunction.clear)
+global_symbol_table.set("cls", BuiltInFunction.clear)
+global_symbol_table.set("isNum", BuiltInFunction.is_number)
+global_symbol_table.set("isStr", BuiltInFunction.is_string)
+global_symbol_table.set("isList", BuiltInFunction.is_list)
+global_symbol_table.set("IsFunc", BuiltInFunction.is_function)
+global_symbol_table.set("append", BuiltInFunction.append)
+global_symbol_table.set("pop", BuiltInFunction.pop)
+global_symbol_table.set("extend", BuiltInFunction.extend)
+global_symbol_table.set("len", BuiltInFunction.len)
+global_symbol_table.set("run", BuiltInFunction.run)
 
 
 def run(fn, text):
@@ -2301,3 +2253,5 @@ def run(fn, text):
     context = Context('<program>')
     context.symbol_table = global_symbol_table
     result = interpreter.visit(ast.node, context)
+
+    return result.value, result.error
