@@ -1,22 +1,15 @@
-import _BaseInterpreter as _Run
-from colorama import init
-init()
-print("Valour Application Shell 1.0.1\n looking good update     type help for help")
+import interpreter
+print("Valour Application 1.0.0")
 while True:
-	print("\033[36m" + ">-> " + "\033[0m", end="")  # color codes don't work with input text
-	text = input()
-	if text.strip() == "":
-		continue
-	elif text.strip() == "help":
-		print("https://github.com/SentyFunBall/valour-vapp")
-		continue
-	elif text.strip() == "exit":
-		break
-	result, error = _Run.run('<stdin>', text)
-	if error:
-		print("\033[31m" + error.as_string() + "\033[0m")
-	elif result:
-		if len(result.elements) == 1:
-			print(repr(result.elements[0]))
-		else:
-			print(repr(result))
+    text = input('-> ')
+    if text.strip() == "":
+        continue
+    result, error = interpreter.run('<stdin>', text)
+
+    if error:
+        print(error.as_string())
+    elif result:
+        if len(result.elements) == 1:
+            print(repr(result.elements[0]))
+        else:
+            print(repr(result))

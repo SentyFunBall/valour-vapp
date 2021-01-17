@@ -46,3 +46,4 @@ D:\plang\csharp\plang\vialang\valour-vapp\bin\Debug\net5.0\plang.dll
 D:\plang\csharp\plang\vialang\valour-vapp\bin\Debug\net5.0\ref\plang.dll
 D:\plang\csharp\plang\vialang\valour-vapp\bin\Debug\net5.0\plang.pdb
 D:\plang\csharp\plang\vialang\valour-vapp\obj\Debug\net5.0\plang.genruntimeconfig.cache
+C:\Users\Pennd\Documents\SentyTek_Corp\Valour_VAPP\valour-vapp\obj\Debug\net5.0\plang.pdb
