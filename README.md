@@ -6,5 +6,5 @@ https://github.com/SpikeViper/Valour
 
 Valour VAPP is a community built, open source way to build bots for Valour. Using a custom built block coding language, almost anyone can build a bot now. The system is still in development, and will be released soon after Valour first release.
 
-## where do i learn?
-there is a file named programming basics.md, click on it and start reading.
+## Where do I learn?
+There is a file named programming basics.md, click on it and start reading. There is also a wiki avalible on this repo.
