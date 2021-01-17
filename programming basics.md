@@ -135,7 +135,7 @@ end
 
 ## obs: the end word is just used in multi-line code for showing that the loop ends there
 
-at some point, the count variable will 10, then the while codition will be false, making it break the loop
+at some point, the count variable will be 10, then the while codition will be false, making it break the loop
 
 ## "what if i want to break the loop with other thing or skip an iteration?"
 
