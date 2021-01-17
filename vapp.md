@@ -20,7 +20,7 @@ First, click on "New bot". This will open up the block editor, a modified versio
 
 ## The Interpreter
 ### How to use it
-In the IDE, click on "Start bot". This will start your code. The IDE will transfer the .js to the intpreter, which will then convert it to C#, and then back to the IDE. Nautilus will then send it to Valour, as requests come in from Valour.
+In the IDE, click on "Start bot". This will start your code. The IDE will transfer the .js to the intpreter, which will run the code and convert the results back to the IDE, and then back to the IDE. Nautilus will then send it to Valour, as requests come in from Valour.
 
 # The Code
 COMING SOON

@@ -1,5 +1,5 @@
 math:
-+ (plus), -(minus/negate), *(multiply), /(divide) **(power)
++ (plus), -(minus/negate), *(multiply), /(divide) ^(power)
 valid types:
 num: (int) 123, (float) 123.456
 str: "text"
@@ -10,21 +10,38 @@ var assignment:
 var (var name) = (value)
 var i = 0
 for loops:
-...
+for i = (start value) until (final value) then
+    (code)
+end
+
+(end is just for multiline code)
 
 while loops:
-...
+while (condition) then
+    (code)
+end
 
 compare expressions:
-...
+>, >=. == <=, <, !=
+
+logical operators:
+and, or, not (words, not &&, ||, !)
 
 if statements:
-if (expr)
+if (expr) then
 (code)
-elif (expr)
+elif (expr) then
+(code)
+else then
 (code)
 
 function assignment:
-...
+define (function name) ([various parameters]) -> (return)
+
+or
+
+define (function name) ([parameters])
+    (code)
+    (return)
 
 (no classes)

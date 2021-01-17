@@ -6,7 +6,9 @@ a lot of them, not too much. and Vapp was created specially for being very easy
 ## how do i program in vapp?
 vapp is very simple to install and use you just need (insert how to install the electron part) then use the vapp shell for running the code.    
 ## what is a shell? is there an animal too?
-No, there is no animals. shell is a name of the language interface
+No, there is no animals. shell is a name of the language interface   
+## what is an IDE
+IDE stands for Integrated Development Environment, simply a place to code       
 ## So, after this little explanation, lets talk about how programming in vapp works:
 in vapp there are 4 basic things:
 * variables

@@ -169,7 +169,7 @@ KEYWORDS = (
     'else',
     'for',
     'until',
-    'STEP',
+    'step',
     'while',
     'function',
     'then',
@@ -1104,7 +1104,7 @@ class Parser:
         end_value = res.register(self.expr())
         if res.error: return res
 
-        if self.current_tok.matches(TT_KEYWORD, 'STEP'):
+        if self.current_tok.matches(TT_KEYWORD, 'step'):
             res.register_advancement()
             self.advance()
 
