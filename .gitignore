@@ -2,4 +2,5 @@
 /dist/
 /obj/
 /build/
+/.idea/
 /__pycache__/
