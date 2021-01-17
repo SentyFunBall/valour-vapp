@@ -2,6 +2,7 @@ import interpreter
 print("Valour Application 1.0.0")
 while True:
     text = input('-> ')
+
     if text.strip() == "":
         continue
     result, error = interpreter.run('<stdin>', text)
