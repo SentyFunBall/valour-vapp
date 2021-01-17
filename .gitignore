@@ -8,3 +8,4 @@
 *.pyc
 *.spec
 *.xml
+.idea/workspace.xml
