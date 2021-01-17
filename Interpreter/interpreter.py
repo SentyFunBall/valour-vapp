@@ -4,7 +4,6 @@
 
 import string
 import os
-import math
 
 
 def string_with_arrows(text, pos_start, pos_end):
@@ -1304,7 +1303,7 @@ class Parser:
     ###################################
 
     def bin_op(self, func_a, ops, func_b=None):
-        if func_b == None:
+        if func_b is None:
             func_b = func_a
 
         res = ParseResult()
@@ -1569,8 +1568,6 @@ class Number(Value):
 Number.null = Number(0)
 Number.false = Number(0)
 Number.true = Number(1)
-Number.math_PI = Number(math.pi)
-
 
 class String(Value):
     def __init__(self, value):
@@ -1724,7 +1721,7 @@ class Function(BaseFunction):
         if res.should_return(): return res
 
         value = res.register(interpreter.visit(self.body_node, exec_ctx))
-        if res.should_return() and res.func_return_value == None: return res
+        if res.should_return() and res.func_return_value is None: return res
 
         ret_value = (value if self.should_auto_return else None) or res.func_return_value or Number.null
         return res.success(ret_value)
@@ -1772,6 +1769,12 @@ class BuiltInFunction(BaseFunction):
     #####################################
 
     def execute_print(self, exec_ctx):
+        print(str(exec_ctx.symbol_table.get('value')), end="")
+        return RTResult().success(Number.null)
+
+    execute_print.arg_names = ['value']
+
+    def execute_print_new_line(self, exec_ctx):
         print(str(exec_ctx.symbol_table.get('value')))
         return RTResult().success(Number.null)
 
@@ -1829,6 +1832,26 @@ class BuiltInFunction(BaseFunction):
         return RTResult().success(Number.true if is_number else Number.false)
 
     execute_is_function.arg_names = ["value"]
+
+    def execute_num(self, exec_ctx):
+        if isinstance(exec_ctx.symbol_table.get("value"), Number):
+            return RTResult().success(exec_ctx.symbol_table.get("value"))
+        elif isinstance(exec_ctx.symbol_table.get("value"), String):
+            if exec_ctx.symbol_table.get("value").value.isdigit():
+                return RTResult().success(Number(exec_ctx.symbol_table.get("value").value))
+            else:
+
+                return RTResult().success(Number(1)) if exec_ctx.symbol_table.get("value").value != "" else RTResult().success(Number(0))
+
+    execute_num.arg_names = ["value"]
+
+    def execute_str(self,exec_ctx):
+        if isinstance(exec_ctx.symbol_table.get("value"), String):
+            return RTResult().success(String(exec_ctx.symbol_table.get("value").value))
+        elif isinstance(exec_ctx.symbol_table.get("value"), Number):
+            return RTResult().success(String(exec_ctx.symbol_table.get("value").value))
+
+    execute_str.arg_names = ["value"]
 
     def execute_append(self, exec_ctx):
         list_ = exec_ctx.symbol_table.get("list")
@@ -1901,7 +1924,10 @@ class BuiltInFunction(BaseFunction):
 
     def execute_len(self, exec_ctx):
         list_ = exec_ctx.symbol_table.get("list")
-
+        if isinstance (list_, Number):
+            return RTResult().success(Number(len(str(list_.value))))
+        if isinstance (list_, String):
+            return RTResult().success(Number(len(list_.value)))
         if not isinstance(list_, List):
             return RTResult().failure(RTError(
                 self.pos_start, self.pos_end,
@@ -1950,21 +1976,28 @@ class BuiltInFunction(BaseFunction):
     execute_run.arg_names = ["fn"]
 
 
+    def execute_exit(self, exec_ctx):
+        exit()
+
+    execute_exit.arg_names = []
 BuiltInFunction.print = BuiltInFunction("print")
+BuiltInFunction.println = BuiltInFunction("print_new_line")
 BuiltInFunction.print_ret = BuiltInFunction("print_ret")
 BuiltInFunction.input = BuiltInFunction("input")
 BuiltInFunction.input_int = BuiltInFunction("input_int")
 BuiltInFunction.clear = BuiltInFunction("clear")
-BuiltInFunction.is_number = BuiltInFunction("is_number")
-BuiltInFunction.is_string = BuiltInFunction("is_string")
-BuiltInFunction.is_list = BuiltInFunction("is_list")
-BuiltInFunction.is_function = BuiltInFunction("is_function")
+BuiltInFunction.is_number = BuiltInFunction("isNumber")
+BuiltInFunction.is_string = BuiltInFunction("isString")
+BuiltInFunction.is_list = BuiltInFunction("isList")
+BuiltInFunction.is_function = BuiltInFunction("isFunction")
+BuiltInFunction.num = BuiltInFunction("num")
+BuiltInFunction.str = BuiltInFunction("str")
 BuiltInFunction.append = BuiltInFunction("append")
 BuiltInFunction.pop = BuiltInFunction("pop")
 BuiltInFunction.extend = BuiltInFunction("extend")
 BuiltInFunction.len = BuiltInFunction("len")
 BuiltInFunction.run = BuiltInFunction("run")
-
+BuiltInFunction.exit = BuiltInFunction("exit")
 
 #######################################
 # CONTEXT
@@ -1989,7 +2022,7 @@ class SymbolTable:
 
     def get(self, name):
         value = self.symbols.get(name, None)
-        if value == None and self.parent:
+        if value is None and self.parent:
             return self.parent.get(name)
         return value
 
@@ -2264,38 +2297,39 @@ class Interpreter:
 #######################################
 
 global_symbol_table = SymbolTable()
-global_symbol_table.set("NULL", Number.null)
-global_symbol_table.set("FALSE", Number.false)
-global_symbol_table.set("TRUE", Number.true)
-global_symbol_table.set("MATH_PI", Number.math_PI)
-global_symbol_table.set("PRINT", BuiltInFunction.print)
-global_symbol_table.set("PRINT_RET", BuiltInFunction.print_ret)
-global_symbol_table.set("INPUT", BuiltInFunction.input)
-global_symbol_table.set("INPUT_INT", BuiltInFunction.input_int)
-global_symbol_table.set("CLEAR", BuiltInFunction.clear)
-global_symbol_table.set("CLS", BuiltInFunction.clear)
-global_symbol_table.set("IS_NUM", BuiltInFunction.is_number)
-global_symbol_table.set("IS_STR", BuiltInFunction.is_string)
-global_symbol_table.set("IS_LIST", BuiltInFunction.is_list)
-global_symbol_table.set("IS_FUN", BuiltInFunction.is_function)
-global_symbol_table.set("APPEND", BuiltInFunction.append)
-global_symbol_table.set("POP", BuiltInFunction.pop)
-global_symbol_table.set("EXTEND", BuiltInFunction.extend)
-global_symbol_table.set("LEN", BuiltInFunction.len)
-global_symbol_table.set("RUN", BuiltInFunction.run)
-
+global_symbol_table.set("null", Number.null)
+global_symbol_table.set("false", Number.false)
+global_symbol_table.set("true", Number.true)
+global_symbol_table.set("print", BuiltInFunction.print)
+global_symbol_table.set("println", BuiltInFunction.println)
+global_symbol_table.set("printRet", BuiltInFunction.print_ret)
+global_symbol_table.set("input", BuiltInFunction.input)
+global_symbol_table.set("inputInt", BuiltInFunction.input_int)
+global_symbol_table.set("clear", BuiltInFunction.clear)
+global_symbol_table.set("isNum", BuiltInFunction.is_number)
+global_symbol_table.set("isStr", BuiltInFunction.is_string)
+global_symbol_table.set("isList", BuiltInFunction.is_list)
+global_symbol_table.set("isFunc", BuiltInFunction.is_function)
+global_symbol_table.set("num", BuiltInFunction.num)
+global_symbol_table.set("str", BuiltInFunction.str)
+global_symbol_table.set("append", BuiltInFunction.append)
+global_symbol_table.set("pop", BuiltInFunction.pop)
+global_symbol_table.set("extend", BuiltInFunction.extend)
+global_symbol_table.set("len", BuiltInFunction.len)
+global_symbol_table.set("run", BuiltInFunction.run)
+global_symbol_table.set("exit", BuiltInFunction.exit)
 
 def run(fn, text):
     # Generate tokens
     lexer = Lexer(fn, text)
     tokens, error = lexer.make_tokens()
-    if error: return None, error
-
+    if error:
+        return None, error
     # Generate AST
     parser = Parser(tokens)
     ast = parser.parse()
-    if ast.error: return None, ast.error
-
+    if ast.error:
+        return None, ast.error
     # Run program
     interpreter = Interpreter()
     context = Context('<program>')

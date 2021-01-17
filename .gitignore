@@ -4,8 +4,9 @@
 /build/
 /.idea/
 /Interpreter/__pycache__/
+/Interpreter/build/
+/Interpreter/dist/
 *.pyc
 *.spec
 *.xml
-.idea/workspace.xml
 .idea/workspace.xml

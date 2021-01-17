@@ -38,7 +38,7 @@ a fancy way to say "text"
 ###
 ### what is a list?
 
-lists are like shopping lists, it contains other values and even can contain a list!
+lists are like shopping lists, it contains other values and even can contain a list in itself!
 
 ### what is a boolean?
 
