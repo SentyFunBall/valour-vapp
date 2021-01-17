@@ -1,5 +1,6 @@
 const { app, BrowserWindow } = require('electron');
 const path = require('path');
+const os = require('os')
 
 if (require('electron-squirrel-startup')) {
   app.quit();
@@ -13,7 +14,7 @@ const createWindow = () => {
   });
 
 
-  mainWindow.loadFile(path.join(__dirname, 'index.html'));
+  mainWindow.loadFile(path.join(__dirname, 'start.html'));
 };
 app.on('ready', createWindow);
 
