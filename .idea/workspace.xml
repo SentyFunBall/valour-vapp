@@ -1,7 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="0ff27542-73fa-46fb-aa70-aab64b0b6f2d" name="Default Changelist" comment="shell 1.0.2 now its easier to read the code" />
+    <list default="true" id="0ff27542-73fa-46fb-aa70-aab64b0b6f2d" name="Default Changelist" comment="shell 1.0.2 now its easier to read the code">
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Interpreter/interpreter.py" beforeDir="false" afterPath="$PROJECT_DIR$/Interpreter/interpreter.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Interpreter/shell.py" beforeDir="false" afterPath="$PROJECT_DIR$/Interpreter/shell.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/programming basics.md" beforeDir="false" afterPath="$PROJECT_DIR$/programming basics.md" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -18,6 +24,7 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="ProjectId" id="1n9oasYSHmnfQI18dRYeQEd7o0C" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
