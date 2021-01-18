@@ -19,7 +19,6 @@ In VAPP, thera are 4 basic things:
 and their concepts are very simple:
 
 ### variables
-## variables
 
 A variable is like a box with a tag, where you can put stuff and remember it later.
 
@@ -35,7 +34,6 @@ a way to store integer and decimal numbers
 
 a fancy way to say "text"
 
-###
 ### What is a list?
 
 Lists are like shopping lists, it contains other values and even can contain a list in itself!
