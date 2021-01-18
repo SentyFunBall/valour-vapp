@@ -4,3 +4,50 @@ body {
   max-width: 90rem;
   padding: 5rem;
 }
+
+#text1{
+  position: absolute;
+  left:250px; 
+  top:70px;
+}
+
+#buttonHolder{
+  position: absolute; 
+  left:10px; 
+  top:10px; 
+  width:200px;
+  height:650px;
+  background-color:rgba(10, 10, 10, 1);
+}
+
+#btn1{
+  position: absolute; 
+  left:10px;
+  top:200px
+}
+
+#newBtn{
+  width:175px;
+  height:25px;
+  background-color: rgb(65, 108, 236);
+  border:1px black;
+}
+
+#btn2{
+  position: absolute; 
+  left:10px;
+  top:240px
+}
+
+#loadBtn{
+  width:175px;
+  height:25px;
+  background-color: rgb(65, 108, 236);
+  border:1px black;
+}
+
+.bButtonText{
+  color: cornsilk;
+  position: relative;
+  top:-8px;
+}

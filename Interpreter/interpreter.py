@@ -242,6 +242,8 @@ class Lexer:
             elif self.current_char == '*':
                 tokens.append(self.make_mul_or_pow())
                 self.advance()
+            elif self.current_char == '^':
+                tokens.append(Token(TT_POW, pos_start=self.pos))
             elif self.current_char == '/':
                 tokens.append(Token(TT_DIV, pos_start=self.pos))
                 self.advance()
@@ -1627,6 +1629,7 @@ class List(Value):
         else:
             return None, Value.illegal_operation(self, other)
 
+
     def multed_by(self, other):
         if isinstance(other, List):
             new_list = self.copy()
@@ -1648,6 +1651,17 @@ class List(Value):
         else:
             return None, Value.illegal_operation(self, other)
 
+    def powed_by(self, other):
+        if isinstance(other, Number):
+                if other.value > 0:
+                    self.elements.sort()
+                elif other.value < 0:
+                    self.elements.reverse()
+                else:
+                    self.elements.clear()
+
+        else:
+            return None, Value.illegal_operation(self, other)
     def copy(self):
         copy = List(self.elements)
         copy.set_pos(self.pos_start, self.pos_end)
