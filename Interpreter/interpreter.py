@@ -4,7 +4,8 @@
 
 import string
 import os
-
+from colorama import init
+init()
 
 def string_with_arrows(text, pos_start, pos_end):
     result = ''
@@ -234,6 +235,8 @@ class Lexer:
                 tokens.append(self.make_identifier())
             elif self.current_char == '"':
                 tokens.append(self.make_string())
+            elif self.current_char == "'":
+                tokens.append(self.make_string2())
             elif self.current_char == '+':
                 tokens.append(Token(TT_PLUS, pos_start=self.pos))
                 self.advance()
@@ -325,6 +328,30 @@ class Lexer:
         self.advance()
         return Token(TT_STRING, string, pos_start, self.pos)
 
+    def make_string2(self):
+        string = ''
+        pos_start = self.pos.copy()
+        escape_character = False
+        self.advance()
+
+        escape_characters = {
+            'n': '\n',
+            't': '\t'
+        }
+
+        while self.current_char is not None and (self.current_char != "'" or escape_character):
+            if escape_character:
+                string += escape_characters.get(self.current_char, self.current_char)
+            else:
+                if self.current_char == '\\':
+                    escape_character = True
+                else:
+                    string += self.current_char
+            self.advance()
+            escape_character = False
+
+        self.advance()
+        return Token(TT_STRING, string, pos_start, self.pos)
     def make_identifier(self):
         id_str = ''
         pos_start = self.pos.copy()
@@ -1645,7 +1672,7 @@ class List(Value):
             except:
                 return None, RTError(
                     other.pos_start, other.pos_end,
-                    'Element at this index could not be retrieved from list because index is out of bounds',
+                    f'Element at index {other.value} could not be retrieved from list because index is out of bounds',
                     self.context
                 )
         else:
@@ -1792,7 +1819,7 @@ class BuiltInFunction(BaseFunction):
         print(str(exec_ctx.symbol_table.get('value')))
         return RTResult().success(Number.null)
 
-    execute_print.arg_names = ['value']
+    execute_print_new_line.arg_names = ['value']
 
     def execute_print_ret(self, exec_ctx):
         return RTResult().success(String(str(exec_ctx.symbol_table.get('value'))))
@@ -2311,6 +2338,7 @@ class Interpreter:
 #######################################
 
 global_symbol_table = SymbolTable()
+global_symbol_table.set("red", String("\033[31m"))
 global_symbol_table.set("null", Number.null)
 global_symbol_table.set("false", Number.false)
 global_symbol_table.set("true", Number.true)
