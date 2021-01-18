@@ -1,16 +1,16 @@
 # Programming languages
-## what is a programming language
-programming languages simply a way to tell computers what to do
-## are they hard?
-a lot of them, not too much. and Vapp was created specially for being very easy
-## how do I program in vapp?
-vapp is very simple to install and use you just need (insert how to install the electron part) then use the vapp shell for running the code.    
-## what is a shell? is there an animal too?
-No, there are no animals. shell is a name of the language interface   
-## what is an IDE
-IDE stands for Integrated Development Environment, simply a place to code       
+## What is a programming language
+Programming languages simply a way to tell computers what to do.
+## Are they hard?
+A lot of them, not too much. And VAPP was created specially for being very easy.
+## How do I program in VAPP?
+To program in VAPP, you first need to install the Nautilus IDE. Then use the vapp shell for running the code.    
+## What is a shell? Is there an animal too?
+No, there are no animals. Shell is a name of the language interface.
+## Wat is an IDE?
+IDE stands for Integrated Development Environment, simply a place to code.     
 ## So, after this little explanation, lets talk about how programming in vapp works:
-in vapp there are 4 basic things:
+In VAPP, thera are 4 basic things:
 * variables
 * if statements
 * loops
