@@ -11,17 +11,17 @@ No, there are no animals. Shell is a name of the language interface.
 IDE stands for Integrated Development Environment, simply a place to code.     
 ## So, after this little explanation, lets talk about how programming in vapp works:
 In VAPP, thera are 4 basic things:
-* variables
-* if statements
-* loops
-* and functions
+* Variables
+* Conditions
+* Loops
+* Functions
 
 and their concepts are very simple:
 
 ### variables
 ## variables
 
-a variable is like a box with a tag, where you can put stuff and remember it later.
+A variable is like a box with a tag, where you can put stuff and remember it later.
 
 variable tags are just the variable name (for example MyVar),
 And the box value (the stuff in there) can be (in vapp) 4 things:
@@ -36,11 +36,11 @@ a way to store integer and decimal numbers
 a fancy way to say "text"
 
 ###
-### what is a list?
+### What is a list?
 
-lists are like shopping lists, it contains other values and even can contain a list in itself!
+Lists are like shopping lists, it contains other values and even can contain a list in itself!
 
-### what is a boolean?
+### What is a boolean?
 
 A boolean type is a type of value that stores either true or false, it is used a lot in if statements and while loops
 
