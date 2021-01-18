@@ -28,3 +28,7 @@ ipcMain.on('open-file-dialog', (event) => {
 ipcMain.on('open-error-dialog', (event) => {
     dialog.showErrorBox('An error has occured in Nautius.', "The operation could not complete. The application may or may not close now.")
 })
+
+function openfileDialog() {
+    $("#fileLoader").click();
+}
