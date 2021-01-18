@@ -1,34 +1,20 @@
-const {ipcMain, dialog} = require('electron')
-const { app, BrowserWindow } = require('electron');
-const path = require('path');
-const os = require('os')
-const {ipcRenderer} = require('electron')
+const settings = require('electron-settings')
 
-const loadB = document.getElementById('loadBtn')
-const newB = document.getElementById('newBtn')
+const demoBtns = document.querySelectorAll('.js-container-target')
+// Listen for demo button clicks
+Array.prototype.forEach.call(demoBtns, (btn) => {
+  btn.addEventListener('click', (event) => {
+    const parent = event.target.parentElement
 
-loadB.addEventListener('click', (event) => {
-  ipcRenderer.send('open-file-dialog')
+    // Toggles the "is-open" class on the demo's parent element.
+    parent.classList.toggle('is-open')
+
+    // Saves the active demo if it is open, or clears it if the demo was user
+    // collapsed by the user
+    if (parent.classList.contains('is-open')) {
+      settings.set('activeDemoButtonId', event.target.getAttribute('id'))
+    } else {
+      settings.delete('activeDemoButtonId')
+    }
+  })
 })
-
-newB.addEventListener('click', (event) => {
-    ipcRenderer.send('open-error-dialog')
-})
-
-ipcMain.on('open-file-dialog', (event) => {
-    dialog.showOpenDialog({
-        properties: ['openDirectory']
-    }, (files) => {
-        if (files) {
-            event.sender.send('selected-directory',files)
-        }
-    })
-})
-
-ipcMain.on('open-error-dialog', (event) => {
-    dialog.showErrorBox('An error has occured in Nautius.', "The operation could not complete. The application may or may not close now.")
-})
-
-function openfileDialog() {
-    $("#fileLoader").click();
-}
