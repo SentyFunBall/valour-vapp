@@ -1,0 +1,18 @@
+1: in interpreter.py, around line 1977, create a function called execute_[function_name] (self, exec_ctx):
+
+2: then, create the function body (what it will do).
+
+3: then, at the return part of the function, if its not an error, write:
+RTResult.success(what to return)
+
+if is an error, write:
+
+RTResult().failure(RTError(self.pos_start, self.pos_end,(error description),exec_ctx))
+
+4: then, in the big block below, write:
+
+BuiltInFunction.(function_name) = BuiltInFunction("functionName") #camel case for at least not so cringe code
+
+5: then before the run function, there is another block of code, write:
+
+global_symbol_table.set("functionName", BuiltInFunction.(function_name))

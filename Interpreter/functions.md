@@ -57,3 +57,7 @@ if value is a list: how many elements are in the list
 ## run(string filename)
 
 runs the file specified by the file name (if the file is not in the same folder, use absolute paths and '/' instead of backslashes [see here](https://www.computerhope.com/issues/ch001708.htm))
+
+## exit()
+
+just stops the program flow
