@@ -1751,18 +1751,6 @@ class List(Value):
         else:
             return None, Value.illegal_operation(self, other)
 
-    def powed_by(self, other):
-        if isinstance(other, Number):
-                if other.value > 0:
-                    self.elements.sort()
-                elif other.value < 0:
-                    self.elements.reverse()
-                else:
-                    self.elements.clear()
-
-        else:
-            return None, Value.illegal_operation(self, other)
-
     def copy(self):
         copy = List(self.elements)
         copy.set_pos(self.pos_start, self.pos_end)
@@ -2040,6 +2028,16 @@ class BuiltInFunction(BaseFunction):
 
     execute_len.arg_names = ["list"]
 
+    def execute_sort(self, exec_ctx):
+        list_ = exec_ctx.symbol_table.get("list")
+        nums = [x.value for x in list_.elements]
+        nums.sort()
+        list_.elements.clear()
+        list_.elements.extend([Number(x) for x in nums])
+        return RTResult().success(String.null)
+
+    execute_sort.arg_names = ["list"]
+
     def execute_run(self, exec_ctx):
         fn = exec_ctx.symbol_table.get("fn")
 
@@ -2151,6 +2149,7 @@ BuiltInFunction.len = BuiltInFunction("len")
 BuiltInFunction.run = BuiltInFunction("run")
 BuiltInFunction.load = BuiltInFunction("load")
 BuiltInFunction.random = BuiltInFunction("random")
+BuiltInFunction.sort = BuiltInFunction("sort")
 BuiltInFunction.int = BuiltInFunction("int")
 BuiltInFunction.exit = BuiltInFunction("exit")
 
@@ -2493,6 +2492,7 @@ global_symbol_table.set("len", BuiltInFunction.len)
 global_symbol_table.set("run", BuiltInFunction.run)
 global_symbol_table.set("load", BuiltInFunction.load)
 global_symbol_table.set("random", BuiltInFunction.random)
+global_symbol_table.set("sort", BuiltInFunction.sort)
 global_symbol_table.set("int", BuiltInFunction.int)
 global_symbol_table.set("exit", BuiltInFunction.exit)
 
@@ -2501,7 +2501,6 @@ def run(fn, text):
     # Generate tokens
     lexer = Lexer(fn, text)
     tokens, error = lexer.make_tokens()
-    #print(tokens)
     if error:
         return None, error
     # Generate AST

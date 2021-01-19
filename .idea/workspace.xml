@@ -7,6 +7,7 @@
       <change beforePath="$PROJECT_DIR$/Interpreter/builtIn/math.vapp" beforeDir="false" afterPath="$PROJECT_DIR$/Interpreter/builtIn/math.vapp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Interpreter/builtInLibraries/math.napp" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Interpreter/interpreter.py" beforeDir="false" afterPath="$PROJECT_DIR$/Interpreter/interpreter.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/regex.txt" beforeDir="false" afterPath="$PROJECT_DIR$/regex.txt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
