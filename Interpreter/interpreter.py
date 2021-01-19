@@ -247,6 +247,15 @@ class Lexer:
                     tokens.insert(2, Token(TT_EQ))
                     tokens.append(Token(TT_IDENTIFIER, tokens[1].get_value(), pos_start=self.pos))
 
+                elif self.current_char == '+':
+                    tokens.insert(0, Token(TT_KEYWORD, 'var', pos_start=self.pos))
+                    tokens.insert(2, Token(TT_EQ))
+                    tokens.append(Token(TT_IDENTIFIER, tokens[1].get_value(), pos_start=self.pos))
+                    tokens.append(Token(TT_PLUS))
+                    tokens.append(Token(TT_INT, 1, pos_start=self.pos))
+                    self.advance()
+
+                    continue
                 tokens.append(Token(TT_PLUS, pos_start=self.pos))
                 self.advance()
             elif self.current_char == '-':
@@ -255,6 +264,16 @@ class Lexer:
                     tokens.insert(0, Token(TT_KEYWORD, 'var', pos_start=self.pos))
                     tokens.insert(2, Token(TT_EQ))
                     tokens.append(Token(TT_IDENTIFIER, tokens[1].get_value(), pos_start=self.pos))
+
+                elif self.current_char == '-':
+                    tokens.insert(0, Token(TT_KEYWORD, 'var', pos_start=self.pos))
+                    tokens.insert(2, Token(TT_EQ))
+                    tokens.append(Token(TT_IDENTIFIER, tokens[1].get_value(), pos_start=self.pos))
+                    tokens.append(Token(TT_MINUS))
+                    tokens.append(Token(TT_INT, 1, pos_start=self.pos))
+                    self.advance()
+
+                    continue
                 tokens.append(self.make_minus_or_arrow())
             elif self.current_char == '*':
                 self.advance()
@@ -407,19 +426,6 @@ class Lexer:
 
         return Token(tok_type, pos_start=pos_start, pos_end=self.pos)
 
-    def make_plus_or_assign(self):
-        tok_type = TT_PLUS
-        pos_start = self.pos.copy()
-        self.advance()
-
-        if self.current_char == '=':
-            self.assign(0)
-            self.advance()
-            return
-
-
-        return Token(tok_type, pos_start=pos_start, pos_end=self.pos)
-
     def make_not_equals(self):
         pos_start = self.pos.copy()
         self.advance()
@@ -472,8 +478,6 @@ class Lexer:
 
         self.advance()
 
-    def assign(self, module):
-        tok
 
 #######################################
 # NODES
@@ -717,7 +721,8 @@ class Parser:
             self.advance()
 
         statement = res.register(self.statement())
-        if res.error: return res
+        if res.error:
+            return res
         statements.append(statement)
 
         more_statements = True
@@ -731,7 +736,8 @@ class Parser:
             if newline_count == 0:
                 more_statements = False
 
-            if not more_statements: break
+            if not more_statements:
+                break
             statement = res.try_register(self.statement())
             if not statement:
                 self.reverse(res.to_reverse_count)
@@ -772,7 +778,8 @@ class Parser:
         if res.error:
             return res.failure(InvalidSyntaxError(
                 self.current_tok.pos_start, self.current_tok.pos_end,
-                "Expected 'return', 'continue', 'break', 'var', 'if', 'for', 'while', 'function', int, float, identifier, '+', '-', '(', '[' or 'not'"
+                "Expected 'return', 'continue', 'break', 'var', 'if', 'for', 'while'," 
+                " 'function', int, float, identifier, '+', '-', '(', '[' or 'not'"
             ))
         return res.success(expr)
 
@@ -802,7 +809,8 @@ class Parser:
             res.register_advancement()
             self.advance()
             expr = res.register(self.expr())
-            if res.error: return res
+            if res.error:
+                return res
             return res.success(VarAssignNode(var_name, expr))
 
         node = res.register(self.bin_op(self.comp_expr, ((TT_KEYWORD, 'and'), (TT_KEYWORD, 'or'))))
@@ -824,7 +832,8 @@ class Parser:
             self.advance()
 
             node = res.register(self.comp_expr())
-            if res.error: return res
+            if res.error:
+                return res
             return res.success(UnaryOpNode(op_tok, node))
 
         node = res.register(self.bin_op(self.arith_expr, (TT_EE, TT_NE, TT_LT, TT_GT, TT_LTE, TT_GTE)))
@@ -851,7 +860,8 @@ class Parser:
             res.register_advancement()
             self.advance()
             factor = res.register(self.factor())
-            if res.error: return res
+            if res.error:
+                return res
             return res.success(UnaryOpNode(tok, factor))
 
         return self.power()
@@ -862,7 +872,8 @@ class Parser:
     def call(self):
         res = ParseResult()
         atom = res.register(self.atom())
-        if res.error: return res
+        if res.error:
+            return res
 
         if self.current_tok.type == TT_LPAREN:
             res.register_advancement()
@@ -877,7 +888,8 @@ class Parser:
                 if res.error:
                     return res.failure(InvalidSyntaxError(
                         self.current_tok.pos_start, self.current_tok.pos_end,
-                        "Expected ')', 'var', 'if', 'for', 'while', 'function', int, float, identifier, '+', '-', '(', '[' or 'not'"
+                        "Expected ')', 'var', 'if', 'for', 'while', 'function',"
+                        " int, float, identifier, '+', '-', '(', '[' or 'not'"
                     ))
 
                 while self.current_tok.type == TT_COMMA:
@@ -885,7 +897,8 @@ class Parser:
                     self.advance()
 
                     arg_nodes.append(res.register(self.expr()))
-                    if res.error: return res
+                    if res.error:
+                        return res
 
                 if self.current_tok.type != TT_RPAREN:
                     return res.failure(InvalidSyntaxError(
@@ -921,7 +934,8 @@ class Parser:
             res.register_advancement()
             self.advance()
             expr = res.register(self.expr())
-            if res.error: return res
+            if res.error:
+                return res
             if self.current_tok.type == TT_RPAREN:
                 res.register_advancement()
                 self.advance()
@@ -1374,14 +1388,16 @@ class Parser:
 
         res = ParseResult()
         left = res.register(func_a())
-        if res.error: return res
+        if res.error:
+            return res
 
         while self.current_tok.type in ops or (self.current_tok.type, self.current_tok.value) in ops:
             op_tok = self.current_tok
             res.register_advancement()
             self.advance()
             right = res.register(func_b())
-            if res.error: return res
+            if res.error:
+                return res
             left = BinOpNode(left, op_tok, right)
 
         return res.success(left)
@@ -1394,6 +1410,11 @@ class Parser:
 class RTResult:
     def __init__(self):
         self.reset()
+        self.value = None
+        self.error = None
+        self.func_return_value = None
+        self.loop_should_continue = False
+        self.loop_should_break = False
 
     def reset(self):
         self.value = None
