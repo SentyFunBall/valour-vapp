@@ -177,6 +177,7 @@ KEYWORDS = (
     'return',
     'continue',
     'break',
+    'module'
 )
 
 
@@ -1628,8 +1629,20 @@ class String(Value):
         return self.value
 
     def __repr__(self):
-        return f'"{self.value}"'
+        if self.value == '\0':
+            return ""
+        return f'"{self.value}\033[0m"'
 
+
+String.black = String("\033[30")
+String.red = String("\033[31m")
+String.green = String("\033[32m")
+String.yellow = String("\033[33m")
+String.blue = String("\033[34m")
+String.magenta = String("\033[35m")
+String.cyan = String("\033[36m")
+String.normal = String("\033[0m")
+String.null = String("\0")
 
 class List(Value):
     def __init__(self, elements):
@@ -1647,7 +1660,7 @@ class List(Value):
             try:
                 new_list.elements.pop(other.value)
                 return new_list, None
-            except:
+            except IndexError:
                 return None, RTError(
                     other.pos_start, other.pos_end,
                     'Element at this index could not be removed from list because index is out of bounds',
@@ -1655,7 +1668,6 @@ class List(Value):
                 )
         else:
             return None, Value.illegal_operation(self, other)
-
 
     def multed_by(self, other):
         if isinstance(other, List):
@@ -1689,6 +1701,7 @@ class List(Value):
 
         else:
             return None, Value.illegal_operation(self, other)
+
     def copy(self):
         copy = List(self.elements)
         copy.set_pos(self.pos_start, self.pos_end)
@@ -1741,7 +1754,8 @@ class BaseFunction(Value):
     def check_and_populate_args(self, arg_names, args, exec_ctx):
         res = RTResult()
         res.register(self.check_args(arg_names, args))
-        if res.should_return(): return res
+        if res.should_return():
+            return res
         self.populate_args(arg_names, args, exec_ctx)
         return res.success(None)
 
@@ -1810,21 +1824,16 @@ class BuiltInFunction(BaseFunction):
     #####################################
 
     def execute_print(self, exec_ctx):
-        print(str(exec_ctx.symbol_table.get('value')), end="")
-        return RTResult().success(Number.null)
+        print(str(exec_ctx.symbol_table.get('value')) + "\033[0m", end="")
+        return RTResult().success(String.null)
 
     execute_print.arg_names = ['value']
 
     def execute_print_new_line(self, exec_ctx):
-        print(str(exec_ctx.symbol_table.get('value')))
-        return RTResult().success(Number.null)
+        print(str(exec_ctx.symbol_table.get('value')) + "\033[0m")
+        return RTResult().success(String.null)
 
     execute_print_new_line.arg_names = ['value']
-
-    def execute_print_ret(self, exec_ctx):
-        return RTResult().success(String(str(exec_ctx.symbol_table.get('value'))))
-
-    execute_print_ret.arg_names = ['value']
 
     def execute_input(self, exec_ctx):
         text = input()
@@ -1832,21 +1841,9 @@ class BuiltInFunction(BaseFunction):
 
     execute_input.arg_names = []
 
-    def execute_input_int(self, exec_ctx):
-        while True:
-            text = input()
-            try:
-                number = int(text)
-                break
-            except ValueError:
-                print(f"'{text}' must be an integer. Try again!")
-        return RTResult().success(Number(number))
-
-    execute_input_int.arg_names = []
-
     def execute_clear(self, exec_ctx):
         os.system('cls' if os.name == 'nt' else 'cls')
-        return RTResult().success(Number.null)
+        return RTResult().success(String.null)
 
     execute_clear.arg_names = []
 
@@ -1882,11 +1879,12 @@ class BuiltInFunction(BaseFunction):
                 return RTResult().success(Number(exec_ctx.symbol_table.get("value").value))
             else:
 
-                return RTResult().success(Number(1)) if exec_ctx.symbol_table.get("value").value != "" else RTResult().success(Number(0))
+                return RTResult().success(Number(1)) if exec_ctx.symbol_table.get("value").value != "" \
+                    else RTResult().success(Number(0))
 
     execute_num.arg_names = ["value"]
 
-    def execute_str(self,exec_ctx):
+    def execute_str(self, exec_ctx):
         if isinstance(exec_ctx.symbol_table.get("value"), String):
             return RTResult().success(String(exec_ctx.symbol_table.get("value").value))
         elif isinstance(exec_ctx.symbol_table.get("value"), Number):
@@ -1906,7 +1904,7 @@ class BuiltInFunction(BaseFunction):
             ))
 
         list_.elements.append(value)
-        return RTResult().success(Number.null)
+        return RTResult().success(String.null)
 
     execute_append.arg_names = ["list", "value"]
 
@@ -1930,7 +1928,7 @@ class BuiltInFunction(BaseFunction):
 
         try:
             element = list_.elements.pop(index.value)
-        except:
+        except IndexError:
             return RTResult().failure(RTError(
                 self.pos_start, self.pos_end,
                 'Element at this index could not be removed from list because index is out of bounds',
@@ -1959,15 +1957,15 @@ class BuiltInFunction(BaseFunction):
             ))
 
         listA.elements.extend(listB.elements)
-        return RTResult().success(Number.null)
+        return RTResult().success(String.null)
 
     execute_extend.arg_names = ["listA", "listB"]
 
     def execute_len(self, exec_ctx):
         list_ = exec_ctx.symbol_table.get("list")
-        if isinstance (list_, Number):
+        if isinstance(list_, Number):
             return RTResult().success(Number(len(str(list_.value))))
-        if isinstance (list_, String):
+        if isinstance(list_, String):
             return RTResult().success(Number(len(list_.value)))
         if not isinstance(list_, List):
             return RTResult().failure(RTError(
@@ -1980,7 +1978,7 @@ class BuiltInFunction(BaseFunction):
 
     execute_len.arg_names = ["list"]
 
-    def execute_run(self, exec_ctx):
+    def un(self, exec_ctx):
         fn = exec_ctx.symbol_table.get("fn")
 
         if not isinstance(fn, String):
@@ -2001,8 +1999,10 @@ class BuiltInFunction(BaseFunction):
                 f"Failed to load script \"{fn}\"\n" + str(e),
                 exec_ctx
             ))
-
-        _, error = run(fn, script)
+        try:
+            _, error = run(fn, script)
+        except ValueError:
+            _, error = run(fn, script)
 
         if error:
             return RTResult().failure(RTError(
@@ -2012,15 +2012,54 @@ class BuiltInFunction(BaseFunction):
                 exec_ctx
             ))
 
-        return RTResult().success(Number.null)
+        return RTResult().success(String.null)
 
     execute_run.arg_names = ["fn"]
 
+    def execute_load(self, exec_ctx):
+        fn = exec_ctx.symbol_table.get("fn")
+
+        if not isinstance(fn, String):
+            return RTResult().failure(RTError(
+                self.pos_start, self.pos_end,
+                "Second argument must be string",
+                exec_ctx
+            ))
+
+        fn = fn.value
+
+        try:
+            with open(fn, "r") as f:
+                script = f.read()
+        except Exception as e:
+            return RTResult().failure(RTError(
+                self.pos_start, self.pos_end,
+                f"Failed to load script \"{fn}\"\n" + str(e),
+                exec_ctx
+            ))
+        try:
+            _, error = run(fn, script)
+        except ValueError:
+            _, error = run(fn, script)
+
+        if error:
+            return RTResult().failure(RTError(
+                self.pos_start, self.pos_end,
+                f"Failed to finish executing script \"{fn}\"\n" +
+                error.as_string(),
+                exec_ctx
+            ))
+
+        return RTResult().success(String.null)
+
+    execute_load.arg_names = ["fn"]
 
     def execute_exit(self, exec_ctx):
         exit()
 
     execute_exit.arg_names = []
+
+
 BuiltInFunction.print = BuiltInFunction("print")
 BuiltInFunction.println = BuiltInFunction("print_new_line")
 BuiltInFunction.print_ret = BuiltInFunction("print_ret")
@@ -2038,11 +2077,13 @@ BuiltInFunction.pop = BuiltInFunction("pop")
 BuiltInFunction.extend = BuiltInFunction("extend")
 BuiltInFunction.len = BuiltInFunction("len")
 BuiltInFunction.run = BuiltInFunction("run")
+BuiltInFunction.load = BuiltInFunction("load")
 BuiltInFunction.exit = BuiltInFunction("exit")
 
 #######################################
 # CONTEXT
 #######################################
+
 
 class Context:
     def __init__(self, display_name, parent=None, parent_entry_pos=None):
@@ -2067,8 +2108,14 @@ class SymbolTable:
             return self.parent.get(name)
         return value
 
+    def value(self):
+        return self.symbols
+
     def set(self, name, value):
         self.symbols[name] = value
+
+    def append(self, value):
+        self.symbols |= value
 
     def remove(self, name):
         del self.symbols[name]
@@ -2130,7 +2177,8 @@ class Interpreter:
         res = RTResult()
         var_name = node.var_name_tok.value
         value = res.register(self.visit(node.value_node, context))
-        if res.should_return(): return res
+        if res.should_return():
+            return res
 
         context.symbol_table.set(var_name, value)
         return res.success(value)
@@ -2338,7 +2386,14 @@ class Interpreter:
 #######################################
 
 global_symbol_table = SymbolTable()
-global_symbol_table.set("red", String("\033[31m"))
+global_symbol_table.set("black", String.black)
+global_symbol_table.set("red", String.red)
+global_symbol_table.set("green", String.green)
+global_symbol_table.set("yellow", String.yellow)
+global_symbol_table.set("blue", String.blue)
+global_symbol_table.set("magenta", String.magenta)
+global_symbol_table.set("cyan", String.cyan)
+global_symbol_table.set("red", String.red)
 global_symbol_table.set("null", Number.null)
 global_symbol_table.set("false", Number.false)
 global_symbol_table.set("true", Number.true)
@@ -2359,7 +2414,9 @@ global_symbol_table.set("pop", BuiltInFunction.pop)
 global_symbol_table.set("extend", BuiltInFunction.extend)
 global_symbol_table.set("len", BuiltInFunction.len)
 global_symbol_table.set("run", BuiltInFunction.run)
+global_symbol_table.set("load", BuiltInFunction.load)
 global_symbol_table.set("exit", BuiltInFunction.exit)
+
 
 def run(fn, text):
     # Generate tokens
