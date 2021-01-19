@@ -1,8 +1,3 @@
-function eucdist(val1, val2)
-    var i = (((val1 / 0) ^ 2 - (val2 / 0) ^ 2) + ((val1 / 1) ^ 2 - (val2 / 1) ^ 2)) ^ 0.5
-    return i
-
-end
 function sqrt(value)
     return value ^ 0.5
 
