@@ -1,11 +1,11 @@
 #######################################
 # IMPORTS
 #######################################
-
-import string
+from random import random
 import os
 from colorama import init
 init()
+
 
 def string_with_arrows(text, pos_start, pos_end):
     result = ''
@@ -42,7 +42,7 @@ def string_with_arrows(text, pos_start, pos_end):
 #######################################
 
 DIGITS = '0123456789'
-LETTERS = string.ascii_letters
+LETTERS = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz'
 LETTERS_DIGITS = LETTERS + DIGITS
 
 
@@ -177,7 +177,6 @@ KEYWORDS = (
     'return',
     'continue',
     'break',
-    'module'
 )
 
 
@@ -248,6 +247,7 @@ class Lexer:
                 self.advance()
             elif self.current_char == '^':
                 tokens.append(Token(TT_POW, pos_start=self.pos))
+                self.advance()
             elif self.current_char == '/':
                 tokens.append(Token(TT_DIV, pos_start=self.pos))
                 self.advance()
@@ -311,8 +311,9 @@ class Lexer:
         self.advance()
 
         escape_characters = {
-            'n': '\n',
-            't': '\t'
+            '\n': '\n',
+            '\t': '\t',
+            '\\': '\\'
         }
 
         while self.current_char is not None and (self.current_char != '"' or escape_character):
@@ -336,8 +337,9 @@ class Lexer:
         self.advance()
 
         escape_characters = {
-            'n': '\n',
-            't': '\t'
+            '\n': '\n',
+            '\t': '\t',
+            '\\': '\\'
         }
 
         while self.current_char is not None and (self.current_char != "'" or escape_character):
@@ -353,6 +355,7 @@ class Lexer:
 
         self.advance()
         return Token(TT_STRING, string, pos_start, self.pos)
+
     def make_identifier(self):
         id_str = ''
         pos_start = self.pos.copy()
@@ -657,7 +660,7 @@ class Parser:
         return self.current_tok
 
     def update_current_tok(self):
-        if self.tok_idx >= 0 and self.tok_idx < len(self.tokens):
+        if 0 <= self.tok_idx < len(self.tokens):
             self.current_tok = self.tokens[self.tok_idx]
 
     def parse(self):
@@ -1647,6 +1650,7 @@ String.cyan = String("\033[36m")
 String.normal = String("\033[0m")
 String.null = String("\0")
 
+
 class List(Value):
     def __init__(self, elements):
         super().__init__()
@@ -1969,7 +1973,7 @@ class BuiltInFunction(BaseFunction):
         list_ = exec_ctx.symbol_table.get("list")
         if isinstance(list_, Number):
             return RTResult().success(Number(len(str(list_.value))))
-        if isinstance(list_, String):
+        elif isinstance(list_, String):
             return RTResult().success(Number(len(list_.value)))
         if not isinstance(list_, List):
             return RTResult().failure(RTError(
@@ -2057,6 +2061,17 @@ class BuiltInFunction(BaseFunction):
         return RTResult().success(String.null)
 
     execute_load.arg_names = ["fn"]
+
+    def execute_int(self, exec_ctx):
+        return RTResult().success(Number(int(exec_ctx.symbol_table.get("value").value)))
+
+    execute_int.arg_names = ["value"]
+
+    def execute_random(self, exec_ctx):
+        return RTResult().success(Number(random()))
+
+    execute_random.arg_names = []
+
     def execute_exit(self, exec_ctx):
         exit()
 
@@ -2081,6 +2096,8 @@ BuiltInFunction.extend = BuiltInFunction("extend")
 BuiltInFunction.len = BuiltInFunction("len")
 BuiltInFunction.run = BuiltInFunction("run")
 BuiltInFunction.load = BuiltInFunction("load")
+BuiltInFunction.random = BuiltInFunction("random")
+BuiltInFunction.int = BuiltInFunction("int")
 BuiltInFunction.exit = BuiltInFunction("exit")
 
 #######################################
@@ -2250,17 +2267,20 @@ class Interpreter:
 
         for condition, expr, should_return_null in node.cases:
             condition_value = res.register(self.visit(condition, context))
-            if res.should_return(): return res
+            if res.should_return():
+                return res
 
             if condition_value.is_true():
                 expr_value = res.register(self.visit(expr, context))
-                if res.should_return(): return res
+                if res.should_return():
+                    return res
                 return res.success(Number.null if should_return_null else expr_value)
 
         if node.else_case:
             expr, should_return_null = node.else_case
             expr_value = res.register(self.visit(expr, context))
-            if res.should_return(): return res
+            if res.should_return():
+                return res
             return res.success(Number.null if should_return_null else expr_value)
 
         return res.success(Number.null)
@@ -2418,6 +2438,8 @@ global_symbol_table.set("extend", BuiltInFunction.extend)
 global_symbol_table.set("len", BuiltInFunction.len)
 global_symbol_table.set("run", BuiltInFunction.run)
 global_symbol_table.set("load", BuiltInFunction.load)
+global_symbol_table.set("random", BuiltInFunction.random)
+global_symbol_table.set("int", BuiltInFunction.int)
 global_symbol_table.set("exit", BuiltInFunction.exit)
 
 

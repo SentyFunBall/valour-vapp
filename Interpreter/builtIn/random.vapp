@@ -1,0 +1,10 @@
+function randint(endValue)
+    return random() * endValue
+
+end
+
+function choice(list)
+    var chosen = randint(len(list))
+    return list / chosen
+
+end
