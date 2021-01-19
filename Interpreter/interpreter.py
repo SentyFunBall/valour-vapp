@@ -1773,12 +1773,13 @@ class Function(BaseFunction):
         exec_ctx = self.generate_new_context()
 
         res.register(self.check_and_populate_args(self.arg_names, args, exec_ctx))
-        if res.should_return(): return res
+        if res.should_return():
+            return res
 
         value = res.register(interpreter.visit(self.body_node, exec_ctx))
         if res.should_return() and res.func_return_value is None: return res
 
-        ret_value = (value if self.should_auto_return else None) or res.func_return_value or Number.null
+        ret_value = (value if self.should_auto_return else None) or res.func_return_value or String.null
         return res.success(ret_value)
 
     def copy(self):
@@ -1978,7 +1979,7 @@ class BuiltInFunction(BaseFunction):
 
     execute_len.arg_names = ["list"]
 
-    def un(self, exec_ctx):
+    def execute_run(self, exec_ctx):
         fn = exec_ctx.symbol_table.get("fn")
 
         if not isinstance(fn, String):

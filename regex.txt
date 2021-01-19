@@ -36,11 +36,11 @@ else then
 (code)
 
 function assignment:
-define (function name) ([various parameters]) -> (return)
+function (function name) ([various parameters]) -> (return)
 
 or
 
-define (function name) ([parameters])
+function (function name) ([parameters])
     (code)
     (return)
 
