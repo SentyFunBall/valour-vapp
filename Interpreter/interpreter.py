@@ -196,6 +196,9 @@ class Token:
     def matches(self, type_, value):
         return self.type == type_ and self.value == value
 
+    def get_value(self):
+        return self.value
+
     def __repr__(self):
         if self.value:
             return f'{self.type}:{self.value}'
@@ -238,17 +241,43 @@ class Lexer:
             elif self.current_char == "'":
                 tokens.append(self.make_string2())
             elif self.current_char == '+':
+                self.advance()
+                if self.current_char == '=':
+                    tokens.insert(0, Token(TT_KEYWORD, 'var', pos_start=self.pos))
+                    tokens.insert(2, Token(TT_EQ))
+                    tokens.append(Token(TT_IDENTIFIER, tokens[1].get_value(), pos_start=self.pos))
+
                 tokens.append(Token(TT_PLUS, pos_start=self.pos))
                 self.advance()
             elif self.current_char == '-':
+                self.advance()
+                if self.current_char == '=':
+                    tokens.insert(0, Token(TT_KEYWORD, 'var', pos_start=self.pos))
+                    tokens.insert(2, Token(TT_EQ))
+                    tokens.append(Token(TT_IDENTIFIER, tokens[1].get_value(), pos_start=self.pos))
                 tokens.append(self.make_minus_or_arrow())
             elif self.current_char == '*':
-                tokens.append(self.make_mul_or_pow())
+                self.advance()
+                if self.current_char == '=':
+                    tokens.insert(0, Token(TT_KEYWORD, 'var', pos_start=self.pos))
+                    tokens.insert(2, Token(TT_EQ))
+                    tokens.append(Token(TT_IDENTIFIER, tokens[1].get_value(), pos_start=self.pos))
+                tokens.append(Token(TT_MUL, pos_start=self.pos))
                 self.advance()
             elif self.current_char == '^':
+                self.advance()
+                if self.current_char == '=':
+                    tokens.insert(0, Token(TT_KEYWORD, 'var', pos_start=self.pos))
+                    tokens.insert(2, Token(TT_EQ))
+                    tokens.append(Token(TT_IDENTIFIER, tokens[1].get_value(), pos_start=self.pos))
                 tokens.append(Token(TT_POW, pos_start=self.pos))
                 self.advance()
             elif self.current_char == '/':
+                self.advance()
+                if self.current_char == '=':
+                    tokens.insert(0, Token(TT_KEYWORD, 'var', pos_start=self.pos))
+                    tokens.insert(2, Token(TT_EQ))
+                    tokens.append(Token(TT_IDENTIFIER, tokens[1].get_value(), pos_start=self.pos))
                 tokens.append(Token(TT_DIV, pos_start=self.pos))
                 self.advance()
             elif self.current_char == '(':
@@ -378,14 +407,16 @@ class Lexer:
 
         return Token(tok_type, pos_start=pos_start, pos_end=self.pos)
 
-    def make_mul_or_pow(self):
-        tok_type = TT_MUL
+    def make_plus_or_assign(self):
+        tok_type = TT_PLUS
         pos_start = self.pos.copy()
         self.advance()
 
-        if self.current_char == '*':
+        if self.current_char == '=':
+            self.assign(0)
             self.advance()
-            tok_type = TT_POW
+            return
+
 
         return Token(tok_type, pos_start=pos_start, pos_end=self.pos)
 
@@ -441,6 +472,8 @@ class Lexer:
 
         self.advance()
 
+    def assign(self, module):
+        tok
 
 #######################################
 # NODES
@@ -2447,6 +2480,7 @@ def run(fn, text):
     # Generate tokens
     lexer = Lexer(fn, text)
     tokens, error = lexer.make_tokens()
+    #print(tokens)
     if error:
         return None, error
     # Generate AST
