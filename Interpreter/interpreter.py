@@ -1599,6 +1599,7 @@ Number.null = Number(0)
 Number.false = Number(0)
 Number.true = Number(1)
 
+
 class String(Value):
     def __init__(self, value):
         super().__init__()
@@ -1607,6 +1608,8 @@ class String(Value):
     def added_to(self, other):
         if isinstance(other, String):
             return String(self.value + other.value).set_context(self.context), None
+        elif isinstance(other, Number):
+            return String(self.value + str(other.value)).set_context(self.context), None
         else:
             return None, Value.illegal_operation(self, other)
 
@@ -2054,7 +2057,6 @@ class BuiltInFunction(BaseFunction):
         return RTResult().success(String.null)
 
     execute_load.arg_names = ["fn"]
-
     def execute_exit(self, exec_ctx):
         exit()
 
