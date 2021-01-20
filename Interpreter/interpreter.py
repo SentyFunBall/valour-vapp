@@ -274,8 +274,9 @@ class Lexer:
                     tokens.append(Token(TT_MINUS))
                     tokens.append(Token(TT_INT, 1, pos_start=self.pos))
                     self.advance()
-
                     continue
+                elif self.current_char == '>':
+                    tokens.append(Token(TT_ARROW, pos_start=self.pos))
                 tokens.append(self.make_minus_or_arrow())
             elif self.current_char == '*':
                 self.advance()
@@ -1602,19 +1603,40 @@ class Number(Value):
 
     def powed_by(self, other):
         if isinstance(other, Number):
+            if other.value == 0 and self.value == 0:
+                return None, RTError(
+                    other.pos_start, other.pos_end,
+                    'Not a number',
+                    self.context
+                )
             return Number(self.value ** other.value).set_context(self.context), None
+
         else:
             return None, Value.illegal_operation(self, other)
 
     def modded_by(self, other):
         if isinstance(other, Number):
+            if other.value == 0:
+                return None, RTError(
+                    other.pos_start, other.pos_end,
+                    'Division by zero',
+                    self.context
+                )
             return Number(self.value % other.value).set_context(self.context), None
+
         else:
             return None, Value.illegal_operation(self, other)
 
     def intdiv_by(self, other):
         if isinstance(other, Number):
+            if other.value == 0:
+                return None, RTError(
+                    other.pos_start, other.pos_end,
+                    'Division by zero',
+                    self.context
+                )
             return Number(self.value // other.value).set_context(self.context), None
+
         else:
             return None, Value.illegal_operation(self, other)
 
@@ -2539,6 +2561,7 @@ def run(fn, text):
     # Generate tokens
     lexer = Lexer(fn, text)
     tokens, error = lexer.make_tokens()
+    print(tokens)
     if error:
         return None, error
     # Generate AST
