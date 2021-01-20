@@ -143,6 +143,8 @@ TT_MINUS = 'MINUS'
 TT_MUL = 'MUL'
 TT_DIV = 'DIV'
 TT_POW = 'POW'
+TT_MOD = 'MOD'
+TT_IDV = 'IDV'
 TT_EQ = 'EQ'
 TT_LPAREN = 'LPAREN'
 TT_RPAREN = 'RPAREN'
@@ -297,7 +299,14 @@ class Lexer:
                     tokens.insert(0, Token(TT_KEYWORD, 'var', pos_start=self.pos))
                     tokens.insert(2, Token(TT_EQ))
                     tokens.append(Token(TT_IDENTIFIER, tokens[1].get_value(), pos_start=self.pos))
+                elif self.current_char == "/":
+                    tokens.append(Token(TT_IDV, pos_start=self.pos))
+                    self.advance()
+                    continue
                 tokens.append(Token(TT_DIV, pos_start=self.pos))
+                self.advance()
+            elif self.current_char == '%':
+                tokens.append(Token(TT_MOD, pos_start=self.pos))
                 self.advance()
             elif self.current_char == '(':
                 tokens.append(Token(TT_LPAREN, pos_start=self.pos))
@@ -850,7 +859,7 @@ class Parser:
         return self.bin_op(self.term, (TT_PLUS, TT_MINUS))
 
     def term(self):
-        return self.bin_op(self.factor, (TT_MUL, TT_DIV))
+        return self.bin_op(self.factor, (TT_MUL, TT_DIV, TT_MOD, TT_IDV))
 
     def factor(self):
         res = ParseResult()
@@ -1498,6 +1507,12 @@ class Value:
     def powed_by(self, other):
         return None, self.illegal_operation(other)
 
+    def modded_by(self, other):
+        return None, self.illegal_operation(other)
+
+    def intdiv_by(self, other):
+        return None, self.illegal_operation(other)
+
     def get_comparison_eq(self, other):
         return None, self.illegal_operation(other)
 
@@ -1582,6 +1597,18 @@ class Number(Value):
     def powed_by(self, other):
         if isinstance(other, Number):
             return Number(self.value ** other.value).set_context(self.context), None
+        else:
+            return None, Value.illegal_operation(self, other)
+
+    def modded_by(self, other):
+        if isinstance(other, Number):
+            return Number(self.value % other.value).set_context(self.context), None
+        else:
+            return None, Value.illegal_operation(self, other)
+
+    def intdiv_by(self, other):
+        if isinstance(other, Number):
+            return Number(self.value // other.value).set_context(self.context), None
         else:
             return None, Value.illegal_operation(self, other)
 
@@ -2276,6 +2303,10 @@ class Interpreter:
             result, error = left.dived_by(right)
         elif node.op_tok.type == TT_POW:
             result, error = left.powed_by(right)
+        elif node.op_tok.type == TT_MOD:
+            result, error = left.modded_by(right)
+        elif node.op_tok.type == TT_IDV:
+            result, error = left.intdiv_by(right)
         elif node.op_tok.type == TT_EE:
             result, error = left.get_comparison_eq(right)
         elif node.op_tok.type == TT_NE:
@@ -2288,11 +2319,11 @@ class Interpreter:
             result, error = left.get_comparison_lte(right)
         elif node.op_tok.type == TT_GTE:
             result, error = left.get_comparison_gte(right)
+
         elif node.op_tok.matches(TT_KEYWORD, 'and'):
             result, error = left.anded_by(right)
         elif node.op_tok.matches(TT_KEYWORD, 'or'):
             result, error = left.ored_by(right)
-
         if error:
             return res.failure(error)
         else:

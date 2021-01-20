@@ -1,3 +1,5 @@
+var mathPi = 3.1415926535
+var mathE =  2.71828182846
 function sqrt(value)
     return value ^ 0.5
 
@@ -5,5 +7,16 @@ end
 
 function abs(value)
     return value < 0 * -1
+
+end
+
+
+function rad_to_deg(rad)
+    return rad * (180/mathPi)
+
+end
+
+function deg_to_rad(deg)
+    return deg * (mathPi/180)
 
 end

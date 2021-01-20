@@ -1,5 +1,5 @@
 import interpreter
-print("Valour Application 1.1.0")
+print("Valour Application 1.2.0")
 while True:
     text = input('-> ')
 
