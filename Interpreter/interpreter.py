@@ -625,7 +625,6 @@ class CallNode:
         else:
             self.pos_end = self.node_to_call.pos_end
 
-
 class ReturnNode:
     def __init__(self, node_to_return, pos_start, pos_end):
         self.node_to_return = node_to_return
@@ -787,7 +786,7 @@ class Parser:
         if res.error:
             return res.failure(InvalidSyntaxError(
                 self.current_tok.pos_start, self.current_tok.pos_end,
-                "Expected 'return', 'continue', 'break', 'var', 'if', 'for', 'while'," 
+                "Expected 'return', 'continue', 'break', 'import', 'var', 'if', 'for', 'while'," 
                 " 'function', int, float, identifier, '+', '-', '(', '[' or 'not'"
             ))
         return res.success(expr)
@@ -984,7 +983,6 @@ class Parser:
             if res.error:
                 return res
             return res.success(func_def)
-
         return res.failure(InvalidSyntaxError(
             tok.pos_start, tok.pos_end,
             "Expected int, float, identifier, '+', '-', '(', '[', if', 'for', 'while', 'function'"
@@ -1178,7 +1176,8 @@ class Parser:
         self.advance()
 
         start_value = res.register(self.expr())
-        if res.error: return res
+        if res.error:
+            return res
 
         if not self.current_tok.matches(TT_KEYWORD, 'until'):
             return res.failure(InvalidSyntaxError(
@@ -1190,14 +1189,16 @@ class Parser:
         self.advance()
 
         end_value = res.register(self.expr())
-        if res.error: return res
+        if res.error:
+            return res
 
         if self.current_tok.matches(TT_KEYWORD, 'step'):
             res.register_advancement()
             self.advance()
 
             step_value = res.register(self.expr())
-            if res.error: return res
+            if res.error:
+                return res
         else:
             step_value = None
 
@@ -1215,7 +1216,8 @@ class Parser:
             self.advance()
 
             body = res.register(self.statements())
-            if res.error: return res
+            if res.error:
+                return res
 
             if not self.current_tok.matches(TT_KEYWORD, 'end'):
                 return res.failure(InvalidSyntaxError(
@@ -1262,7 +1264,8 @@ class Parser:
             self.advance()
 
             body = res.register(self.statements())
-            if res.error: return res
+            if res.error:
+                return res
 
             if not self.current_tok.matches(TT_KEYWORD, 'end'):
                 return res.failure(InvalidSyntaxError(
@@ -1276,7 +1279,8 @@ class Parser:
             return res.success(WhileNode(condition, body, True))
 
         body = res.register(self.statement())
-        if res.error: return res
+        if res.error:
+            return res
 
         return res.success(WhileNode(condition, body, False))
 
@@ -1421,9 +1425,11 @@ class RTResult:
         self.reset()
         self.value = None
         self.error = None
+        self.import_value = None
         self.func_return_value = None
         self.loop_should_continue = False
         self.loop_should_break = False
+
 
     def reset(self):
         self.value = None
@@ -1721,7 +1727,7 @@ class String(Value):
         return f'"{self.value}\033[0m"'
 
 
-String.black = String("\033[30")
+String.black = String("\033[30m")
 String.red = String("\033[31m")
 String.green = String("\033[32m")
 String.yellow = String("\033[33m")
@@ -2475,7 +2481,8 @@ class Interpreter:
 
         if node.node_to_return:
             value = res.register(self.visit(node.node_to_return, context))
-            if res.should_return(): return res
+            if res.should_return():
+                return res
         else:
             value = Number.null
 

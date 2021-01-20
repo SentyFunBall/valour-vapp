@@ -1,8 +1,34 @@
+:root {
+  --gray0: #cbe3ff;
+  --gray1: #9ecbff;
+  --gray2: #789dca;
+  --gray3: #406683;
+  --gray4: #2d465c;
+  --gray5: #0f1c31;
+  --gray6: #002030;
+
+}
+
+.light {
+  --bg: var(--gray0);
+  --theme-switcher: var(--gray2);
+  --theme-switcher-ball: var(var(--gray1))
+  --text: var(--gray6);
+}
+
+
+.dark {
+  --bg: var(--gray5);
+  --theme-switcher: var(--gray4);
+  --text: var(--gray0);
+}
+
 body {
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
   margin: auto;
   max-width: 90rem;
   padding: 5rem;
+  background-color: var(--bg);
 }
 
 #text1{
@@ -50,4 +76,42 @@ body {
   color: cornsilk;
   position: relative;
   top:-8px;
+}
+
+.theme-switcher{
+  width: 55px;
+  height: 25px;
+  position: relative;
+  display:flex;
+  justify-content: center;
+  align-items: center;
+}
+#theme{
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
+  border-radius: 50px;
+  outline: none;
+  border: 4px solid var(--gray2);
+  transition: all 0.4s;
+}
+#theme::before{
+  content: '';
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  transform: translate(0);
+  width: 38px;
+  height: 38px;
+  background: #eeeeee;
+  border-radius: 50px;
+  transition: all 0.4s;
+}
+#theme:checked::before{
+  transform: translate(158%);
+}
+
+#theme:checked{
+  border: 4px solid var(--gray4);
 }

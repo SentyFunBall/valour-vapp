@@ -3,9 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="0ff27542-73fa-46fb-aa70-aab64b0b6f2d" name="Default Changelist" comment="shell 1.0.2 now its easier to read the code">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Interpreter/builtIn/math.vapp" beforeDir="false" afterPath="$PROJECT_DIR$/Interpreter/builtIn/math.vapp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Interpreter/interpreter.py" beforeDir="false" afterPath="$PROJECT_DIR$/Interpreter/interpreter.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Interpreter/shell.py" beforeDir="false" afterPath="$PROJECT_DIR$/Interpreter/shell.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/nautilus/src/start.css" beforeDir="false" afterPath="$PROJECT_DIR$/nautilus/src/start.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/nautilus/src/start.html" beforeDir="false" afterPath="$PROJECT_DIR$/nautilus/src/start.html" afterDir="false" />
     </list>
