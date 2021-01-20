@@ -2,10 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="0ff27542-73fa-46fb-aa70-aab64b0b6f2d" name="Default Changelist" comment="shell 1.0.2 now its easier to read the code">
-      <change afterPath="$PROJECT_DIR$/fek_server/server.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/fek_server/test.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Interpreter/interpreter.py" beforeDir="false" afterPath="$PROJECT_DIR$/Interpreter/interpreter.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fek_server/server.py" beforeDir="false" afterPath="$PROJECT_DIR$/fek_server/server.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fek_server/test.py" beforeDir="false" afterPath="$PROJECT_DIR$/fek_server/test.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
