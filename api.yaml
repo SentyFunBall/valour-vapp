@@ -1,0 +1,30 @@
+{
+  "onSystemGet":
+   {
+   "systemName": "<>",
+   "onPlanet<planetname>": { # for each planet/moon in the system, repeat the block \/
+     "newUser":
+      {
+       "hasJoin": true/false,
+       "newUserName": "<>"
+      }
+     lastMessage:
+      {
+       "author": "<>",
+       "content": "<>"
+      }
+    }
+  },
+  "onSystemSent":
+  {
+     "systemName": "<>",
+     "onPlanet<planetname>": { # for each planet/moon in the system, repeat the block \/
+        "sendMessage":
+         {
+           "botName": "<>",
+           "validToken": true, # if false just ignore the message
+           "message": ""
+         }
+     }
+  }
+}

@@ -1,5 +1,0 @@
-
-load("add.napp")
-var i = add(1, 1)
-
-println(i)
