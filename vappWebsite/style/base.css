@@ -36,7 +36,11 @@ nav{
     justify-content: center;
 
 }
-
+#download{
+    margin-top: 10px;
+    border: 1px solid lightblue;
+    padding: 1%;
+}Λ41] 
 footer > p {
     background-color: black;
     color: var(--text-2);

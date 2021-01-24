@@ -2,11 +2,7 @@
     --gray: #888888;
     --blue: #002b36; 
 }
-#download{
-    margin-top: 10px;
-    border: 1px solid lightblue;
-    padding: 1%;
-}
+
 code {
     padding: 1% 3%;
     color: var(--gray);
