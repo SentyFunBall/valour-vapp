@@ -3,9 +3,7 @@
 /obj/
 /build/
 /.idea/
-/Interpreter/__pycache__/
-/Interpreter/build/
-/Interpreter/dist/
+/__pycache__/
 *.pyc
 *.spec
 *.xml
