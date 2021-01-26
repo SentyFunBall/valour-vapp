@@ -1,18 +1,19 @@
 ﻿using System;
 using System.Net;
 using System.IO;
-
+using System.Collections.Generic;
 namespace wrapper_cs
 {
-    class Program
+    class cswrap
     {
-        static void Main(string[] args)
+        public static Dictionary<string, string> Get(string sysName)
         {
-            string sysName = "sysname";
+            Dictionary<string, string> ads = null;
             string url = $"Valour.gg/{sysName}/api";
             WebRequest get = WebRequest.Create(url);
             Stream stream = get.GetResponse().GetResponseStream();
             
+            return ads;
         }
     }
 }

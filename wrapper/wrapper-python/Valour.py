@@ -18,22 +18,24 @@ class Api:
     def authenticate(self, token):
         return authenticate.authenticate(token)
 
-    def getfromApi(self, system):
+    def getfromApi(self, system, planetpaths):
         if self.isAuth:
             response = requests.get(self.ValourApi)
             response = response.json()
-            if not response == self.lastApiCall:
-                if response["lastMessage"] != self.lastApiCall["lastMessage"]:
-                    self.lastApiCall = response
-                    self.onMessageSent()
-                elif response["newUser"] != self.lastApiCall["newUser"]:
-                    self.lastApiCall = response
-                    self.onUserJoin()
-                elif response["createdNew"] != self.lastApiCall["createdNew"]:
-                    self.lastApiCall = response
-                    self.onNew(self.lastApiCall["createdNew"])            
-                else:
-                    self.lastApiCall = response
+            for planetpath in planetpaths:
+                if 
+                    if response != self.lastApiCall:
+                        if response["lastMessage"] != self.lastApiCall["lastMessage"]:
+                            self.lastApiCall = response
+                            self.onMessageSent()
+                        elif response["newUser"] != self.lastApiCall["newUser"]:
+                            self.lastApiCall = response
+                            self.onUserJoin()
+                        elif response["createdNew"] != self.lastApiCall["createdNew"]:
+                            self.lastApiCall = response
+                            self.onNew(self.lastApiCall["createdNew"])            
+                        else:
+                            self.lastApiCall = response
         else:
             return "this is an invalid token!!!"
 
