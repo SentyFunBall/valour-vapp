@@ -11,7 +11,8 @@ namespace wrapper_cs
             string sysName = "sysname";
             string url = $"Valour.gg/{sysName}/api";
             WebRequest get = WebRequest.Create(url);
-            Stream stream = get.GetResponse().GetResponseStream()
+            Stream stream = get.GetResponse().GetResponseStream();
+            
         }
     }
 }
