@@ -1,4 +1,5 @@
 import requests
+from time import sleep
 import authenticate
 
 ##########################################
@@ -28,12 +29,15 @@ class Api:
                         if response["lastMessage"] != self.lastApiCall["lastMessage"]:
                             self.lastApiCall = response
                             self.onMessageSent()
+                            time.sleep(0.5)
                         elif response["newUser"] != self.lastApiCall["newUser"]:
                             self.lastApiCall = response
                             self.onUserJoin()
+                            time.sleep(0.5)
                         elif response["createdNew"] != self.lastApiCall["createdNew"]:
                             self.lastApiCall = response
-                            self.onNew(self.lastApiCall["createdNew"])            
+                            self.onNew(self.lastApiCall["createdNew"])
+                            time.sleep(0.5)            
                         else:
                             self.lastApiCall = response
         else:
