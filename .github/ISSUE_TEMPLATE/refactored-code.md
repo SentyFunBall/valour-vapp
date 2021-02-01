@@ -2,7 +2,7 @@
 name: "\U0001F4DD refactoring code"
 about: Create a report to refactor code
 title: "\U0001F4DD refactor - <name of the file, line_start->line_end>"
-labels: Enhancement, Needs Looking At
+labels: Refactored, Needs Looking At
 assignees: ''
 ---
 
