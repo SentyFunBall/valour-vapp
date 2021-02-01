@@ -1,8 +1,0 @@
-var i = 0
-function recursive()
-   var i + 1
-   print(i)
-   recursive()
-end
-
-recursive()

@@ -1,8 +1,34 @@
+:root {
+  --gray0: #cbe3ff;
+  --gray1: #9ecbff;
+  --gray2: #789dca;
+  --gray3: #406683;
+  --gray4: #2d465c;
+  --gray5: #0f1c31;
+  --gray6: #002030;
+
+}
+
+.light {
+  --bg: var(--gray0);
+  --theme-switcher: var(--gray2);
+  --theme-switcher-ball: var(var(--gray1))
+  --text: var(--gray6);
+}
+
+
+.dark {
+  --bg: var(--gray5);
+  --theme-switcher: var(--gray4);
+  --text: var(--gray0);
+}
+
 body {
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
   margin: auto;
   max-width: 90rem;
   padding: 5rem;
+  background-color: var(--bg);
 }
 
 #text1{
@@ -51,3 +77,4 @@ body {
   position: relative;
   top:-8px;
 }
+

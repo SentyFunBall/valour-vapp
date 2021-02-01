@@ -9,10 +9,31 @@ lists: ["1", 2]
 var assignment:
 var (var name) = (value)
 var i = 0
+
+i += 5
+5
+
+i -= 1
+4
+
+i *= 2
+8
+
+i /= 4
+
+2
+
+i++
+3
+
+i--
+2
+
 for loops:
 for i = (start value) until (final value) then
     (code)
 end
+
 
 (end is just for multiline code)
 
@@ -25,7 +46,7 @@ compare expressions:
 >, >=. == <=, <, !=
 
 logical operators:
-and, or, not (words, not &&, ||, !)
+and, or, not (words, not: &&, ||, !)
 
 if statements:
 if (expr) then
@@ -36,12 +57,12 @@ else then
 (code)
 
 function assignment:
-define (function name) ([various parameters]) -> (return)
+function (function name) ([various parameters]) -> (return)
 
 or
 
-define (function name) ([parameters])
+function (function name) ([parameters])
     (code)
     (return)
 
-(no classes)
+(no classes for now....)
