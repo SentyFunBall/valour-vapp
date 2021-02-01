@@ -1,7 +1,7 @@
 ---
 name: "\U0001F4DA doc change"
 about: Help us improve the vapp documentation
-title: "\U0001F41B docs - <[added/updated/deleted] (what you changed)>"
+title: "\U0001F4DA docs - <[added/updated/deleted] (what you changed)>"
 labels: documentation, Needs Looking At
 assignees: ''
 
