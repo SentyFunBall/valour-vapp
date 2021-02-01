@@ -11,8 +11,8 @@
       <h2>Welcome to Nautilus.</h2>
       <p>Click "New project" to make a new application, or load one from previously.</p>
     </div>
-    <div style="position: absolute; left:2px; top:680px;"><p>Running Nautilus Code v0.0.1g</p></div>
-    <div id="buttonHolder">
+    <div style="position: absolute; left:2px; top:680px;"><p>Running Nautilus Code v0.0.1h</p></div>
+    <div id="buttonHolder" style="background-color: rgba(50, 50, 50, 35);">
       <div style="position: absolute; left:10px;top:200px">
         <button id="newBtn" type="button" style ="width:175px;height:25px;background-color: rgb(65, 108, 236);border:1px black;"onclick="alert('Coming soon.')">
           <p style="color: cornsilk; position: relative; top:-8px;">New project</p>
@@ -27,26 +27,13 @@
         </div>
       </div>
       <div style="position: absolute; left:10px;top:300px">
-        <button id="new-window" type="button" style ="width:175px;height:25px;background-color: rgb(65, 108, 236);border:1px black;">
+        <button id="wikiBtn" type="button" style ="width:175px;height:25px;background-color: rgb(65, 108, 236);border:1px black;"onclick="click";>
           <p style="color: cornsilk; position: relative; top:-8px;">VAPP Wiki</p>
         </button>
       </div>
     </div>
     <script>
-      const button = document.getElementById('wikiBtn');
-const {BrowserWindow} = require('electron').remote
-const path = require('path')
-
-const newWindowBtn = document.getElementById('new-window')
-
-newWindowBtn.addEventListener('click', (event) => {
-  const modalPath = path.join('file://', __dirname, '../src/modal.html')
-  let win = new BrowserWindow({ width: 400, height: 320 })
-
-  win.on('close', () => { win = null })
-  win.loadURL(modalPath)
-  win.show()
-})
+      
     </script>
   </body>
 </html>
