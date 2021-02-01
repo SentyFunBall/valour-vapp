@@ -1,0 +1,4 @@
+blank_issues_enabled: false
+  - name: Vapp discord
+    url: https://discord.gg/
+    about: The Valour application discord
