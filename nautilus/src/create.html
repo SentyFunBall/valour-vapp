@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="create.css">
+
+</head>
+<body>
+    <div id="blocklyDiv" style="height: 480px; width: 600px;"></div>
+    <script src="./../blockly/blockly_compressed.js"></script>
+    <script src="./../blockly/blocks_compressed.js"></script>
+    <script src="msg/js/en.js"></script>
+
+    <xml id="toolbox" style="display: none">
+        <category name="Core">
+          <category name="Control">
+            <block type="controls_if"></block>
+            <block type="controls_whileUntil"></block>
+          </category>
+          <category name="Logic">
+            <block type="logic_compare"></block>
+            <block type="logic_operation"></block>
+            <block type="logic_boolean"></block>
+          </category>
+        </category>
+        <category name="Custom">
+          <block type="start"></block>
+          <category name="Move">
+            <block type="move_forward"></block>
+            <block type="move_backward"></block>
+          </category>
+          <category name="Turn">
+            <block type="turn_left"></block>
+            <block type="turn_right"></block>
+          </category>
+        </category>
+      </xml>
+      <script>
+        var workspace = Blockly.inject('blocklyDiv',
+            {toolbox: document.getElementById('toolbox')});
+      </script>
+</body>
+</html>
