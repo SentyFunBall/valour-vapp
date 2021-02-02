@@ -4,16 +4,16 @@ body {
   color: #fff;
   background-color: #000000;
   text-align: center;
-  font-size: 40px;
+  font-size: 15px;
 }
 
 h2 {
   padding: 0;
   margin: 0;
   position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  top: 100%;
+  left: 100%;
+  transform: translate(100%, 100%);
 }
 
 #close {
@@ -28,5 +28,130 @@ h2 {
 }
 
 </style>
+<body>
+  <title>Nautilus VAPP Wiki</title>
+  <h1 id="nautilus-vapp-wiki">Nautilus VAPP Wiki</h1>
+<h2 id="basics">Basics</h2>
+<h3 id="what-is-vapp-">What is VAPP?</h3>
+<p>VAPP, or Valour APPlication, is our way of making free bots for Valour. .vapp is the custom file used by the VAPP interpreter, which then gets sent to the Valour servers. .vapp files are made in the Nautilus IDE, what you&#39;re in right now.</p>
+<h3 id="what-is-valour-">What is Valour?</h3>
+<p>Valour is an open-source, modern chat client which focuses on privacy and security while implementing features that bring it beyond the norm. Valour&#39;s messaging system is designed to keep you in control of your messages. When you send a message, it is cached for 24 hours on the Valour backend before being permanently deleted.</p>
+<h2 id="programming-basics">Programming Basics</h2>
+<h3 id="programming-languages">Programming languages</h3>
+<h4 id="what-is-a-programming-language">What is a programming language</h4>
+<p>Programming languages simply a way to tell computers what to do.</p>
+<h4 id="are-they-hard-">Are they hard?</h4>
+<p>A lot of them, not too much. And VAPP was created specially for being very easy.</p>
+<h4 id="what-is-a-shell-is-there-an-animal-too-">What is a shell? Is there an animal too?</h4>
+<p>No, there are no animals. Shell is a name of the language interface.</p>
+<h4 id="wat-is-an-ide-">Wat is an IDE?</h4>
+<p>IDE stands for Integrated Development Environment, simply a place to code.     </p>
+<h4 id="so-after-this-little-explanation-lets-talk-about-how-programming-in-vapp-works-">So, after this little explanation, lets talk about how programming in vapp works:</h4>
+<p>In VAPP, thera are 4 basic things:</p>
+<ul>
+<li>Variables</li>
+<li>Conditions</li>
+<li>Loops</li>
+<li>Functions</li>
+</ul>
+<p>and their concepts are very simple:</p>
+<h3 id="variables">variables</h3>
+<p>A variable is like a box with a tag, where you can put stuff and remember it later.</p>
+<p>variable tags are just the variable name (for example MyVar),
+And the box value (the stuff in there) can be (in vapp) 4 things:</p>
+<ul>
+<li>a number</li>
+<li>a string</li>
+<li>a list</li>
+<li>and a boolean<h4 id="what-is-a-number-">what is a number?</h4>
+a way to store integer and decimal numbers<h4 id="what-is-a-string-">what is a string?</h4>
+</li>
+</ul>
+<p>a fancy way to say &quot;text&quot;</p>
+<h4 id="what-is-a-list-">What is a list?</h4>
+<p>Lists are like shopping lists, it contains other values and even can contain a list in itself!</p>
+<h4 id="what-is-a-boolean-">What is a boolean?</h4>
+<p>A boolean type is a type of value that stores either true or false, it is used a lot in if statements and while loops</p>
+<h4 id="if-statements">if statements</h4>
+<h5 id="what-is-an-if-statement-">what is an if statement?</h5>
+<p>if statements are a way to change our code depending on something else, its like (insert real life explanation)</p>
+<p>if statements use booleans to work, but most of the time you will not work with booleans, so there is a thing in programming called logic operators, that can return a boolean using numbers or strings.<br>they are very simple to understand:</p>
+<ul>
+<li>equality operator (==): it is used to check if two values are the same.<ul>
+<li>1 == 1 would return true, because 1 is equal to 1.</li>
+<li>2 == 3 would return false, because 2 is not equal to 3.</li>
+</ul>
+</li>
+<li>greater than operator (>): it is used to check if the left value is greater than the right value.<ul>
+<li>1 &gt; 1 would return false, because 1 is not greater than 1</li>
+<li>5 &gt; 1 would return true, because 5 is greater than 1</li>
+</ul>
+</li>
+<li>smaller than operator(\&lt;): the same thing as the greater than operator, but is used to check if the left value is smaller than the right one.</li>
+<li>not equal to (!=): the reverse of the equal to operator, returns true if the value differs</li>
+<li>greater than or equal operator (&gt;=): it is used for checking if the left value is greater or equal to the right value</li>
+<li>smaller than or equal operator (&lt;=): same thing as the >=, but instead of greater than is smaller than.</li>
+</ul>
+<h4 id="-ok-but-why-i-would-use-it-with-fixed-values-">&quot;ok but why I would use it with fixed values?&quot;</h4>
+<p>that is the point, you don&#39;t need to use if statements with fixed values, you can use them with variables, e.g:</p>
+<p>print(&quot;what is your age?&quot;)
+var age = input()
+if age &gt;= 16 then print(&quot;you can drive&quot;) else print(&quot;you can&#39;t drive&quot;)</p>
+<h4 id="what-does-the-elif-and-else-mean-">what does the elif and else mean?</h4>
+<p>elif means: if the condition above me returned false, try this one
+and else means: if all the above conditions returned false, do this code</p>
+<p>so the code above can be easily understood by:</p>
+<ol>
+<li>write to the screen: &quot;what is your age&quot;</li>
+<li>create a new variable named &quot;age&quot; and set its value to the input</li>
+<li>ask: is the age value bigger than or equal to 16?<ul>
+<li>if it is, print(&quot;you can drive&quot;)</li>
+<li>if it is smaller, print(&quot;you can&#39;t drive&quot;)</li>
+</ul>
+</li>
+</ol>
+<p>simple as that</p>
+<h3 id="loops">Loops</h3>
+<h4 id="what-is-a-loop-">what is a loop?</h4>
+<p>a loop is a way to the code to repeat itself, e.g:</p>
+<p>print(1)</p>
+<p>print(2)</p>
+<p>print(3)</p>
+<p>print(4)</p>
+<p>print(5)</p>
+<p>instead of writing 5 lines of code, it could be just 1 line:
+for i = 1 until 6 then print(i)</p>
+<h4 id="obs-every-loop-final-position-is-exclusive-it-means-that-the-final-value-is-one-smaller-than-if-you-are-asking-why-is-because-computers-start-counting-at-0-instead-of-1-">obs: every loop final position is exclusive, it means that the final value is one smaller than (if you are asking why, is because computers start counting at 0 instead of 1)</h4>
+<p>it means that:</p>
+<ol>
+<li>the loop will start at one </li>
+<li>print the value of &#39;i&#39;</li>
+<li>add to i, 1</li>
+<li>go back to the first line until I is 5</li>
+</ol>
+<h3 id="what-if-i-want-to-change-how-much-to-i-is-added-">what if I want to change how much to &#39;i&#39; is added?</h3>
+<p>simply, you can add the word step before the word then. e.g:
+for i = 1 until 6 step then print(i)</p>
+<p>it will print 1, 3, 5 then stop</p>
+<h3 id="while-loops">while loops</h3>
+<p>while loops are like if statements that run what is inside until the condition inside is false</p>
+<h3 id="important-make-sure-the-condition-can-be-false-else-the-loop-will-never-finish-then-your-computer-will-start-to-be-slow">important: make sure the condition can be false, else the loop will never finish then your computer will start to be slow</h3>
+<p>they are very simple:<br>var count = 0<br>while count &lt; 10 then<br>  print(count)<br>  count + 1<br>end    </p>
+<h3 id="obs-the-end-word-is-just-used-in-multi-line-code-for-showing-that-the-loop-ends-there">obs: the end word is just used in multi-line code for showing that the loop ends there</h3>
+<p>at some point, the count variable will be 10, then the while codition will be false, making it break the loop</p>
+<h3 id="-what-if-i-want-to-break-the-loop-with-other-thing-or-skip-an-iteration-">&quot;what if I want to break the loop with other thing or skip an iteration?&quot;</h3>
+<p>there are things to do that, the break and continue keywords:</p>
+<ul>
+<li>the &#39;break&#39; keyword breaks the loop (as if the condition were false)</li>
+<li>the &#39;continue&#39; keyword skip the rest of the iteration (what the loop does each time)</li>
+</ul>
+<h3 id="functions-">functions:</h3>
+<h4 id="what-is-a-function-">what is a function?</h4>
+<p>a function is a way to reuse useful code. e.g:   </p>
+<p>function squareRoot (radicand)<br>  var result = radicand ^ 0.5<br>  return result<br>end    </p>
+<p>print(squareRoot(4))<br>2     </p>
+<h3 id="but-how-does-it-work-">but how does it work?</h3>
+<p>first, the function keyword tells the program that it is a function, then the name of the function and after the parameters (parameters are what the function will receive)
+then, there is a bit of math then the return keyword, it means what value the function will return for where it will be used.</p>
 
-<h2>Hello World!</h2>
+</body>
