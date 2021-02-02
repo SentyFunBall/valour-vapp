@@ -71,7 +71,10 @@ body {
   background-color: rgb(65, 108, 236);
   border:1px black;
 }
-
+.sbtn > a{
+  color: cornsilk;
+  position: relative;
+}
 .bButtonText{
   color: cornsilk;
   position: relative;

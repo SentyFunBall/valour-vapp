@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="create.css">
+    
+</head>
+<body>
+    <div id="blok"></div>
+    <script src="create.js"></script>
+    <script src="./blocks/stub.js"></script>
+    <script src="./blocks/define.js"></script>
+    <script src="./../blockly/blockly_compressed.js"></script>
+    <script src="./../blockly/blocks_compressed.js"></script>
+    <script src="msg/js/en.js"></script>
+
+    <xml id="toolbox" style="display: none">
+        <category name="variables">
+          <block type="variable"></block>
+        </category>
+        <category name="Loops">
+            <block type="for_loop"></block>
+        </category>
+        <category name="Logic">
+            <block type="logic_compare"></block>
+            <block type="logic_operation"></block>
+            <block type="logic_boolean"></block>
+          </category>
+      </xml>
+      <script>
+        var workspace = Blockly.inject('blok',
+                        {toolbox: document.getElementById('toolbox'),
+                        grid:{
+                            spacing: 20,
+                            length: 3,
+                            colour: '#ccc',
+                            snap: true
+                        },
+                        trashcan: true
+                        }
+                        );
+      </script>
+</body>
+</html>

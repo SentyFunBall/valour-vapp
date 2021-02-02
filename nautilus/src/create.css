@@ -1,0 +1,14 @@
+body{
+    padding: 0;
+    margin: 0;
+}
+#blok{
+    width: 100vw;
+    height: 100vh;
+}
+#toolbox{
+    display: none;
+    padding: 5%;
+    width: 100vw;
+    height: 100vh;
+}
