@@ -9,4 +9,4 @@
 *.xml
 .idea/workspace.xml
 
-nautilus/blockly/*
+/nautilus/blockly/*
