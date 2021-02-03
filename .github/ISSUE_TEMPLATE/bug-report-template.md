@@ -25,8 +25,7 @@ If applicable, add screenshots to help explain your problem.
 
 **System Information:**
  - OS: [e.g. iOS]
- - Valour Platform: [e.g. Web, Mobile App, Desktop App]
-     - Browser: [e.g. chrome, safari] **Only answer when saying you use Web**
+ - nautilus version: [scroll down to see it]
 
 **Additional context**
 Add any other context about the problem here.
