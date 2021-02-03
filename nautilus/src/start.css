@@ -8,7 +8,15 @@
   --gray6: #002030;
 
 }
-
+body {
+  font-family: system, -apple-system, '.SFNSText-Regular', 'SF UI Text', 'Lucida Grande', 'Segoe UI', Ubuntu, Cantarell, sans-serif;
+  color: #fff;
+  background-color: #000000;
+  margin: auto;
+  max-width: 90rem;
+  padding: 5rem;
+  font-size: 15px;
+}
 .light {
   --bg: var(--gray0);
   --theme-switcher: var(--gray2);
@@ -21,14 +29,6 @@
   --bg: var(--gray5);
   --theme-switcher: var(--gray4);
   --text: var(--gray0);
-}
-
-body {
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-  margin: auto;
-  max-width: 90rem;
-  padding: 5rem;
-  background-color: var(--bg);
 }
 
 #text1{
