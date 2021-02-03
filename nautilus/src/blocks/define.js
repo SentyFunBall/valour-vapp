@@ -63,7 +63,7 @@ Blockly.Blocks['for_loop'] = {
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
     this.setColour(230);
- this.setTooltip("repeat");
+ this.setTooltip("Repeats while it's input is true.");
  this.setHelpUrl("");
   }
 };
@@ -84,7 +84,7 @@ Blockly.Blocks['for_each'] = {
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
     this.setColour(230);
- this.setTooltip("iterates for each array element");
+ this.setTooltip("Does what's inside it for each type in it's parameters.");
  this.setHelpUrl("");
   }
 };
@@ -105,6 +105,21 @@ Blockly.Blocks['while_loop'] = {
   }
 };
 
+
+Blockly.Blocks['string_length'] = {
+  init: function() {
+    this.appendValueInput('VALUE')
+        .setCheck('String')
+        .appendField('length of');
+    this.setOutput(true, 'Number');
+    this.setColour(160);
+    this.setTooltip('Returns number of letters in the provided text.');
+    this.setHelpUrl('http://www.w3schools.com/jsref/jsref_length_string.asp');
+  }
+};
+
+
+
 Blockly.Blocks['equals_to'] = {
   init: function() {
     this.appendValueInput("lhs")
@@ -115,7 +130,7 @@ Blockly.Blocks['equals_to'] = {
         .setCheck(null);
     this.setOutput(true, "Boolean");
     this.setColour(230);
- this.setTooltip("if both values are equal, return true, else false");
+ this.setTooltip("If both values are equal, the block outputs TRUE.");
  this.setHelpUrl("");
   }
 };

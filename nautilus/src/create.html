@@ -15,20 +15,24 @@
     <script src="./../blockly/blockly_compressed.js"></script>
     <script src="./../blockly/blocks_compressed.js"></script>
     <script src="msg/js/en.js"></script>
+    <script src="./../blockly/javascript_compressed.js"></script>
 
     <xml id="toolbox" style="display: none">
         <category name="Variables">
-          <block type="Variable"></block>
+          <block type="Add custom variable"></block>
         </category>
         <category name="Loops">
-            <block type="for_loop"></block>
-            <block type="if_loop"></block>
-            <block type="ifelse_loop"></block>
+            <block type="loop_for"></block>
+            <block type="loop_if"></block>
+            <block type="loop_ifelse"></block>
         </category>
         <category name="Operations">
             <block type="logic_compare"></block>
             <block type="logic_operation"></block>
             <block type="logic_boolean"></block>
+          </category>
+          <category name="Text">
+            <block type="string_length"></block>
           </category>
         <category name="Input">
             <block type="input_message"></block>
