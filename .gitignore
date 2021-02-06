@@ -11,3 +11,4 @@
 .idea/workspace.xml
 
 /nautilus/blockly/*
+node_modules
