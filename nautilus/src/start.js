@@ -1,7 +1,5 @@
 const { app, BrowserWindow } = require('electron');
 const path = require('path');
-const os = require('os')
-const {ipcRenderer} = require('electron')
 
 if (require('electron-squirrel-startup')) {
   app.quit();
