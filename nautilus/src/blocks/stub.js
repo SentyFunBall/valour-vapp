@@ -41,6 +41,13 @@ Blockly.JavaScript['for_each'] = function(block) {
   return code;
 };
 
+Blockly.JavaScript['text_length'] = function(block) {
+  // String or array length.
+  var argument0 = Blockly.JavaScript.valueToCode(block, 'VALUE',
+      Blockly.JavaScript.ORDER_FUNCTION_CALL) || '\'\'';
+  return [argument0 + '.length', Blockly.JavaScript.ORDER_MEMBER];
+};
+
 Blockly.JavaScript['while_loop'] = function(block) {
   var value_expr = Blockly.JavaScript.valueToCode(block, 'expr', Blockly.JavaScript.ORDER_ATOMIC);
   var statements_statement = Blockly.JavaScript.statementToCode(block, 'statement');
