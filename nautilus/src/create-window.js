@@ -1,6 +1,8 @@
 const {BrowserWindow} = require('electron').remote
+const blocklyCode = 
 const path = require('path')
-
+const electron = require('electron'); 
+const fs = require('fs'); 
 const newWindowBtn = document.getElementById('new-window')
 
 newWindowBtn.addEventListener('click', (event) => {
@@ -18,3 +20,4 @@ newWindowBtn.addEventListener('click', (event) => {
   win.loadURL(modalPath)
   win.show()
 })
+

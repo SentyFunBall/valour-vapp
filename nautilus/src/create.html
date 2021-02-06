@@ -15,6 +15,7 @@
     <script src="./blocks/define.js"></script>
     <script src="./../blockly/blockly_compressed.js"></script>
     <script src="./../blockly/blocks_compressed.js"></script>
+    <script src="./../blockly/javascript_compressed.js"></script>
     <script src="./../blockly/msg/js/en.js"></script> <!-- was this path brruh-->
 
     <xml xmlns="https://developers.google.com/blockly/xml" id="toolbox" style="display: none">
@@ -343,8 +344,47 @@
                         }
                         );
       </script>
-    <button type="button" style ="position: absolute; top: 15px;left: 1150px;  width:75px;height:25px;background-color: rgb(65, 108, 236);border:1px black;">
-        <a style="color:cornsilk; position: relative; top:0px; text-decoration: none;" href="./start.html">Back</a>
+    <button type="button">
+        <aside href="./start.html">Back</a>
     </button>
+
+    <button type="button" id="save">
+      <p>save!</p>
+    </button>
+    <script>
+      const electron = require('electron'); 
+const path = require('path'); 
+const fs = require('fs'); 
+const dialog = electron.remote.dialog; 
+  
+var save = document.getElementById('save'); 
+  
+save.addEventListener('click', (event) => { 
+    dialog.showSaveDialog({ 
+        title: 'Select the File Path to save', 
+        defaultPath: path.join(__dirname, '../assets/sample.txt'), 
+        buttonLabel: 'Save',  
+        filters: [ 
+            { 
+                name: 'Javascript files', 
+                extensions: ['js'] 
+            }, ], 
+        properties: [] 
+    }).then(file => { 
+        console.log(file.canceled); 
+        var code = Blockly.JavaScript.workspaceToCode(workspace);
+        if (!file.canceled) { 
+            console.log(file.filePath.toString());  
+            fs.writeFile(file.filePath.toString(),  
+                         code, function (err) { 
+                if (err) throw err; 
+                console.log('Saved!'); 
+            }); 
+        } 
+    }).catch(err => { 
+        console.log(err) 
+    }); 
+}); 
+    </script>
 </body>
 </html>

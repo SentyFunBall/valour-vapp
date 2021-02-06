@@ -7,6 +7,29 @@ body{
     height: 100vh;
     
 }
+
+button{
+    position: absolute; 
+    top: 15px;
+    left: 1150px;  
+    width:75px;
+    height:25px;
+    background-color: rgb(65, 108, 236);
+    border:1px black;
+}
+
+button > *{
+    color:cornsilk; 
+    position: relative; 
+    top: 0px; 
+    text-decoration: none;
+}
+
+#save{
+    top: 50px;
+}
+
+
 #toolbox{
     display: none;
     padding: 5%;
