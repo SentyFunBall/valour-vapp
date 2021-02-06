@@ -122,3 +122,15 @@ body {
     background-color: rgb(65, 108, 236);
     border:1px black;
 }
+
+body::-webkit-scrollbar {
+  width: 12px;               /* width of the entire scrollbar */
+}
+
+body::-webkit-scrollbar-track {
+  background: black;        /* color of the tracking area */
+}
+
+body::-webkit-scrollbar-thumb {
+  background-color:rgba(0, 174, 255, 0.5);    /* color of the scroll thumb */
+}
