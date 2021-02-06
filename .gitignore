@@ -4,6 +4,7 @@
 /build/
 /.idea/
 /__pycache__/
+/interpreter/
 *.pyc
 *.spec
 *.xml
