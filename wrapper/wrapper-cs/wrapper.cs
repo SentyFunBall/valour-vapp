@@ -12,9 +12,11 @@ namespace wrapper_cs{
             } else if (lastState != toWrap){
                 foreach (string planetpath in planetpaths)
                 {
+                    /*
                     if (lastState[$"onPlanet{planetpath}"]){
 
                     }
+                    */
                 }
             }
         }

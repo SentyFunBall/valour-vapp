@@ -34,7 +34,7 @@ Blockly.Blocks['if_else_expr'] = {
     this.setNextStatement(true, null);
     this.setColour(230);
  this.setTooltip("if the condition is true, do \"then\" statement, else: else part");
- this.setHelpUrl("");
+ this.setHelpUrl("https://www.google.com/");
   }
 };
 
@@ -45,7 +45,7 @@ Blockly.Blocks['value'] = {
     this.setOutput(true, null);
     this.setColour(230);
  this.setTooltip("set something to the value");
- this.setHelpUrl("");
+ this.setHelpUrl("https://www.google.com/");
   }
 };
 
@@ -64,7 +64,7 @@ Blockly.Blocks['for_loop'] = {
     this.setNextStatement(true, null);
     this.setColour(230);
  this.setTooltip("repeat");
- this.setHelpUrl("");
+ this.setHelpUrl("https://www.google.com/");
   }
 };
 
@@ -85,7 +85,7 @@ Blockly.Blocks['for_each'] = {
     this.setNextStatement(true, null);
     this.setColour(230);
  this.setTooltip("iterates for each array element");
- this.setHelpUrl("");
+ this.setHelpUrl("https://www.google.com/");
   }
 };
 
@@ -101,7 +101,7 @@ Blockly.Blocks['while_loop'] = {
         .setCheck(null);
     this.setColour(230);
  this.setTooltip("");
- this.setHelpUrl("");
+ this.setHelpUrl("https://www.google.com/");
   }
 };
 
