@@ -357,46 +357,38 @@
       // save file
       // required: electron, path and filesystem
       const electron = require('electron'); 
-      const path = require('path'); 
-      const fs = require('fs'); 
-      const dialog = electron.remote.dialog; 
-        
-      // listen to button
-      var save = document.getElementById('save'); 
-        
-      save.addEventListener('click', (event) => { 
-          // the save ass dialog
-          dialog.showSaveDialog({ 
-              title: 'Save as', 
-              defaultPath: path.join(__dirname, '../workspace'), 
-              buttonLabel: 'Save',  
-              filters: [ 
-                  { 
-                      name: 'Valour Application Workspace', 
-                      extensions: ['vappws'] 
-                  }, ], 
-              properties: [] 
-          }).then(file => { 
-              console.log(file.canceled); 
-              var code = Blockly.JavaScript.workspaceToCode(workspace);
-              var xml = 0;
-              var dir = './workspace';
-
-              if (!fs.existsSync(dir)){
-                  fs.mkdirSync(dir);
-              }
-              if (!file.canceled) { 
-                  console.log(file.filePath.toString());  
-                  fs.writeFile(file.filePath.toString(),  
-                              code, function (err) { 
-                      if (err) throw err; 
-                      console.log('Saved!'); 
-                  }); 
-              } 
-          }).catch(err => { 
-              console.log(err) 
-          }); 
-      }); 
+const path = require('path'); 
+const fs = require('fs'); 
+const dialog = electron.remote.dialog; 
+  
+var save = document.getElementById('save'); 
+  
+save.addEventListener('click', (event) => { 
+    dialog.showSaveDialog({ 
+        title: 'Save as', 
+        defaultPath: path.join(__dirname, '../assets/sample.txt'), 
+        buttonLabel: 'Save',  
+        filters: [ 
+            { 
+                name: 'Javascript', 
+                extensions: ['js'] 
+            }, ], 
+        properties: [] 
+    }).then(file => { 
+        console.log(file.canceled); 
+        var code = Blockly.JavaScript.workspaceToCode(workspace);
+        if (!file.canceled) { 
+            console.log(file.filePath.toString());  
+            fs.writeFile(file.filePath.toString(),  
+                         code, function (err) { 
+                if (err) throw err; 
+                console.log('Saved!'); 
+            }); 
+        } 
+    }).catch(err => { 
+        console.log(err) 
+    }); 
+}); 
     </script>
 </body>
 </html>
