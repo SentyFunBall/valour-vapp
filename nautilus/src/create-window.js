@@ -1,5 +1,4 @@
 const {BrowserWindow} = require('electron').remote
-const blocklyCode = 
 const path = require('path')
 const electron = require('electron'); 
 const fs = require('fs'); 

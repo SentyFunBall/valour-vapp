@@ -345,11 +345,11 @@
                         );
       </script>
     <button type="button">
-        <aside href="start.html">Back</a>
+        <a href="start.html">Back</a>
     </button>
 
     <button type="button" id="save">
-      <p>save!</p>
+      <p style="position: relative; top: -8px;">Save</p>
     </button>
     <script>
       const electron = require('electron'); 
@@ -366,8 +366,8 @@ save.addEventListener('click', (event) => {
         buttonLabel: 'Save',  
         filters: [ 
             { 
-                name: 'Javascript files', 
-                extensions: ['js'] 
+                name: 'Valour Application', 
+                extensions: ['vapp'] 
             }, ], 
         properties: [] 
     }).then(file => { 
