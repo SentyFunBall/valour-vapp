@@ -1,32 +1,35 @@
+//Includes
 const electron = require('electron'); 
 const path = require('path'); 
 const fs = require('fs'); 
 const dialog = electron.remote.dialog; 
-  
+
+//Save element
 var save = document.getElementById('save'); 
-  
+
+//Add an event listenter to the save button
 save.addEventListener('click', (event) => { 
-    dialog.showSaveDialog({ 
-        title: 'Select the File Path to save', 
-        defaultPath: path.join(__dirname, '../assets/sample.txt'), 
-        buttonLabel: 'Save',  
-        filters: [ 
+    dialog.showSaveDialog({ //Show save file dialog
+        title: 'Select the file path to save to', //Window title
+        defaultPath: path.join(__dirname, '../assets/sample.txt'), //Default file path 
+        buttonLabel: 'Save', //Button label
+        filters: [ //Extension filters
             { 
-                name: 'Text Files', 
-                extensions: ['txt', 'docx'] 
+                name: 'VAPP Files', 
+                extensions: ['vapp'] 
             }, ], 
         properties: [] 
-    }).then(file => { 
+    }).then(file => { //After window closed
         console.log(file.canceled); 
-        if (!file.canceled) { 
+        if (!file.canceled) { //If the file saving wasn't canceled...
             console.log(file.filePath.toString());  
-            fs.writeFile(file.filePath.toString(),  
+            fs.writeFile(file.filePath.toString(),  //...write the file to disk at the specified directory
                          'This is a Sample File', function (err) { 
-                if (err) throw err; 
+                if (err) throw err; //Error handing
                 console.log('Saved!'); 
             }); 
         } 
-    }).catch(err => { 
+    }).catch(err => { //More error handling
         console.log(err) 
     }); 
 }); 
