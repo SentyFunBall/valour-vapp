@@ -25,7 +25,7 @@
       </div>
       <div style="position: absolute; left:10px;top:220px">
         <div class="sbtn">
-          <button id="loadBtn" style="width:175px; height:25px;color:cornsilk">Load Project</button>
+          <button type="button" id="loadBtn" style="width:175px; height:25px;color:cornsilk">Load Project</button>
         </div>
       </div>
       <div style="position: absolute; left:10px;top:255px">
@@ -34,5 +34,32 @@
         </button>
       </div>
     </div>
-  </body>
+    <script>
+      const electron = require('electron'); 
+      const path = require('path'); 
+      const dialog = electron.remote.dialog; 
+
+      var load = document.getElementById('loadBtn'); 
+      load.addEventListener('click', (event) => { 
+          console.log('yes');
+          dialog.showOpenDialog((fileNames) => {
+              // fileNames is an array that contains all the selected
+              if(fileNames === undefined){
+                  console.log("No file selected");
+                  return;
+              }
+
+              fs.readFile(filepath, 'utf-8', (err, data) => {
+                  if(err){
+                      alert("An error ocurred reading the file :" + err.message);
+                      return;
+                  }
+
+                  // Change how to handle the file content
+                  Blockly.Xml.clearWorkspaceAndLoadFromXml(data, workspace)
+                  console.log("The file content is : " + data);
+              });
+          });
+      });
+    </script>
 </html>

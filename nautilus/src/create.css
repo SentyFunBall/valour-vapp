@@ -20,7 +20,7 @@ button{
     background-color: rgb(65, 108, 236);
     border:1px black;
 }
-
+/* i think this is messing the buttons up \/ /\ -senty */
 button > *{
     /* to <a> and <p> tags */
     color:cornsilk; 
