@@ -33,6 +33,9 @@ button > *{
     top: 50px;
 }
 
+#load{
+    top: 75px;
+}
 #toolbox{
     /*blockly said that was what should be done */
     display: none;
