@@ -354,7 +354,7 @@
       <p style="position: relative; top: -8px;">Save</p>
     </button>
 
-    <button type="button" id="load" onclick="load()">
+    <button type="button" id="load">
       <p style="position: relative; top: -8px">Load</p>
     </button>
 
@@ -404,13 +404,9 @@ save.addEventListener('click', (event) => {
         console.log(err) 
     }); 
 }); 
-    </script>
-    <script>
-      const remote = require('remote'); // Load remote compnent that contains the dialog dependency
-      const dialog = remote.require('dialog'); // Load the dialogs component of the OS
-      const fs = require('fs'); // Load the File System to execute our common tasks (CRUD)
       var load = document.getElementById('load'); 
       save.addEventListener('click', (event) => { 
+          console.log('yes')?
           dialog.showOpenDialog((fileNames) => {
               // fileNames is an array that contains all the selected
               if(fileNames === undefined){
