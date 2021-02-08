@@ -1,3 +1,5 @@
+import "./define.js";
+
 Blockly.JavaScript['variable'] = function(block) {
   var text_name = block.getFieldValue('name');
   var value_name = Blockly.JavaScript.valueToCode(block, 'NAME', Blockly.JavaScript.ORDER_ATOMIC);

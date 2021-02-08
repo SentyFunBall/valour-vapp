@@ -1,3 +1,5 @@
+import Blockly from '../../blockly/';
+
 Blockly.Blocks['variable'] = {
   init: function() {
     this.appendDummyInput()
