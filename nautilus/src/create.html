@@ -11,13 +11,14 @@
     <div id="blok" style="background-color: #1f1f1f;">
         
     </div>
+    <!-- blockly stuff -->
     <script src="./blocks/stub.js"></script>
     <script src="./blocks/define.js"></script>
     <script src="./../blockly/blockly_compressed.js"></script>
     <script src="./../blockly/blocks_compressed.js"></script>
     <script src="./../blockly/javascript_compressed.js"></script>
     <script src="./../blockly/msg/js/en.js"></script> <!-- was this path brruh-->
-
+    <!-- xml things -->
     <xml xmlns="https://developers.google.com/blockly/xml" id="toolbox" style="display: none">
         <category name="Logic" colour="%{BKY_LOGIC_HUE}">
           <block type="controls_if"></block>
@@ -332,6 +333,7 @@
         </category>
     </xml>
       <script>
+        // inject to workspace
         var workspace = Blockly.inject('blok',
                         {toolbox: document.getElementById('toolbox'),
                         grid:{
@@ -351,7 +353,15 @@
     <button type="button" id="save">
       <p style="position: relative; top: -8px;">Save</p>
     </button>
+
+    <button type="button" id="load" onclick="load()">
+      <p style="position: relative; top: -8px">Load</p>
+    </button>
+
     <script>
+      // save file
+      // required: electron, path and filesystem
+      
       const electron = require('electron'); 
 const path = require('path'); 
 const fs = require('fs'); 
@@ -362,16 +372,18 @@ var save = document.getElementById('save');
 save.addEventListener('click', (event) => { 
     dialog.showSaveDialog({ 
         title: 'Save as', 
-        defaultPath: path.join(__dirname, '../assets/sample.txt'), 
+        defaultPath: path.join(__dirname, '../workspace/'), 
         buttonLabel: 'Save',  
         filters: [ 
             { 
-                name: 'Valour Application', 
+                name: 'Valour Application projects', 
                 extensions: ['vapp'] 
             }, ], 
         properties: [] 
     }).then(file => { 
+        // if file was cancelled by the user, but why?
         console.log(file.canceled); 
+        //the workspace to code (js)
         var code = Blockly.JavaScript.workspaceToCode(workspace);
         if (!file.canceled) { 
             console.log(file.filePath.toString());  
@@ -379,12 +391,45 @@ save.addEventListener('click', (event) => {
                          code, function (err) { 
                 if (err) throw err; 
                 console.log('Saved!'); 
-            }); 
-        } 
+                console.log();
+            });
+            // this is ultra big pog brain moment, the workspace is going to dom, that goes to text(xml) 
+            // and that is the formate we need
+            var xmlwp = Blockly.Xml.domToText(Blockly.Xml.workspaceToDom(workspace))
+            console.log(xmlwp)
+            fs.writeFile(file.filePath.toString() + ".xml",
+                          xmlwp, function (err) { if (err) throw err});
+          }
     }).catch(err => { 
         console.log(err) 
     }); 
 }); 
+    </script>
+    <script>
+      const remote = require('remote'); // Load remote compnent that contains the dialog dependency
+      const dialog = remote.require('dialog'); // Load the dialogs component of the OS
+      const fs = require('fs'); // Load the File System to execute our common tasks (CRUD)
+      var load = document.getElementById('load'); 
+      save.addEventListener('click', (event) => { 
+          dialog.showOpenDialog((fileNames) => {
+              // fileNames is an array that contains all the selected
+              if(fileNames === undefined){
+                  console.log("No file selected");
+                  return;
+              }
+
+              fs.readFile(filepath, 'utf-8', (err, data) => {
+                  if(err){
+                      alert("An error ocurred reading the file :" + err.message);
+                      return;
+                  }
+
+                  // Change how to handle the file content
+                  Blockly.Xml.clearWorkspaceAndLoadFromXml(data, workspace)
+                  console.log("The file content is : " + data);
+              });
+          });
+      });
     </script>
 </body>
 </html>
