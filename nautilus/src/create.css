@@ -14,7 +14,7 @@ button{
     /* button */
     position: absolute; 
     top: 15px;
-    left: 1150px;  
+    left: 95%;  
     width:75px;
     height:25px;
     background-color: rgb(65, 108, 236);
