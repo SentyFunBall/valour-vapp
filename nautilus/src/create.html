@@ -330,6 +330,7 @@
         <category name="Functions" colour="%{BKY_PROCEDURES_HUE}" custom="PROCEDURE"></category>
         <sep></sep>
         <category name="Input/output" color="%{BKY_LOGIC_HUE}">
+          <block type="nice"></block>
         </category>
     </xml>
       <script>
@@ -429,6 +430,24 @@ save.addEventListener('click', (event) => {
               });
           });
       });
+      Blockly.Blocks['nice'] = {
+        init: function() {
+          this.appendDummyInput()
+              .appendField(new Blockly.FieldNumber(0), "input");
+          this.setInputsInline(false);
+          this.setPreviousStatement(true, null);
+          this.setNextStatement(true, null);
+          this.setColour(230);
+      this.setTooltip("");
+      this.setHelpUrl("");
+        }
+      };
+      Blockly.JavaScript['nice'] = function(block) {
+  var number_input = block.getFieldValue('input');
+  // TODO: Assemble JavaScript into code variable.
+  var code = '...;\n';
+  return code;
+};
     </script>
 </body>
 </html>
