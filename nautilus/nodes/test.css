@@ -1,0 +1,26 @@
+body{
+    padding: 0;
+    margin: 0;
+    --bg-main: #181818;
+    --bg-sub: #252525;
+}
+header{
+    background-color: var(--bg-sub);
+    width: 100%;
+    height: 5vh
+}
+header:first-child{
+    
+}
+main{
+    background-color: var(--bg-main);
+    width: 100%;
+    height: auto;
+}
+footer{
+    background-color: var(--bg-sub);
+    height: 25vh;
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+}
