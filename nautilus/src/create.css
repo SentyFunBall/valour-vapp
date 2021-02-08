@@ -14,13 +14,13 @@ button{
     /* button */
     position: absolute; 
     top: 15px;
-    left: 95%;  
+    left: 90%;  
     width:75px;
     height:25px;
     background-color: rgb(65, 108, 236);
     border:1px black;
 }
-
+/* i think this is messing the buttons up \/ /\ -senty */
 button > *{
     /* to <a> and <p> tags */
     color:cornsilk; 
@@ -30,11 +30,11 @@ button > *{
 }
 
 #save{
-    top: 50px;
+    top: 60px;
 }
 
 #load{
-    top: 75px;
+    top: 105px;
 }
 #toolbox{
     /*blockly said that was what should be done */
