@@ -332,6 +332,7 @@
         <category name="Input/output" color="%{BKY_LOGIC_HUE}">
           <block type="last_message"></block>
           <block type="token_auth"></block>
+          <block type="on_message_recieved"></block>
         </category>
     </xml>
       <script>
@@ -459,6 +460,22 @@ save.addEventListener('click', (event) => {
       this.setHelpUrl("");
         }
       };
+      Blockly.Blocks['on_message_recieved'] = {
+        init: function() {
+          this.appendValueInput("NAME")
+              .setCheck(null)
+              .appendField("if message at:");
+          this.appendStatementInput("on_message send")
+              .setCheck(null)
+              .appendField("do");
+          this.setInputsInline(false);
+          this.setPreviousStatement(true, null);
+          this.setNextStatement(true, null);
+          this.setColour(230);
+      this.setTooltip("get te calue of last message as list, first is the content, at second is the author and at third is the time");
+      this.setHelpUrl("");
+        }
+      };
       Blockly.JavaScript['last_message'] = function(block) {
         var text_channlelpath = block.getFieldValue('channlelpath');
         // TODO: Assemble JavaScript into code variable.
@@ -472,6 +489,13 @@ save.addEventListener('click', (event) => {
         var code = 'var token = ' + value_name + ';';
         return code
       }
+      Blockly.JavaScript['on_message_recieved'] = function(block) {
+        var value_name = Blockly.JavaScript.valueToCode(block, 'NAME', Blockly.JavaScript.ORDER_ATOMIC);
+        var statements_on_message_send = Blockly.JavaScript.statementToCode(block, 'on_message send');
+        // TODO: Assemble JavaScript into code variable.
+        var code = '...;\n';
+        return code;
+      };
     </script>
 </body>
 </html>
