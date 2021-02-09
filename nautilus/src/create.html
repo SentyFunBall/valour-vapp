@@ -400,13 +400,20 @@ var load = document.getElementById('load');
 
               fs.readFile(filepath, 'utf-8', (err, data) => {
                   if(err){
+                      console.log("error loading file:" + err)
                       dialog.showErrorBox("An error ocurred reading the file :", err.message);
                       return;
                   }
+                  else{                  
+                    // Change how to handle the file content
+                    Blockly.Xml.clearWorkspaceAndLoadFromXml(data, workspace)
+                    console.log("The file content is : " + data);
+                  }
 
                   // Change how to handle the file content
-                  Blockly.Xml.clearWorkspaceAndLoadFromXml(data, workspace)
-                  console.log("The file content is : " + data);
+                  var xml = Blockly.Xml.textToDom(data);
+                  var xml_ws = Blockly.Xml.domToWorkspace(xml, workspace);
+                  console.log("aaa" + xml + "js" + xml_ws)
               });
           });
       });
@@ -418,8 +425,8 @@ save.addEventListener('click', (event) => {
         buttonLabel: 'Save',  
         filters: [ 
             { 
-                name: 'Valour Application Project', 
-                extensions: ['vapp'] 
+                name: 'xml', 
+                extensions: ['xml'] 
             }, ], 
         properties: [] 
     }).then(file => { 
@@ -437,10 +444,10 @@ save.addEventListener('click', (event) => {
             });
             // this is ultra big pog brain moment, the workspace is going to dom, that goes to text(xml) 
             // and that is the formate we need
-            var xmlwp = Blockly.Xml.domToText(Blockly.Xml.workspaceToDom(workspace))
-            console.log(xmlwp)
-            fs.writeFile(file.filePath.toString() + ".xml",
-                          xmlwp, function (err) { if (err) throw err});
+            var xml = Blockly.Xml.workspaceToDom(workspace);
+            var xml_text = Blockly.Xml.domToPrettyText(xml);
+            fs.writeFile(file.filePath.toString(),
+                          xml_text, function (err) { if (err) throw err});
           }
     }).catch(err => { 
         console.log(err)
