@@ -1,7 +1,7 @@
 {
   "name": "nautilus",
   "productName": "Nautilus",
-  "version": "0.0.1",
+  "version": "0.1.5c",
   "description": "Create bots easily, for free.",
   "main": "src/start.js",
   "scripts": {
@@ -56,7 +56,6 @@
     "@electron-forge/maker-rpm": "^6.0.0-beta.54",
     "@electron-forge/maker-squirrel": "^6.0.0-beta.54",
     "@electron-forge/maker-zip": "^6.0.0-beta.54",
-    "@ftnk/electron-prebuilt-compile": "1.7.3",
     "electron": "11.2.0"
   }
 }
