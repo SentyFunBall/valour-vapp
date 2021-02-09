@@ -18,6 +18,7 @@ const createWindow = () => {
       enableRemoteModule: true,
     },
   });
+  console.log("Creating window")
 
   //Set the window to be start.html
   mainWindow.loadFile(path.join(__dirname, 'start.html'));

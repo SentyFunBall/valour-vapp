@@ -14,6 +14,7 @@ newWindowBtn.addEventListener('click', (event) => {
       enableRemoteModule: true,
     },
   })
+  console.log("Opening wiki")
 
   win.on('close', () => { win = null })
   win.loadURL(modalPath)
