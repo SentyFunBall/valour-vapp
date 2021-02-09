@@ -8,7 +8,7 @@
     
 </head>
 <body>
-    <div id="blok" style="background-color: #1f1f1f;">
+    <div id="blok" style="background-color: #1f1f1f;" ondrop="dropHandler(event);" ondragover="dragOverHandler(event);">
         
     </div>
     <!-- blockly stuff -->
@@ -357,12 +357,8 @@
         <button type="button" id="save">
           <p style="position: relative; top: -8px;">Save</p>
         </button>
-           
-        <button type="button" id="load" style="position: absolute; top: 90px;">
-          <p style="position: relative; top: -8px;">Load</p>
-        </button>
           
-        <button type="button" id="run" style="position: absolute; top: 120px;" onclick="run()">
+        <button type="button" id="run" style="position: absolute; top: 90px;" onclick="run()">
           <p style="position: relative; top: -8px;">Run</p>
         </button>
            
@@ -454,7 +450,35 @@ save.addEventListener('click', (event) => {
         dialog.showErrorBox("There was an error saving:",err) 
     }); 
 }); 
+      //LOAD DROPPED FILE
+      function dropHandler(ev) {
+        console.log('File(s) dropped');
 
+        // Impedir o comportamento padrão (impedir que o arquivo seja aberto)
+        ev.preventDefault();
+
+        if (ev.dataTransfer.items) {
+          // Use a interface DataTransferItemList para acessar o (s) arquivo (s)
+          for (var i = 0; i < ev.dataTransfer.items.length; i++) {
+            // Se os itens soltos não forem arquivos, rejeite-os
+            if (ev.dataTransfer.items[i].kind === 'file') {
+              var file = ev.dataTransfer.items[i].getAsFile();
+              console.log('... file[' + i + '].name = ' + file.result);
+            }
+          }
+        } else {
+          // Use a interface DataTransfer para acessar o (s) arquivo (s)
+          for (var i = 0; i < ev.dataTransfer.files.length; i++) {
+            console.log('... file[' + i + '].name = ' + ev.dataTransfer.files[i].result);
+          }
+        }
+      }
+      function dragOverHandler(ev) {
+        console.log('File(s) in drop zone');
+
+        // Impedir o comportamento padrão (impedir que o arquivo seja aberto)
+        ev.preventDefault();
+      }
       //CUSTOM BLOCKS
 
       Blockly.Blocks['token_auth'] = {
