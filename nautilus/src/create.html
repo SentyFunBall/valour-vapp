@@ -456,22 +456,25 @@ save.addEventListener('click', (event) => {
 
         // Impedir o comportamento padrão (impedir que o arquivo seja aberto)
         ev.preventDefault();
-
-        if (ev.dataTransfer.items) {
-          // Use a interface DataTransferItemList para acessar o (s) arquivo (s)
-          for (var i = 0; i < ev.dataTransfer.items.length; i++) {
-            // Se os itens soltos não forem arquivos, rejeite-os
-            if (ev.dataTransfer.items[i].kind === 'file') {
-              var file = ev.dataTransfer.items[i].getAsFile();
-              console.log('... file[' + i + '].name = ' + file.result);
-            }
-          }
-        } else {
-          // Use a interface DataTransfer para acessar o (s) arquivo (s)
-          for (var i = 0; i < ev.dataTransfer.files.length; i++) {
-            console.log('... file[' + i + '].name = ' + ev.dataTransfer.files[i].result);
-          }
+        console.log(ev.type)
+        var reader = new FileReader();
+        reader.onload = function(e){
+          Output(
+            e
+          );
         }
+        console.log(typeof ev);
+        if (ev.type.indexOf("text") == 0) {
+          var reader = new FileReader();
+          reader.onload = function(e) {
+            Output(
+              "<p><strong>" + ev.name + ":</strong></p><pre>" + 
+              e.target.result.replace(/</g, "&lt;").replace(/>/g, "&gt;") +
+              "</pre>"
+            );
+          }
+          console.log(reader.readAsText(ev));
+	}
       }
       function dragOverHandler(ev) {
         console.log('File(s) in drop zone');
