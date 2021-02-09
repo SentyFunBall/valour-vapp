@@ -8,7 +8,7 @@
     
 </head>
 <body>
-    <div id="blok" style="background-color: #1f1f1f;">
+    <div id="blok" style="background-color: #1f1f1f;" ondrop="dropHandler(event);" ondragover="dragOverHandler(event);">
         
     </div>
     <!-- blockly stuff -->
@@ -357,12 +357,8 @@
         <button type="button" id="save">
           <p style="position: relative; top: -8px;">Save</p>
         </button>
-           
-        <button type="button" id="load" style="position: absolute; top: 90px;">
-          <p style="position: relative; top: -8px;">Load</p>
-        </button>
           
-        <button type="button" id="run" style="position: absolute; top: 120px;" onclick="run()">
+        <button type="button" id="run" style="position: absolute; top: 90px;" onclick="run()">
           <p style="position: relative; top: -8px;">Run</p>
         </button>
            
@@ -454,7 +450,38 @@ save.addEventListener('click', (event) => {
         dialog.showErrorBox("There was an error saving:",err) 
     }); 
 }); 
+      //LOAD DROPPED FILE
+      function dropHandler(ev) {
+        console.log('File(s) dropped');
 
+        // Impedir o comportamento padrão (impedir que o arquivo seja aberto)
+        ev.preventDefault();
+        console.log(ev.type)
+        var reader = new FileReader();
+        reader.onload = function(e){
+          Output(
+            e
+          );
+        }
+        console.log(typeof ev);
+        if (ev.type.indexOf("text") == 0) {
+          var reader = new FileReader();
+          reader.onload = function(e) {
+            Output(
+              "<p><strong>" + ev.name + ":</strong></p><pre>" + 
+              e.target.result.replace(/</g, "&lt;").replace(/>/g, "&gt;") +
+              "</pre>"
+            );
+          }
+          console.log(reader.readAsText(ev));
+	}
+      }
+      function dragOverHandler(ev) {
+        console.log('File(s) in drop zone');
+
+        // Impedir o comportamento padrão (impedir que o arquivo seja aberto)
+        ev.preventDefault();
+      }
       //CUSTOM BLOCKS
 
       Blockly.Blocks['token_auth'] = {
