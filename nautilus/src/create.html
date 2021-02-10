@@ -7,16 +7,16 @@
     <link rel="stylesheet" href="create.css">
     
 </head>
-<body>
-    <div id="blok" style="background-color: #1f1f1f;" ondragover="dragOverHandler(event);">
+<body >
+    <div id="yes">
+      <div id="blok" style="background-color: #1f1f1f;">
         
-    </div>
-    <div id="dropzone" style="display: block; position: absolute">
-      <p>drop files here</p>
-    </div>
+      </div>
+      <div id="dropzone" style="display: block; position: absolute">
+        <p>drop files here</p>
+      </div>
+    <div>
     <!-- blockly stuff -->
-    <script type="module" src="./blocks/stub.js"></script>
-    <script type="module" src="./blocks/define.js"></script>
     <script src="./../blockly/blockly_compressed.js"></script>
     <script src="./../blockly/blocks_compressed.js"></script>
     <script src="./../blockly/javascript_compressed.js"></script>
@@ -352,17 +352,21 @@
                         }
                         );
       </script>
-      
-        <button type="button" id="load" style="position:absolute;left:100;top:30px">
-          <a href="start.html">Back</a>
-        </button>
-        
+        <a href="start.html">
+          <button type="button" style="position:absolute;left:100;top:30px">
+            <p>back</p>
+          </button>
+        </a>
         <button type="button" id="save" onclick="save()">
           <p style="position: relative; top: -8px;">Save</p>
         </button>
           
         <button type="button" id="run" style="position: absolute; top: 90px;" onclick="run()">
           <p style="position: relative; top: -8px;">Run</p>
+        </button>
+
+        <button type="button" id="load" style="position: absolute; top: 150px;" onclick="loadfiles()">
+          <p style="position: relative; top: -8px;">Load</p>
         </button>
            
         
@@ -387,35 +391,8 @@ function run(){
     console.log(e);
   }
 }
-var load = document.getElementById('load'); 
-      load.addEventListener('click', (event) => { 
-          console.log('Attempting to load from canvas...');
-          dialog.showOpenDialog((fileNames) => {
-              // fileNames is an array that contains all the selected
-              if(fileNames === undefined){
-                  console.log("No file selected: canvas");
-                  return;
-              }
 
-              fs.readFile(filepath, 'utf-8', (err, data) => {
-                  if(err){
-                      console.log("error loading file:" + err)
-                      dialog.showErrorBox("An error ocurred reading the file :", err.message);
-                      return;
-                  }
-                  else{                  
-                    // Change how to handle the file content
-                    Blockly.Xml.clearWorkspaceAndLoadFromXml(data, workspace)
-                    console.log("The file content is : " + data);
-                  }
 
-                  // Change how to handle the file content
-                  var xml = Blockly.Xml.textToDom(data);
-                  var xml_ws = Blockly.Xml.domToWorkspace(xml, workspace);
-                  console.log("aaa" + xml + "js" + xml_ws)
-              });
-          });
-      });
 function save(){ 
     console.log("Opening save dialog")
     dialog.showSaveDialog({ 
@@ -526,17 +503,23 @@ function save(){
         return code;
       };
     // loader
-        function dragOverHandler(e){
-          if (event.dataTransfer.types) {
-              for (var i = 0; i < event.dataTransfer.types.length; i++) {
-                  if (event.dataTransfer.types[i] == "Files") {
-                      console.log(true);
-                  }
-              }
+    function loadfiles(){ 
+        console.log("Opening open dialog")
+        dialog.showOpenDialog({properties: ['openFile'] }).then(function (response) {
+          if (!response.canceled) {
+            var pathFile = response.filePaths[0];
+            console.log(response.filePaths[0]);
+            var xml = fs.readFileSync(pathFile).toString();
+            console.log(xml);
+            var domBlockly = Blockly.Xml.textToDom(xml);
+            console.log("oh yes, " + domBlockly.toString());
+            var yes = Blockly.Xml.domToWorkspace(domBlockly, workspace)
+            
+          } else {
+            console.log("no file selected");
           }
-          
-          console.log(false);
-        };
+      }); 
+      }
     </script>
 </body>
 </html>
