@@ -54,7 +54,7 @@ function loadfiles(){
         if (!response.canceled) {
         var xml = fs.readFileSync(response.filePaths[0]).toString();
         console.log("" + xml);
-        if (xml.startWtih("<xml") && xml.endsWith("</xml>")){            
+        if (xml.startsWith("<xml") && xml.endsWith("</xml>")){            
             var yes = Blockly.Xml.appendDomToWorkspace(Blockly.Xml.textToDom(xml), workspace);
             console.log("oh yes, loaded");
         } else {
