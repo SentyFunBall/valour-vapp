@@ -1,6 +1,4 @@
 const {BrowserWindow} = require('electron').remote
-const path = require('path')
-const electron = require('electron'); 
 const fs = require('fs'); 
 const newWindowBtn = document.getElementById('new-window')
 
