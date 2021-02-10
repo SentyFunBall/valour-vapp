@@ -4,17 +4,25 @@ body{
     margin: 0;
 }
 #blok{
-    /* to use all the screen */
-    width: 100vw;
+    /* to use (almost) all the screen */
+    position: absolute;
+    left: 0;
+    width: 75vw;
     height: 100vh;
     
 }
-
+#code{
+    position: absolute;
+    left: 75vw;
+    width: 25vw;
+    height: 100vh;
+    overflow: auto;
+}
 button{
     /* button */
     position: absolute; 
     top: 15px;
-    left: 90%;  
+    left: 65%;  
     width:75px;
     height:25px;
     background-color: rgb(65, 108, 236);

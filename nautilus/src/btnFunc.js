@@ -29,14 +29,12 @@ function save(){
         // if file was cancelled by the user, but why?
         console.log(file.canceled);
         //the workspace to code (js)
-        var code = Blockly.JavaScript.workspaceToCode(workspace);
         if (!file.canceled) {
             console.log(file.filePath.toString());
             fs.writeFile(file.filePath.toString(),
-                         code, function (err) {
+            Blockly.JavaScript.workspaceToCode(workspace), function (err) {
                 if (err) throw err;
                 console.log('Saved!');
-                console.log();
             });
             // this is ultra big pog brain moment, the workspace is going to dom, that goes to text(xml)
             // and that is the format we need
@@ -46,7 +44,7 @@ function save(){
           }
     }).catch(err => {
         console.log(err)
-        dialog.showErrorBox("There was an error saving:",err)
+        dialog.showErrorBox("There was an error saving: ",err)
     });
 }
 
