@@ -8,7 +8,7 @@
     
 </head>
 <body>
-    <div id="blok" style="background-color: #1f1f1f;" ondrop="dropHandler(event);" ondragover="dragOverHandler(event);">
+    <div id="blok" style="background-color: #1f1f1f;" >
         
     </div>
     <!-- blockly stuff -->
@@ -350,11 +350,11 @@
                         );
       </script>
       
-        <button type="button" style="position:absolute;left:100;top:30px">
+        <button type="button" id="load" style="position:absolute;left:100;top:30px">
           <a href="start.html">Back</a>
         </button>
         
-        <button type="button" id="save">
+        <button type="button" id="save" onclick="save()">
           <p style="position: relative; top: -8px;">Save</p>
         </button>
           
@@ -365,7 +365,7 @@
         
       
 
-
+    <script src="is.js"></script>    
     <script>
       // save file
       // required: electron, path and filesystem
@@ -375,7 +375,7 @@ const path = require('path');
 const fs = require('fs'); 
 const dialog = electron.remote.dialog; 
   
-var save = document.getElementById('save'); 
+ 
 
 function run(){
   try{
@@ -413,7 +413,7 @@ var load = document.getElementById('load');
               });
           });
       });
-save.addEventListener('click', (event) => { 
+function save(){ 
     console.log("Opening save dialog")
     dialog.showSaveDialog({ 
         title: 'Save as', 
@@ -449,39 +449,7 @@ save.addEventListener('click', (event) => {
         console.log(err)
         dialog.showErrorBox("There was an error saving:",err) 
     }); 
-}); 
-      //LOAD DROPPED FILE
-      function dropHandler(ev) {
-        console.log('File(s) dropped');
-
-        // Impedir o comportamento padrão (impedir que o arquivo seja aberto)
-        ev.preventDefault();
-        console.log(ev.type)
-        var reader = new FileReader();
-        reader.onload = function(e){
-          Output(
-            e
-          );
-        }
-        console.log(typeof ev);
-        if (ev.type.indexOf("text") == 0) {
-          var reader = new FileReader();
-          reader.onload = function(e) {
-            Output(
-              "<p><strong>" + ev.name + ":</strong></p><pre>" + 
-              e.target.result.replace(/</g, "&lt;").replace(/>/g, "&gt;") +
-              "</pre>"
-            );
-          }
-          console.log(reader.readAsText(ev));
-	}
-      }
-      function dragOverHandler(ev) {
-        console.log('File(s) in drop zone');
-
-        // Impedir o comportamento padrão (impedir que o arquivo seja aberto)
-        ev.preventDefault();
-      }
+} 
       //CUSTOM BLOCKS
 
       Blockly.Blocks['token_auth'] = {
@@ -554,6 +522,11 @@ save.addEventListener('click', (event) => {
         var code = '...;\n';
         return code;
       };
+    // loader
+    document.getElementById("blok").addEventListener("dragover", function(e){
+          var IsFile = isDragSourceExternalFile(e.originalEvent.dataTransfer);
+          console.log(IsFile);
+        });
     </script>
 </body>
 </html>
