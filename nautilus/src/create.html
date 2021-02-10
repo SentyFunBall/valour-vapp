@@ -513,7 +513,7 @@ function save(){
             console.log(xml);
             var domBlockly = Blockly.Xml.textToDom(xml);
             console.log("oh yes, " + domBlockly.toString());
-            var yes = Blockly.Xml.domToWorkspace(domBlockly, workspace)
+            var yes = Blockly.Xml.appendDomToWorkspace(domBlockly, workspace)
             
           } else {
             console.log("no file selected");
