@@ -22,6 +22,8 @@ const createWindow = () => {
 
   //Set the window to be start.html
   mainWindow.loadFile(path.join(__dirname, 'start.html'));
+  var appRoot = path.join(__dirname, '..');
+  require('electron-compile').init(appRoot, require.resolve('./start'));
 };
 app.on('ready', createWindow); //When app is ready, create the window
 
