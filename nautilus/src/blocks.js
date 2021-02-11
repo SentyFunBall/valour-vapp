@@ -85,7 +85,6 @@ Blockly.Blocks['throw'] = {
 Blockly.Blocks['console_print'] = {
   init: function() {
     this.appendValueInput("print to console")
-        .setCheck("String")
         .appendField("print");
       this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);

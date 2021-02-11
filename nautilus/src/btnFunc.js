@@ -98,7 +98,6 @@ function createVar(){
         if(r === null) {
             console.log('user cancelled');
         } else {
-            console.log('var name: ', r);
             workspace.createVariable(r);
         }
     })
