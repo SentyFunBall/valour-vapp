@@ -326,7 +326,9 @@
             </block>
         </category>
         <sep></sep>
-        <category name="Variables" colour="%{BKY_VARIABLES_HUE}" custom="VARIABLE"></category>
+        <category name="Variables" colour="%{BKY_VARIABLES_HUE}" custom="VARIABLE">
+            <button text="A button" callbackKey="varButton"></button>
+        </category>
         <category name="Functions" colour="%{BKY_PROCEDURES_HUE}" custom="PROCEDURE"></category>
         <sep></sep>
         <category name="Input/output" color="%{BKY_LOGIC_HUE}">
@@ -358,14 +360,20 @@
         <button type="button" id="save" onclick="save()">
           <p style="position: relative; top: -8px;">Save</p>
         </button>
-          
+
+        <button type="button" id="run" style="position: absolute; top: 90px;" onclick="run()">
+            <p style="position: relative; top: -8px;">Run</p>
+        </button>  
+
         <button type="button" id="load" style="position: absolute; top: 120px;" onclick="loadfiles()">
           <p style="position: relative; top: -8px;">Load</p>
         </button>
 
-        <button type="button" id="run" style="position: absolute; top: 90px;" onclick="run()">
-          <p style="position: relative; top: -8px;">Run</p>
+        <button type="button" id="var" style="position: absolute; top: 150px;" onclick="createVar()">
+            <p style="position: relative; top: -8px;">New Var</p>
         </button>
+
+        
     <pre id="code">
 // your code will appear here
     </pre>
