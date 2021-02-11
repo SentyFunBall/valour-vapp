@@ -45,8 +45,62 @@ Blockly.Blocks['message_get'] = {
   }
 };
 
+Blockly.Blocks['try_catch'] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField("try doing");
+    this.appendStatementInput("try")
+        .setCheck(null)
+        .appendField("this:");
+    this.appendDummyInput()
+        .appendField("in case of error:");
+    this.appendValueInput("var")
+        .setCheck(null)
+        .setAlign(Blockly.ALIGN_CENTRE)
+        .appendField("set");
+    this.appendDummyInput()
+        .appendField("to error and");
+    this.appendStatementInput("catch")
+        .setCheck(null)
+        .appendField("do this:");
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+    this.setColour(230);
+ this.setTooltip("it does the first block, in case of an error, gets the error value do the next block");
+ this.setHelpUrl("https://www.w3schools.com/js/js_errors.asp");
+  }
+};
+Blockly.Blocks['throw'] = {
+  init: function() {
+    this.appendValueInput("NAME")
+        .setCheck(null)
+        .appendField("error text:");
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+    this.setColour(230);
+ this.setTooltip("makes a custom error");
+ this.setHelpUrl("https://www.w3schools.com/js/js_errors.asp");
+  }
+};
+Blockly.Blocks['console_print'] = {
+  init: function() {
+    this.appendValueInput("print")
+        .setCheck("String")
+        .appendField("print");
+    this.setColour(230);
+ this.setTooltip("prints to console");
+ this.setHelpUrl("");
+  }
+};
 //CODE GENS
-
+  Blockly.JavaScript['try_catch'] = function(block) {
+    var statements_try = Blockly.JavaScript.statementToCode(block, 'try');
+    var value_name = Blockly.JavaScript.valueToCode(block, 'var', Blockly.JavaScript.ORDER_ATOMIC);
+    var statements_catch = Blockly.JavaScript.statementToCode(block, 'catch');
+    // TODO: Assemble JavaScript into code variable.
+    var code = 'try { \n'+ statements_try +'} catch ('+ value_name +'){\n'+ statements_catch +'} \n';
+    return code;
+  };
   Blockly.JavaScript['token_auth'] = function(block) {
     var value_name = Blockly.JavaScript.valueToCode(block, '', Blockly.JavaScript.ORDER_ATOMIC);
     var code = 'var token = ' + value_name + ';';
@@ -66,5 +120,11 @@ Blockly.Blocks['message_get'] = {
     var statements_no = Blockly.JavaScript.statementToCode(block, 'no');
     // TODO: Assemble JavaScript into code variable.
     var code = '...;\n';
+    return code;
+  };
+  Blockly.JavaScript['console_print'] = function(block) {
+    var value_print = Blockly.JavaScript.valueToCode(block, 'print', Blockly.JavaScript.ORDER_ATOMIC);
+    // TODO: Assemble JavaScript into code variable.
+    var code = 'console.log('+ value_print +');\n';
     return code;
   };

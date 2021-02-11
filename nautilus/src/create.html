@@ -28,6 +28,7 @@
             <block type="logic_boolean"></block>
             <block type="logic_null"></block>
             <block type="logic_ternary"></block>
+            <block type="try_catch"></block>
         </category>
         <category name="Loops" colour="%{BKY_LOOPS_HUE}">
             <block type="controls_repeat_ext">
@@ -221,6 +222,13 @@
                 </shadow>
             </value>
             </block>
+            <block type="console_print">
+            <value name="value_print">
+                <shadow type="text">
+                <field name="value_print">abc</field>
+                </shadow>
+            </value>
+            </block>
             <block type="text_print">
             <value name="TEXT">
                 <shadow type="text">
@@ -373,10 +381,14 @@
             <p style="position: relative; top: -8px;">New Var</p>
         </button>
 
-        
+    <div id="parent">    
     <pre id="code">
 // your code will appear here
     </pre>
+    <pre id="console">
+
+    </pre>
+    </div>
     <script src="blocks.js"></script>    
     <script src="btnFunc.js"></script>
     <script src="makeText.js"></script>
