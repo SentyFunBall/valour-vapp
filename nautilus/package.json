@@ -47,8 +47,6 @@
     }
   },
   "dependencies": {
-    "electron-forge": "^5.2.4",
-    "electron-squirrel-startup": "^1.0.0",
     "@electron-forge/cli": "^6.0.0-beta.54",
     "@electron-forge/maker-deb": "^6.0.0-beta.54",
     "@electron-forge/maker-rpm": "^6.0.0-beta.54",
@@ -57,7 +55,10 @@
     "@ftnk/electron-prebuilt-compile": "^1.7.3",
     "electron": "11.2.0",
     "electron-compile": "^6.4.4",
-    "electron-prebuilt-compile": "8.2.0"
+    "electron-forge": "^5.2.4",
+    "electron-prebuilt-compile": "8.2.0",
+    "electron-prompt": "^1.6.1",
+    "electron-squirrel-startup": "^1.0.0"
   },
   "devDependencies": {
     "electron-forge": "^5.2.4",

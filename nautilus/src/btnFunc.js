@@ -89,9 +89,9 @@ function loadfiles(){
 
 function createVar(){
     prompt({
-        title: 'New var',
-        label: 'name:',
-        value: 'i',
+        title: 'New variable',
+        label: 'Name:',
+        value: 'My Variable',
         type: 'input'
     })
     .then((r) => {
