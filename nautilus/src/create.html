@@ -169,6 +169,10 @@
                 <shadow type="text"></shadow>
             </value>
             </block>
+            <block type="console_print">
+            </block>
+            <block type="clear_console">
+            </block>
             <block type="text_length">
             <value name="VALUE">
                 <shadow type="text">
@@ -220,13 +224,6 @@
             <value name="TEXT">
                 <shadow type="text">
                 <field name="TEXT">abc</field>
-                </shadow>
-            </value>
-            </block>
-            <block type="console_print">
-            <value name="value_print">
-                <shadow type="text">
-                <field name="value_print">abc</field>
                 </shadow>
             </value>
             </block>
@@ -381,15 +378,11 @@
         <button type="button" id="var" style="position: absolute; top: 150px;" onclick="createVar()">
             <p style="position: relative; top: -8px;">New Var</p>
         </button>
-
-    <div id="parent">    
-    <pre id="code">
-// your code will appear here
-    </pre>
-    <pre id="console">
-
-    </pre>
+    <div id="holder">
+        <pre id="code">// your code will appear here</pre>
+        <pre id="console">this is the mini console</pre>
     </div>
+    
     <script src="blocks.js"></script>    
     <script src="btnFunc.js"></script>
     <script src="makeText.js"></script>

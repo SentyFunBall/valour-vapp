@@ -84,13 +84,24 @@ Blockly.Blocks['throw'] = {
 };
 Blockly.Blocks['console_print'] = {
   init: function() {
-    this.appendValueInput("print")
+    this.appendValueInput("print to console")
         .setCheck("String")
         .appendField("print");
       this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
     this.setColour(160);
  this.setTooltip("prints to console");
+ this.setHelpUrl("");
+  }
+};
+Blockly.Blocks['clear_console'] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField("clear console");
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+    this.setColour(160);
+ this.setTooltip("clears the console");
  this.setHelpUrl("");
   }
 };
@@ -127,6 +138,18 @@ Blockly.Blocks['console_print'] = {
   Blockly.JavaScript['console_print'] = function(block) {
     var value_print = Blockly.JavaScript.valueToCode(block, 'print', Blockly.JavaScript.ORDER_ATOMIC);
     // TODO: Assemble JavaScript into code variable.
-    var code = 'console.log('+ value_print +');\n';
+    var code = 'console_print('+ value_print +');\n';
     return code;
   };
+  Blockly.JavaScript['clear_console'] = function(block) {
+    // TODO: Assemble JavaScript into code variable.
+    var code = 'clear_console();\n';
+    return code;
+  };
+var console = document.getElementById("console");
+function console_print(to_print){
+  console.innerHTML += (to_print + '\n');
+}
+function clear_console(){
+  console.innerHTML = "";
+}
