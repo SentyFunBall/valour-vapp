@@ -8,3 +8,6 @@ Valour VAPP is a community built, open source way to build bots for Valour. Usin
 
 ## Where do I learn?
 There is a file named programming basics.md in the md folder, click on it and start reading. There is also a wiki avalible on this repo.
+
+## how do i contribute?
+check out [here](contribute.md) for help
