@@ -84,9 +84,10 @@ Blockly.Blocks['throw'] = {
 };
 Blockly.Blocks['console_print'] = {
   init: function() {
-    this.appendValueInput("print to console")
+    this.appendValueInput("to_print")
+        .setCheck(null)
         .appendField("print");
-      this.setPreviousStatement(true, null);
+    this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
     this.setColour(160);
  this.setTooltip("prints to console");
@@ -131,13 +132,13 @@ Blockly.Blocks['clear_console'] = {
     var value_get = Blockly.JavaScript.valueToCode(block, 'get', Blockly.JavaScript.ORDER_ATOMIC);
     var statements_no = Blockly.JavaScript.statementToCode(block, 'no');
     // TODO: Assemble JavaScript into code variable.
-    var code = '...;\n';
+    var code = '//nothing here'
     return code;
   };
   Blockly.JavaScript['console_print'] = function(block) {
-    var value_print = Blockly.JavaScript.valueToCode(block, 'print', Blockly.JavaScript.ORDER_ATOMIC);
+    var value_to_print = Blockly.JavaScript.valueToCode(block, 'to_print', Blockly.JavaScript.ORDER_ATOMIC);
     // TODO: Assemble JavaScript into code variable.
-    var code = 'console_print('+ value_print +');\n';
+    var code = 'console_print('+ value_to_print +');\n';
     return code;
   };
   Blockly.JavaScript['clear_console'] = function(block) {
