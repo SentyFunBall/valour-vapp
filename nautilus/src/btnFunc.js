@@ -1,7 +1,24 @@
 const electron = require('electron');
 const path = require('path');
 const fs = require('fs');
+const { type } = require('os');
 const dialog = electron.remote.dialog;
+
+function home(){
+    //opens an info box, and depending on user action, goes home.
+    const options = {
+        type: 'warning',
+        buttons: ['Cancel', 'Yes'],
+        defaultId: 2,
+        title: 'Warning',
+        message: 'Are you sure you want to go back home?',
+        detail: 'All unsaved progress will be lost!',
+    }
+
+    dialog.showMessageBox(null, options).then ( (data) => {
+        console.log(data.response);
+    })
+}
 
 function run(){
     // tries the code, just dont do recursion pls
