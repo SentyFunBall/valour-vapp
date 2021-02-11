@@ -3,6 +3,10 @@ body{
     padding: 0;
     margin: 0;
 }
+textarea{
+    overflow: auto;
+    
+}
 #blok{
     /* to use (almost) all the screen */
     position: absolute;
@@ -11,26 +15,35 @@ body{
     height: 100vh;
     
 }
-#parent{
-    display: flex;
-    border: 1px solid #000;
+#holder{
+    
+    position:absolute;
     height: 100%;
-    width: 99%;
-}
-#code{
-    flex-grow: 1;
-  
-    resize: vertical;
-    overflow: auto;
 }
 #console{
-    flex-grow: 1;
-}
-#code{
+    margin: 0;
+    color: #fff;
+    box-sizing: border-box;
+    border: 2px solid #363636;
+    background-color: #161616;
     position: absolute;
+    bottom: 0;
     left: 75vw;
     width: 25vw;
-    height: 100vh;
+    height: 50vh;
+    overflow: auto;
+}
+#code{
+    margin: 0;
+    color: #fff;
+    box-sizing: border-box;
+    border: 2px solid #363636;
+    background-color: #161616;
+    position: absolute;
+    top: 0;
+    left: 75vw;
+    width: 25vw;
+    height: 50vh;
     overflow: auto;
 }
 button{
@@ -66,12 +79,4 @@ button > *{
     padding: 5%;
     width: 100vw;
     height: 100vh;
-}
-
-#dropzone{
-    position: absolute;
-    width: 100vh;
-    height: 20vw;
-    top: 80vh;
-    z-index: 10;
 }
