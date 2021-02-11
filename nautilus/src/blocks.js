@@ -87,7 +87,9 @@ Blockly.Blocks['console_print'] = {
     this.appendValueInput("print")
         .setCheck("String")
         .appendField("print");
-    this.setColour(230);
+      this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+    this.setColour(160);
  this.setTooltip("prints to console");
  this.setHelpUrl("");
   }
