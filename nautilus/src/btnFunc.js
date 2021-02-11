@@ -3,7 +3,7 @@ const path = require('path');
 const fs = require('fs');
 const { type } = require('os');
 const dialog = electron.remote.dialog;
-
+const prompt = require('electron-prompt');
 function home(){
     //opens an info box, and depending on user action, goes home.
     const options = {
@@ -24,8 +24,10 @@ function run(){
     // tries the code, just dont do recursion pls
     try{
         eval(Blockly.JavaScript.workspaceToCode(workspace));
+        console.log("no errors, nice.")
     } catch (e) {
         console.log(e);
+        console.log("just errors, nothing too much to worry about :)")
     }
 }
 
@@ -83,4 +85,22 @@ function loadfiles(){
         console.log("no file selected");
         }
     });
+}
+
+function createVar(){
+    prompt({
+        title: 'New var',
+        label: 'name:',
+        value: 'i',
+        type: 'input'
+    })
+    .then((r) => {
+        if(r === null) {
+            console.log('user cancelled');
+        } else {
+            console.log('var name: ', r);
+            workspace.createVariable(r);
+        }
+    })
+    .catch(console.error);
 }
