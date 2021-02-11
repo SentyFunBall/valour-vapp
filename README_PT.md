@@ -10,9 +10,11 @@ Mas ainda está em construção, e vai ser público depois da primeira versão d
 ## Onde eu aprendo?
 Existe um arquivo chamado "basico de programação.md" numa pasta chamada "md". Logo vai ter uma wiki disponível aqui.
 
-## Tem como ajudar?
+## Tem como contribuir?
 Sim, se você achou um bug no código, crie uma "revision issue" e escreva o caminho do código, ex: wrapper/wrapper-cs/wrapper.cs, linha 23.  
 
 você também pode pedir uma mudança com o código já pronto (vai ser bem mais rápido)  
 
-se quiser ajudar, dê uma olhada no pr_helps.md
+se quiser ajudar, dê uma olhada [aqui!](contribute_pt.md)
+
+
