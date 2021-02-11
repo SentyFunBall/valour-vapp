@@ -11,6 +11,21 @@ body{
     height: 100vh;
     
 }
+#parent{
+    display: flex;
+    border: 1px solid #000;
+    height: 100%;
+    width: 99%;
+}
+#code{
+    flex-grow: 1;
+  
+    resize: vertical;
+    overflow: auto;
+}
+#console{
+    flex-grow: 1;
+}
 #code{
     position: absolute;
     left: 75vw;
