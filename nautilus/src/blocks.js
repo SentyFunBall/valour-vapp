@@ -86,7 +86,7 @@ Blockly.Blocks['console_print'] = {
   init: function() {
     this.appendValueInput("to_print")
         .setCheck(null)
-        .appendField("print");
+        .appendField("Print");
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
     this.setColour(160);
@@ -97,7 +97,7 @@ Blockly.Blocks['console_print'] = {
 Blockly.Blocks['clear_console'] = {
   init: function() {
     this.appendDummyInput()
-        .appendField("clear console");
+        .appendField("Clear Console");
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
     this.setColour(160);
