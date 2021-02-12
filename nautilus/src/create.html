@@ -19,7 +19,7 @@
     <script src="./../blockly/javascript_compressed.js"></script>
     <script src="./../blockly/msg/js/en.js"></script> <!-- was this path brruh-->
     <!-- xml things -->
-    <xml xmlns="https://developers.google.com/blockly/xml" id="toolbox" style="display: none" src="blocks.xml">
+    <xml xmlns="https://developers.google.com/blockly/xml" id="toolbox" style="display: none">
         <category name="Logic" colour="%{BKY_LOGIC_HUE}">
             <block type="controls_if"></block>
             <block type="logic_compare"></block>
@@ -353,25 +353,23 @@
                         }
                         );
       </script>
-        <a href="start.html">
-          <button type="button" style="position:absolute;left:100;top:30px" onclick="back()">
-            <p style="position: relative; top: -8px;">Home</p>
-          </button>
-        </a>
+        <button type="button" style="top:30px" onclick="back()">
+            <p>Home</p>
+        </button>
         <button type="button" id="save" onclick="save()">
-          <p style="position: relative; top: -8px;">Save</p>
+            <p>Save</p>
         </button>
 
-        <button type="button" id="run" style="position: absolute; top: 90px;" onclick="run()">
-            <p style="position: relative; top: -8px;">Run</p>
+        <button type="button" id="run" style="top: 90px;" onclick="run()">
+            <p>Run</p>
         </button>  
 
-        <button type="button" id="load" style="position: absolute; top: 120px;" onclick="loadfiles()">
-          <p style="position: relative; top: -8px;">Load</p>
+        <button type="button" id="load" style="top: 120px;" onclick="loadfiles()">
+            <p>Load</p>
         </button>
 
-        <button type="button" id="var" style="position: absolute; top: 150px;" onclick="createVar()">
-            <p style="position: relative; top: -8px;">New Var</p>
+        <button type="button" id="var" style="top: 150px;" onclick="createVar()">
+            <p>New Var</p>
         </button>
     <div id="holder">
         <pre id="code">// your code will appear here</pre>

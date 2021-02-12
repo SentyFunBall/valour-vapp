@@ -3,10 +3,6 @@ body{
     padding: 0;
     margin: 0;
 }
-textarea{
-    overflow: auto;
-    
-}
 #blok{
     /* to use (almost) all the screen */
     position: absolute;
@@ -64,6 +60,8 @@ button > *{
     position: relative; 
     top: 0px; 
     text-decoration: none;
+    position: relative;
+    top: -8px;
 }
 
 #save{

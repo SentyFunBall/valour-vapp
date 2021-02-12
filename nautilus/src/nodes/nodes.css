@@ -1,4 +1,4 @@
-/*body{
+body{
     padding: 0;
     margin: 0;
     --bg-main: #181818;
@@ -11,9 +11,6 @@ header{
     align-items: center;
     justify-content: center;
 }
-header:first-child{
-
-}
 main{
     background-color: var(--bg-main);
     width: 100%;
@@ -25,5 +22,25 @@ footer{
     width: 100%;
     position: absolute;
     bottom: 0;
-    box-shadow: 0 0 5px var(--);
-}*/
+    box-shadow: 0 0 5px var(--bg-sub);
+}
+button{
+    /* button */
+    position: absolute; 
+    top: 0.75vh;
+    left: 70%;  
+    width:75px;
+    height:25px;
+    background-color: rgb(65, 108, 236);
+    border:1px black;
+}
+button > *{
+    /* to <a> and <p> tags */
+    
+    color:cornsilk; 
+    position: relative; 
+    top: 0px; 
+    text-decoration: none;
+    position: relative;
+    top: -8px;
+}

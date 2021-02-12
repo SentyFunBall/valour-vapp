@@ -4,7 +4,7 @@ const fs = require('fs');
 const { type } = require('os');
 const dialog = electron.remote.dialog;
 const prompt = require('electron-prompt');
-function home(){
+const home = () =>{
     //opens an info box, and depending on user action, goes home.
     const options = {
         type: 'warning',
@@ -20,7 +20,7 @@ function home(){
     })
 }
 
-function run(){
+const run = () => {
     // tries the code, just dont do recursion pls
     try{
         eval(Blockly.JavaScript.workspaceToCode(workspace));
@@ -30,7 +30,7 @@ function run(){
 }
 
 
-function save(){
+const save = () =>{
     dialog.showSaveDialog({
         title: 'Save as',
         defaultPath: path.join(__dirname, '../workspace/'),
@@ -61,24 +61,17 @@ function save(){
     });
 }
 
-function loadfiles(){
+const loadfiles = () => {
     dialog.showOpenDialog({properties: ['openFile'] }).then(function (response) {
         if (!response.canceled) {
         var xml = fs.readFileSync(response.filePaths[0]).toString();
         if (xml.startsWith("<xml") && xml.endsWith("</xml>")){            
-            var yes = Blockly.Xml.appendDomToWorkspace(Blockly.Xml.textToDom(xml), workspace)
-        } else {
-            // if file couldn't be loaded
-        }
-
-
-        } else {
-        // if no file were selected
+            Blockly.Xml.appendDomToWorkspace(Blockly.Xml.textToDom(xml), workspace);
         }
     });
 }
 
-function createVar(){
+const createVar = () => {
     prompt({
         title: 'New variable',
         label: 'Name:',

@@ -164,5 +164,6 @@ function console_print(to_print){
   console.innerHTML += (to_print + '\n');
 }
 function clear_console(){
+  var console = document.getElementById("console");
   console.innerHTML = "";
 }
