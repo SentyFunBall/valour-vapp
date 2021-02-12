@@ -105,6 +105,18 @@ Blockly.Blocks['clear_console'] = {
  this.setHelpUrl("");
   }
 };
+Blockly.Blocks['eval'] = {
+  init: function() {
+    this.appendValueInput("eval")
+        .setCheck(null)
+        .appendField("evaluate");
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+    this.setColour(260);
+ this.setTooltip("runs a string as code");
+ this.setHelpUrl("");
+  }
+};
 //CODE GENS
   Blockly.JavaScript['try_catch'] = function(block) {
     var statements_try = Blockly.JavaScript.statementToCode(block, 'try');
@@ -158,7 +170,12 @@ Blockly.Blocks['clear_console'] = {
     var code = 'throw '+ value_to_print + ';\n';
     return code;
   };
-
+  Blockly.JavaScript['eval'] = function(block) {
+    var value_eval = Blockly.JavaScript.valueToCode(block, 'eval', Blockly.JavaScript.ORDER_ATOMIC);
+    // TODO: Assemble JavaScript into code variable.
+    var code = 'eval('+value_eval+');\n';
+    return code;
+  };
 function console_print(to_print){
   var console = document.getElementById("console");
   console.innerHTML += (to_print + '\n');

@@ -66,7 +66,14 @@ const loadfiles = () => {
         if (!response.canceled) {
         var xml = fs.readFileSync(response.filePaths[0]).toString();
         if (xml.startsWith("<xml") && xml.endsWith("</xml>")){            
-            Blockly.Xml.appendDomToWorkspace(Blockly.Xml.textToDom(xml), workspace);
+            var yes = Blockly.Xml.appendDomToWorkspace(Blockly.Xml.textToDom(xml), workspace)
+        } else {
+            // if file couldn't be loaded
+        }
+
+
+        } else {
+        // if no file were selected
         }
     });
 }
