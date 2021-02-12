@@ -72,7 +72,7 @@ Blockly.Blocks['try_catch'] = {
 };
 Blockly.Blocks['throw'] = {
   init: function() {
-    this.appendValueInput("NAME")
+    this.appendValueInput("name")
         .setCheck(null)
         .appendField("error text:");
     this.setPreviousStatement(true, null);
@@ -146,8 +146,21 @@ Blockly.Blocks['clear_console'] = {
     var code = 'clear_console();\n';
     return code;
   };
-var console = document.getElementById("console");
+  Blockly.JavaScript['console_print'] = function(block) {
+    var value_to_print = Blockly.JavaScript.valueToCode(block, 'to_print', Blockly.JavaScript.ORDER_ATOMIC);
+    // TODO: Assemble JavaScript into code variable.
+    var code = 'console_print('+ value_to_print +');\n';
+    return code;
+  };
+  Blockly.JavaScript['throw'] = function(block) {
+    var value_to_print = Blockly.JavaScript.valueToCode(block, 'name', Blockly.JavaScript.ORDER_ATOMIC);
+    // TODO: Assemble JavaScript into code variable.
+    var code = 'throw '+ value_to_print + ';\n';
+    return code;
+  };
+
 function console_print(to_print){
+  var console = document.getElementById("console");
   console.innerHTML += (to_print + '\n');
 }
 function clear_console(){
