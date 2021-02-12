@@ -40,7 +40,7 @@ nav{
     margin-top: 10px;
     border: 1px solid lightblue;
     padding: 1%;
-}Λ41] 
+} 
 footer > p {
     background-color: black;
     color: var(--text-2);
@@ -49,4 +49,10 @@ footer > p {
     bottom: 0;
     margin: 0;
     padding: 2%;
+}
+
+#button{
+    background-color:rgb(65, 108, 236);
+    border:1px black;
+    color:cornsilk;
 }
