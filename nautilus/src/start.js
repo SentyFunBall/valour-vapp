@@ -13,7 +13,7 @@ const createWindow = () => {
     width: 1250, //Window width
     height: 800, //Window height
     minWidth: 1100,
-    frame: false,
+    frame: true,
     webPreferences: { //Preferences
       nodeIntegration: true,
       enableRemoteModule: true,

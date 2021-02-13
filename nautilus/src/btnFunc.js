@@ -4,6 +4,7 @@ const fs = require('fs');
 const { type } = require('os');
 const dialog = electron.remote.dialog;
 const prompt = require('electron-prompt');
+
 const home = () =>{
     //opens an info box, and depending on user action, goes home.
     const options = {
@@ -17,6 +18,10 @@ const home = () =>{
 
     dialog.showMessageBox(null, options).then ( (data) => {
         console.log(data.response);
+
+        if(data.response == 1) {
+            window.location.href = "start.html"
+        }
     })
 }
 
