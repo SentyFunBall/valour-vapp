@@ -29,9 +29,24 @@ class NodeBlock{
             if(data.response == 0) {
                 window.location.href = "./../create.html";
             } else if (data.response == 1){
-                /* 
-                * do file loading
-                */
+                const pathfile = dialog.showOpenDialogSync({properties: ['openFile'] })
+                console.log(pathfile)
+                /*.then(function (response) {
+                
+                    if (!response.canceled) {
+                    const xmly = fs.readFileSync(response.filePaths[0]).toString();
+                    if (xml.startsWith("<xml") && xml.endsWith("</xml>")){            
+                        const xml = Blockly.Xml.textToDom(xmly);
+                    } else {
+                        // if file couldn't be loaded
+                    }
+            
+            
+                    } else {
+                    // if no file were selected
+                    }
+                
+                })*/;
                 var workspace = Blockly.inject((this.name + '-blockly'),
                         {toolbox: document.getElementById('toolbox'),
                         grid:{
@@ -43,7 +58,7 @@ class NodeBlock{
                         trashcan: false
                         }
                         );
-                workspace.
+                blockly.Xml.clearWorkspaceAndLoadFromXml(xml, workspace);
             }
 
 

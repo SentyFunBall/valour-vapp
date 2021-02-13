@@ -26,7 +26,7 @@
                 <p style="position: relative; top: -8px;">Load</p>
             </button> 
 
-            <button type="button" id="load" style="left: 90%;" onclick="addnodes()">
+            <button type="button" id="load" style="left: 90%;" onclick="createNode()">
                 <p style="position: relative; top: -8px;">New node</p>
             </button> 
             <!--button id="back" type="button" formaction="./../src/start.html"></button-->
@@ -37,6 +37,7 @@
     <footer>
         <!--where the functions will be-->
     </footer>
+
     <script src="./../../blockly/blockly_compressed.js"></script>
     <script src="./../../blockly/blocks_compressed.js"></script>
     <script src="./../../blockly/javascript_compressed.js"></script>
@@ -45,7 +46,8 @@
     <script src="nodes.js"></script>
     <script src="editor.js"></script>
     <script>
-        const node2 = new NodeBlock("lol").setPosition([20, 20])
+        var nodes = []
+        const editor = new NodeBlock("lol").setPosition([20, 20])
     </script>
 </body>
 </html>
