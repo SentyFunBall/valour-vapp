@@ -1,3 +1,0 @@
-class divzy{
-    constructor()
-}

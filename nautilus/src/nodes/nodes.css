@@ -1,4 +1,5 @@
 body{
+    font-family: sans-serif;
     padding: 0;
     margin: 0;
     --bg-main: #181818;
@@ -43,4 +44,26 @@ button > *{
     text-decoration: none;
     position: relative;
     top: -8px;
+}
+.wrapper{
+    position: absolute;
+    padding: 3%;
+    display: inline-block;
+    top: 50%;
+    left: 50%;
+    width: 200px;
+    border-radius: 15px;
+    background-color: var(--bg-sub);
+    color: cornsilk;
+    
+}
+.wrapper > p {
+    position: absolute;
+    top: 3%;
+    left: 30%;
+}
+.blockly-div-wrapper{
+    width: 100%;
+    height: 150px;
+    transition: all ease-in-out 0.4s;
 }

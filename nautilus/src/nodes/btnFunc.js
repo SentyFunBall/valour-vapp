@@ -83,18 +83,18 @@ const loadfiles = () => {
     });
 }
 
-const createVar = () => {
+const createNode = () => {
     prompt({
-        title: 'New variable',
+        title: 'New node',
         label: 'Name:',
-        value: 'My Variable',
+        value: 'My Node',
         type: 'input'
     })
     .then((r) => {
         if(r === null) {
             // if user cancel
         } else {
-            workspace.createVariable(r);
+            
         }
     })
     .catch(console.error);

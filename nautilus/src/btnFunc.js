@@ -19,9 +19,7 @@ const home = () =>{
     dialog.showMessageBox(null, options).then ( (data) => {
         console.log(data.response);
 
-        if(data.response == 1) {
-            window.location.href = "start.html"
-        }
+        
     })
 }
 

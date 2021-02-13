@@ -8,30 +8,44 @@
     <title>Node editing</title>
     <script src="btnFunc.js"></script>
 </head>
-<body>
+<body onmousemove='function ev (e){console.log("mouse location:", e.clientX, e.clientY)}'>
     <header>
         <!--this is where the button will be-->
-            <button type="button" style="left: 67.5%;" onclick="home()">
+            <button type="button" style="left: 60%;" onclick="home()">
                 <p>Home</p>
             </button>
-            <button type="button" id="save" style="left: 75%;" onclick="save()">
+            <button type="button" id="save" style="left: 67.5%;" onclick="save()">
                 <p style="position: relative; top: -8px;">Save</p>
             </button>
     
-            <button type="button" id="run" style="left: 82.5%;" onclick="run()">
+            <button type="button" id="run" style="left: 75%;" onclick="run()">
                 <p>Run</p>
             </button>  
     
-            <button type="button" id="load" style="left: 90%;" onclick="loadfiles()">
+            <button type="button" id="load" style="left: 82.5%;" onclick="loadfiles()">
                 <p style="position: relative; top: -8px;">Load</p>
+            </button> 
+
+            <button type="button" id="load" style="left: 90%;" onclick="addnodes()">
+                <p style="position: relative; top: -8px;">New node</p>
             </button> 
             <!--button id="back" type="button" formaction="./../src/start.html"></button-->
     </header>
-    <main>
+    <main id="editor" >
         <!--this is the main droppable area-->
     </main>
     <footer>
         <!--where the functions will be-->
     </footer>
+    <script src="./../../blockly/blockly_compressed.js"></script>
+    <script src="./../../blockly/blocks_compressed.js"></script>
+    <script src="./../../blockly/javascript_compressed.js"></script>
+    <script src="./../../blockly/msg/js/en.js"></script>
+    <script src="./../blocks.js"></script>
+    <script src="nodes.js"></script>
+    <script src="editor.js"></script>
+    <script>
+        const node2 = new NodeBlock("lol").setPosition([20, 20])
+    </script>
 </body>
 </html>
