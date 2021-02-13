@@ -52,7 +52,7 @@ const save = () =>{
             });
             // this is ultra big pog brain moment, the workspace is going to dom, that goes to text(xml)
             // and that is the format we need
-            var xml_text = Blockly.Xml.domToPrettyText(Blockly.Xml.workspaceToDom(workspace));
+            const xml_text = Blockly.Xml.domToPrettyText(Blockly.Xml.workspaceToDom(workspace));
             fs.writeFile(file.filePath.toString(),
                           xml_text, function (err) { if (err) throw err});
           }
@@ -64,9 +64,9 @@ const save = () =>{
 const loadfiles = () => {
     dialog.showOpenDialog({properties: ['openFile'] }).then(function (response) {
         if (!response.canceled) {
-        var xml = fs.readFileSync(response.filePaths[0]).toString();
+        const xml = fs.readFileSync(response.filePaths[0]).toString();
         if (xml.startsWith("<xml") && xml.endsWith("</xml>")){            
-            var yes = Blockly.Xml.appendDomToWorkspace(Blockly.Xml.textToDom(xml), workspace)
+            Blockly.Xml.appendDomToWorkspace(Blockly.Xml.textToDom(xml), workspace)
         } else {
             // if file couldn't be loaded
         }
