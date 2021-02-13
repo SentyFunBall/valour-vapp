@@ -1,9 +1,9 @@
 :root{
     font: 1rem sans-serif;
-    --bg-var-1: #dfdfdf;
+    --bg-var-1: #000000;
     --bg-var-2: #0077ff;
     --text-1: #eaeaea;
-    --text-2: #696969;
+    --text-2: #ffffff;
 }
 
 body{
