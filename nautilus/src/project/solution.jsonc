@@ -1,0 +1,16 @@
+{
+    "packages": false,
+    "absolute_path": "D:/the/path/until/the/project/folder",
+    "nodes_path": [
+        {"node_id": 1, "node_path": "/main.xml"}// yea realtive paths go brr
+    ],
+    "connections":[
+        {"ends": [
+            {
+                "test": [0, 1 /*x & y coords*/ ]
+            },
+            {
+                "test2": []
+            }]}
+    ]
+}

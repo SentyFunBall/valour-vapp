@@ -6,8 +6,8 @@ const dialog = electron.remote.dialog;
 const prompt = require('electron-prompt');
 class NodeBlock{
     constructor (nodeName){
-        this.editor = document.getElementById("editor")
-        this.name = nodeName;
+        this.editor = document.getElementById("editor") //main frame
+        this.name = nodeName; // the name
         this.node = document.createElement("div");
         this.node.innerHTML = '<div id="'+nodeName+'-wrapper" class="wrapper" draggable="true">\n <input type="checkbox" id="'+ nodeName + '-check" class="check" onclick="isChecked(\''+nodeName+'\')"/>\n<p>' + nodeName + '</p>\n<div id="'+ nodeName + '-blockly" class="blockly-div-wrapper">\n</div>';
         this.editor.innerHTML = this.node.innerHTML;
@@ -20,7 +20,7 @@ class NodeBlock{
         wrapper.style.left= position[1] + "%";
     }
     init(){
-        const options = {
+        const options = { //the window options
             type: 'warning',
             buttons: ['new', 'import', 'cancel'],
             defaultId: 3,
@@ -32,10 +32,10 @@ class NodeBlock{
             console.log(data.response);
             
             if(data.response == 0) {
-                window.location.href = "./../create.html";
-            } else if (data.response == 1){
+                window.location.href = "./../create.html"; // go create a new one
+            } else if (data.response == 1){ // to create a new node
                 var xml;
-                const filepath = dialog.showOpenDialogSync({
+                const filepath = dialog.showOpenDialogSync({ //sync because async cause a lot of problems
                     properties: ['openFile'],
                     filters: [
                         {
@@ -62,7 +62,7 @@ class NodeBlock{
                             colour: '#ccc',
                             snap: true
                         },
-                        zoom:
+                        zoom: //smol zoom goes brr
                             {controls: true,
                             wheel: true,
                             startScale: 0.1,
@@ -80,8 +80,8 @@ class NodeBlock{
 }
 
 const isChecked = (nodeName) =>{
-    const state = document.getElementById((nodeName + "-check")).checked; // node chekbox state (returns true/false)
-    if (state){
+    const state = document.getElementById((nodeName + "-check")).checked; // node chekbox state (returns true/false) 
+    if (state){ //now magic
         console.log((nodeName + "-blockly")+ " open")
         document.getElementById((nodeName + "-blockly")).style.visibility = 'visible';
         document.getElementById((nodeName + "-blockly")).style.height = '150px';
@@ -179,7 +179,7 @@ const createNode = () => {
         if(r === null) {
             // if user cancel
         } else {
-            const pass = new NodeBlock(r);
+            const pass = new NodeBlock(r); //TODO: pass this to nodes file
             console.log(pass.name);
             nodes.push(pass);
         }
