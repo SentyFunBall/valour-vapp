@@ -23,11 +23,25 @@ body{
     border: 2px solid #363636;
     background-color: #161616;
     position: absolute;
+    bottom: 5vh;
+    left: 75vw;
+    width: 25vw;
+    height: 45vh;
+    
+    overflow: auto;
+}
+#textarea{
+    margin: 0;
+    color: #fff;
+    box-sizing: border-box;
+    border: 2px solid #363636;
+    background-color: #161616;
+    position: absolute;
     bottom: 0;
     left: 75vw;
     width: 25vw;
-    height: 50vh;
-    overflow: auto;
+    height: 5vh;
+    overflow-y: hidden;
 }
 #code{
     margin: 0;
@@ -63,7 +77,9 @@ button > *{
     position: relative;
     top: -8px;
 }
-
+.console-text{
+    box-shadow: inset #757575 3px;
+}
 #save{
     top: 60px;
 }
@@ -77,4 +93,22 @@ button > *{
     padding: 5%;
     width: 100vw;
     height: 100vh;
+}
+
+*::-webkit-scrollbar {
+    width: 6px;               /* width of the entire scrollbar */
+    height: 6px;
+}
+
+*::-webkit-scrollbar-track {
+    visibility: hidden;
+    background: rgba(0,0,0,0);        /* color of the tracking area */
+}
+
+*::-webkit-scrollbar-thumb {
+    border-radius: 2px;
+    background-color:rgba(0, 174, 255, 0.5);    /* color of the scroll thumb */
+}
+*::-webkit-scrollbar-corner {
+     background: rgba(0,0,0,0);
 }

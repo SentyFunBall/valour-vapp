@@ -8,7 +8,7 @@
     <title>Node editing</title>
     <script src="btnFunc.js"></script>
 </head>
-<body onmousemove='function ev (e){console.log("mouse location:", e.clientX, e.clientY)}'>
+<body>
     <header>
         <!--this is where the button will be-->
             <button type="button" style="left: 60%;" onclick="home()">
@@ -31,7 +31,7 @@
             </button> 
             <!--button id="back" type="button" formaction="./../src/start.html"></button-->
     </header>
-    <main id="editor" >
+    <main id="editor" ondrop="drop(event)" ondragover="allowDrop(event)">
         <!--this is the main droppable area-->
     </main>
     <footer>

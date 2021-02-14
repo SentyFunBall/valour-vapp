@@ -9,15 +9,10 @@ class NodeBlock{
         this.editor = document.getElementById("editor") //main frame
         this.name = nodeName; // the name
         this.node = document.createElement("div");
-        this.node.innerHTML = '<div id="'+nodeName+'-wrapper" class="wrapper" draggable="true">\n <input type="checkbox" id="'+ nodeName + '-check" class="check" onclick="isChecked(\''+nodeName+'\')"/>\n<p>' + nodeName + '</p>\n<div id="'+ nodeName + '-blockly" class="blockly-div-wrapper">\n</div>';
+        this.node.innerHTML = '<div id="'+nodeName+'-wrapper" class="wrapper" draggable="true" ondragstart="drag(event, \''+ nodeName +'-wrapper\')">\n <input type="checkbox" id="'+ nodeName + '-check" class="check" onclick="isChecked(\''+nodeName+'\')"/>\n<p>' + nodeName + '</p>\n<div id="'+ nodeName + '-blockly" class="blockly-div-wrapper">\n</div>';
         this.editor.innerHTML = this.node.innerHTML;
         this.position = [50,50];
         this.init();
-    }
-    setPosition(position){
-        const wrapper = document.getElementById((this.name + '-wrapper'));
-        wrapper.style.top= position[0] + "%";
-        wrapper.style.left= position[1] + "%";
     }
     init(){
         const options = { //the window options
@@ -185,4 +180,29 @@ const createNode = () => {
         }
     })
     .catch(console.error);
+}
+const getpos = (event, nodeName) => {
+    const x = event.clientX;
+    const y = event.clientY;
+    const wrapper = document.getElementById((nodeName + '-wrapper'));
+    wrapper.style.top = (y + "px;");
+    wrapper.style.left = (x + "px;")
+}
+const drag = (ev, nm) => {
+    console.log(ev.target.id + ' / ' + nm);
+    ev.dataTransfer.setData("text", ev.target.id);
+}
+
+const allowDrop = (ev) => {
+    ev.preventDefault();
+}
+
+const drop = (ev) => {
+    ev.preventDefault();
+    var node = ev.dataTransfer.getData("text");
+    console.log(node);
+    ev.target.appendChild(document.getElementById(node));
+    node = document.getElementById(node)
+    node.style.top = ev.pageY;
+    node.style.left = ev.pageX;
 }

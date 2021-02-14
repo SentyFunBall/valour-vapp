@@ -260,18 +260,44 @@ Blockly.Blocks['eval'] = {
  this.setHelpUrl("");
   }
 };
+Blockly.Blocks['input'] = {
+  init: function() {
+    this.appendValueInput("sync")
+        .setCheck("Boolean")
+        .appendField("input");
+    this.setOutput(true, null);
+    this.setColour(160);
+ this.setTooltip("gets the input");
+ this.setHelpUrl("");
+  }
+};
+Blockly.Blocks['cast'] = {
+  init: function() {
+    this.appendValueInput("NAME")
+        .setCheck(null)
+        .appendField("make");
+    this.appendDummyInput()
+        .appendField("as a")
+        .appendField(new Blockly.FieldDropdown([["number","int"], ["text","string"]]), "types");
+    this.setInputsInline(true);
+    this.setOutput(true, null);
+    this.setColour(230);
+ this.setTooltip("cast a variable into a type");
+ this.setHelpUrl("https://www.w3schools.com/js/js_type_conversion.asp");
+  }
+};
 //CODE GENS
   Blockly.JavaScript['try_catch'] = function(block) {
     var statements_try = Blockly.JavaScript.statementToCode(block, 'try');
     var value_name = Blockly.JavaScript.valueToCode(block, 'var', Blockly.JavaScript.ORDER_ATOMIC);
     var statements_catch = Blockly.JavaScript.statementToCode(block, 'catch');
     // TODO: Assemble JavaScript into code variable.
-    var code = 'try { \n'+ statements_try +'} catch ('+ value_name +'){\n'+ statements_catch +'} \n';
+    const code = 'try { \n'+ statements_try +'} catch ('+ value_name +'){\n'+ statements_catch +'} \n';
     return code;
   };
   Blockly.JavaScript['token_auth'] = function(block) {
     var value_name = Blockly.JavaScript.valueToCode(block, '', Blockly.JavaScript.ORDER_ATOMIC);
-    var code = 'var token = ' + value_name + ';';
+    const code = 'var token = ' + value_name + ';';
     return code
   }
 
@@ -282,7 +308,7 @@ Blockly.JavaScript['send_message'] = function(block) {
   var value_author = Blockly.JavaScript.valueToCode(block, 'author', Blockly.JavaScript.ORDER_ATOMIC);
   var value_path = Blockly.JavaScript.valueToCode(block, 'path', Blockly.JavaScript.ORDER_ATOMIC);
   // TODO: Assemble JavaScript into code variable.
-  var code = '...;\n';
+  const code = '...;\n';
   return code;
 };
 
@@ -290,7 +316,7 @@ Blockly.JavaScript['message_get'] = function(block) {
   var value_get = Blockly.JavaScript.valueToCode(block, 'get', Blockly.JavaScript.ORDER_ATOMIC);
   var statements_no = Blockly.JavaScript.statementToCode(block, 'no');
   // TODO: Assemble JavaScript into code variable.
-  var code = '...;\n';
+  const code = '...;\n';
   return code;
 };
 
@@ -298,7 +324,7 @@ Blockly.JavaScript['role_add'] = function(block) {
   var value_name = Blockly.JavaScript.valueToCode(block, 'name', Blockly.JavaScript.ORDER_ATOMIC);
   var value_member = Blockly.JavaScript.valueToCode(block, 'member', Blockly.JavaScript.ORDER_ATOMIC);
   // TODO: Assemble JavaScript into code variable.
-  var code = '...;\n';
+  const code = '...;\n';
   return code;
 };
 
@@ -306,7 +332,7 @@ Blockly.JavaScript['role_remove'] = function(block) {
   var value_name = Blockly.JavaScript.valueToCode(block, 'name', Blockly.JavaScript.ORDER_ATOMIC);
   var value_member = Blockly.JavaScript.valueToCode(block, 'member', Blockly.JavaScript.ORDER_ATOMIC);
   // TODO: Assemble JavaScript into code variable.
-  var code = '...;\n';
+  const code = '...;\n';
   return code;
 };
 
@@ -314,7 +340,7 @@ Blockly.JavaScript['kick'] = function(block) {
   var value_member = Blockly.JavaScript.valueToCode(block, 'member', Blockly.JavaScript.ORDER_ATOMIC);
   var value_reason = Blockly.JavaScript.valueToCode(block, 'reason', Blockly.JavaScript.ORDER_ATOMIC);
   // TODO: Assemble JavaScript into code variable.
-  var code = '...;\n';
+  const code = '...;\n';
   return code;
 };
 
@@ -322,7 +348,7 @@ Blockly.JavaScript['ban'] = function(block) {
   var value_member = Blockly.JavaScript.valueToCode(block, 'member', Blockly.JavaScript.ORDER_ATOMIC);
   var value_reason = Blockly.JavaScript.valueToCode(block, 'reason', Blockly.JavaScript.ORDER_ATOMIC);
   // TODO: Assemble JavaScript into code variable.
-  var code = '...;\n';
+  const code = '...;\n';
   return code;
 };
 
@@ -330,14 +356,14 @@ Blockly.JavaScript['get_value'] = function(block) {
   var value_value = Blockly.JavaScript.valueToCode(block, 'value', Blockly.JavaScript.ORDER_ATOMIC);
   var value_from = Blockly.JavaScript.valueToCode(block, 'from', Blockly.JavaScript.ORDER_ATOMIC);
   // TODO: Assemble JavaScript into code variable.
-  var code = '...';
+  const code = '...';
   // TODO: Change ORDER_NONE to the correct strength.
   return [code, Blockly.JavaScript.ORDER_NONE];
 };
 
 Blockly.JavaScript['message_author'] = function(block) {
   // TODO: Assemble JavaScript into code variable.
-  var code = '...';
+  const code = '...';
   // TODO: Change ORDER_NONE to the correct strength.
   return [code, Blockly.JavaScript.ORDER_NONE];
 };
@@ -345,21 +371,21 @@ Blockly.JavaScript['message_author'] = function(block) {
 Blockly.JavaScript['message_info'] = function(block) {
   var value_info = Blockly.JavaScript.valueToCode(block, 'info', Blockly.JavaScript.ORDER_ATOMIC);
   // TODO: Assemble JavaScript into code variable.
-  var code = '...';
+  const code = '...';
   // TODO: Change ORDER_NONE to the correct strength.
   return [code, Blockly.JavaScript.ORDER_NONE];
 };
 
 Blockly.JavaScript['info_planet'] = function(block) {
   // TODO: Assemble JavaScript into code variable.
-  var code = '...';
+  const code = '...';
   // TODO: Change ORDER_NONE to the correct strength.
   return [code, Blockly.JavaScript.ORDER_NONE];
 };
 
 Blockly.JavaScript['info_channel'] = function(block) {
   // TODO: Assemble JavaScript into code variable.
-  var code = '...';
+  const code = '...';
   // TODO: Change ORDER_NONE to the correct strength.
   return [code, Blockly.JavaScript.ORDER_NONE];
 };
@@ -367,7 +393,7 @@ Blockly.JavaScript['info_channel'] = function(block) {
 Blockly.JavaScript['message_id'] = function(block) {
   var value_id = Blockly.JavaScript.valueToCode(block, 'id', Blockly.JavaScript.ORDER_ATOMIC);
   // TODO: Assemble JavaScript into code variable.
-  var code = '...';
+  const code = '...';
   // TODO: Change ORDER_NONE to the correct strength.
   return [code, Blockly.JavaScript.ORDER_NONE];
 };
@@ -375,37 +401,88 @@ Blockly.JavaScript['message_id'] = function(block) {
   Blockly.JavaScript['console_print'] = function(block) {
     var value_to_print = Blockly.JavaScript.valueToCode(block, 'to_print', Blockly.JavaScript.ORDER_ATOMIC);
     // TODO: Assemble JavaScript into code variable.
-    var code = 'console_print('+ value_to_print +');\n';
+    const code = 'console_print('+ value_to_print +');\n';
     return code;
   };
   Blockly.JavaScript['clear_console'] = function(block) {
     // TODO: Assemble JavaScript into code variable.
-    var code = 'clear_console();\n';
-    return code;
-  };
-  Blockly.JavaScript['console_print'] = function(block) {
-    var value_to_print = Blockly.JavaScript.valueToCode(block, 'to_print', Blockly.JavaScript.ORDER_ATOMIC);
-    // TODO: Assemble JavaScript into code variable.
-    var code = 'console_print('+ value_to_print +');\n';
+    const code = 'clear_console();\n';
     return code;
   };
   Blockly.JavaScript['throw'] = function(block) {
     var value_to_print = Blockly.JavaScript.valueToCode(block, 'name', Blockly.JavaScript.ORDER_ATOMIC);
     // TODO: Assemble JavaScript into code variable.
-    var code = 'throw '+ value_to_print + ';\n';
+    const code = 'throw '+ value_to_print + ';\n';
     return code;
   };
   Blockly.JavaScript['eval'] = function(block) {
     var value_eval = Blockly.JavaScript.valueToCode(block, 'eval', Blockly.JavaScript.ORDER_ATOMIC);
     // TODO: Assemble JavaScript into code variable.
-    var code = 'eval('+value_eval+');\n';
+    const code = 'eval('+value_eval+');\n';
     return code;
+  };
+  Blockly.JavaScript['input'] = function(block) {
+    var sync = Blockly.JavaScript.valueToCode(block, 'sync', Blockly.JavaScript.ORDER_ATOMIC);
+    // TODO: Assemble JavaScript into code variable.
+    var code = 'input('+ sync + ')';
+    // TODO: Change ORDER_NONE to the correct strength.
+    return [code, Blockly.JavaScript.ORDER_ASSIGNMENT];
+  };
+  Blockly.JavaScript['cast'] = function(block) {
+    var value_name = Blockly.JavaScript.valueToCode(block, 'NAME', Blockly.JavaScript.ORDER_ATOMIC);
+    var drop = block.getFieldValue('types');
+    // TODO: Assemble JavaScript into code variable.
+    var code;
+    if(drop == 'int'){
+      code = 'Number(' + value_name + ')';
+    } else if (drop = 'string'){
+      code = "String(" + value_name + ')';
+    }
+    return [code, Blockly.JavaScript.ORDER_ASSIGNMENT];
   };
 function console_print(to_print){
   var console = document.getElementById("console");
-  console.innerHTML += (to_print + '\n');
+  console.innerHTML += ('<div class="console-text">' + to_print + '</div>');
 }
-function clear_console(){
+const clear_console = () =>{
   var console = document.getElementById("console");
   console.innerHTML = "";
 }
+var inputVar = '';
+var inputOld = '';
+
+const input = (sync) =>{
+  if(!sync){
+    const inp = inputVar
+    inputVar = '';
+    return inp
+  } else {
+      while (true){
+        const node = document.getElementById("textarea");
+        node.addEventListener("keydown", function(event) {
+        if (event.key === "Enter") {
+          event.preventDefault();
+          console_print(node.innerHTML)
+          inputOld = inputVar;
+          inputVar = node.innerHTML;
+          if(inputVar != inputOld){
+            const inp = inputVar;
+            inputVar = '';
+            return inp;
+          }
+        }
+      })
+    
+    }
+  }
+}
+
+const node = document.getElementById("textarea");
+node.addEventListener("keydown", function(event) {
+    if (event.key === "Enter") {
+        event.preventDefault();
+        console_print(node.innerHTML);
+        inputOld = inputVar;
+        inputVar = node.innerHTML;
+    }
+});
