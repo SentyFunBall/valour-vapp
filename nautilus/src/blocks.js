@@ -286,6 +286,56 @@ Blockly.Blocks['cast'] = {
  this.setHelpUrl("https://www.w3schools.com/js/js_type_conversion.asp");
   }
 };
+Blockly.Blocks['timer_start'] = {
+  init: function() {
+    this.appendValueInput("variable")
+        .setCheck(null)
+        .appendField("start timer");
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+    this.setColour(65);
+ this.setTooltip("start the timer");
+ this.setHelpUrl("");
+  }
+};
+Blockly.Blocks['timer_end'] = {
+  init: function() {
+    this.appendValueInput("variable")
+        .setCheck(null)
+        .appendField("end timer");
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+    this.setColour(65);
+ this.setTooltip("end the timer");
+ this.setHelpUrl("");
+  }
+};
+Blockly.Blocks['timer_wait'] = {
+  init: function() {
+    this.appendValueInput("variable")
+        .setCheck(null)
+        .appendField("wait");
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+    this.setColour(65);
+ this.setTooltip("wait the time in milliseconds");
+ this.setHelpUrl("");
+  }
+};
+Blockly.Blocks['timer_do_until'] = {
+  init: function() {
+    this.appendValueInput("variable")
+        .setCheck("Boolean")
+        .appendField("do until");
+    this.appendStatementInput("code")
+        .setCheck(null);
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+    this.setColour(65);
+ this.setTooltip("the program stops until the condition inside the loop is true");
+ this.setHelpUrl("");
+  }
+};
 //CODE GENS
   Blockly.JavaScript['try_catch'] = function(block) {
     var statements_try = Blockly.JavaScript.statementToCode(block, 'try');
@@ -439,8 +489,34 @@ Blockly.JavaScript['message_id'] = function(block) {
       code = "String(" + value_name + ')';
     }
     return [code, Blockly.JavaScript.ORDER_ASSIGNMENT];
-  };
-function console_print(to_print){
+    };
+Blockly.JavaScript['timer_start'] = function(block) {
+  var value_variable = Blockly.JavaScript.valueToCode(block, 'variable', Blockly.JavaScript.ORDER_ATOMIC);
+  // TODO: Assemble JavaScript into code variable.
+  const code = value_variable +' = Date.now();\n';
+  return code;
+};
+Blockly.JavaScript['timer_end'] = function(block) {
+  var varb = Blockly.JavaScript.valueToCode(block, 'variable', Blockly.JavaScript.ORDER_ATOMIC);
+  // TODO: Assemble JavaScript into code variable.
+  const code = varb + ' = Date.now() - ' + varb + ';\n';
+  return code;
+};
+Blockly.JavaScript['timer_wait'] = function(block) {
+  var value = Blockly.JavaScript.valueToCode(block, 'variable', Blockly.JavaScript.ORDER_ATOMIC);
+  // TODO: Assemble JavaScript into code variable.
+  var code = 'sleep('+ value +');\n';
+  return code;
+};
+Blockly.JavaScript['timer_do_until'] = function(block) {
+  var value_variable = Blockly.JavaScript.valueToCode(block, 'variable', Blockly.JavaScript.ORDER_ATOMIC);
+  var statements_code = Blockly.JavaScript.statementToCode(block, 'code');
+  // TODO: Assemble JavaScript into code variable.
+  const code = 'do {\n'+statements_code+'} while ('+ value_variable+');\n';
+  return code;
+};
+// helper functions
+const console_print = (to_print) =>{
   var console = document.getElementById("console");
   console.innerHTML += ('<div class="console-text">' + to_print + '</div>');
 }
@@ -448,6 +524,14 @@ const clear_console = () =>{
   var console = document.getElementById("console");
   console.innerHTML = "";
 }
+const sleep = (milliseconds) => {
+  const date = Date.now();
+  let currentDate = null;
+  do {
+    currentDate = Date.now();
+  } while (currentDate - date < milliseconds);
+}
+
 var inputVar = '';
 var inputOld = '';
 
