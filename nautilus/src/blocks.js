@@ -474,7 +474,7 @@ Blockly.JavaScript['message_id'] = function(block) {
   Blockly.JavaScript['input'] = function(block) {
     var sync = Blockly.JavaScript.valueToCode(block, 'sync', Blockly.JavaScript.ORDER_ATOMIC);
     // TODO: Assemble JavaScript into code variable.
-    var code = 'input('+ sync + ')';
+    var code = 'input(' + sync + ')';
     // TODO: Change ORDER_NONE to the correct strength.
     return [code, Blockly.JavaScript.ORDER_ASSIGNMENT];
   };
@@ -535,7 +535,7 @@ const sleep = (milliseconds) => {
 var inputVar = '';
 var inputOld = '';
 
-const input = (sync) =>{
+const input = (sync = false) =>{
   if(!sync){
     const inp = inputVar
     inputVar = '';
@@ -550,6 +550,7 @@ const input = (sync) =>{
           inputOld = inputVar;
           inputVar = node.innerHTML;
           if(inputVar != inputOld){
+            console_print(inputVar != inputOld);
             const inp = inputVar;
             inputVar = '';
             return inp;
@@ -566,7 +567,6 @@ node.addEventListener("keydown", function(event) {
     if (event.key === "Enter") {
         event.preventDefault();
         console_print(node.innerHTML);
-        inputOld = inputVar;
-        inputVar = node.innerHTML;
+        inputOld = node.innerHTML;
     }
 });

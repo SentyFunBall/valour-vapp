@@ -6,6 +6,6 @@ function doText(){
     if (document.getElementById("code").innerHTML == ""){
         document.getElementById("code").innerHTML = "// your code will appear here " + (faces[Math.floor(Math.random() * faces.length)])
     }
+    run();
 }
-
 workspace.addChangeListener(doText);
