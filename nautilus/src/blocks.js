@@ -357,7 +357,7 @@ var value_content = Blockly.JavaScript.valueToCode(block, 'content', Blockly.Jav
 var value_author = Blockly.JavaScript.valueToCode(block, 'author', Blockly.JavaScript.ORDER_ATOMIC);
 var value_path = Blockly.JavaScript.valueToCode(block, 'path', Blockly.JavaScript.ORDER_ATOMIC);
 // TODO: Assemble JavaScript into code variable.
-const code = '...;\n';
+const code = 'Valour.send_message\n';
 return code;
 };
 
