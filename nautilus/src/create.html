@@ -383,11 +383,13 @@
         //keybinds
         document.onkeyup = function(e) {
             if (e.ctrlKey && e.which == 83) {
-                save()
+                save();
             } else if (e.ctrlKey && e.which == 76) {
-                loadfiles()
+                loadfiles();
             } else if (e.ctrlKey && e.which == 78) {
-                createVar()
+                createVar();
+            } else if (e.ctrlKey && e.which == 69) { //nice
+                exportProject();
             }
         };
       </script>

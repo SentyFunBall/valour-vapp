@@ -101,3 +101,63 @@ const createVar = () => {
     .catch(console.error);
 }
 
+const exportProject = () =>{
+    dialog.showSaveDialog({
+        title: 'Save as',
+        defaultPath: __dirname,
+        buttonLabel: 'Save',
+        filters: [
+            {
+                name: 'finished project',
+                extensions: ['html']
+            }, ],
+        properties: []
+    }).then(file => {
+        if (!file.canceled) {
+            const all_code = `
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <button onclick="start()"> start code </button>
+  <button onclick="end()"> stop code </button>
+  <!-- if you are going to use this with something else copy between the two // -->
+  <script>
+  var canRun = false;
+  const start = () => {
+    canRun = true;
+  }
+  const end = () => {
+    canRun = false;
+  }
+
+  if (canRun){
+//from here \\/
+  ${Blockly.JavaScript.workspaceToCode(workspace)}
+//until here /\\  
+}
+  
+  </script>
+</body>
+</html>
+`;
+            fs.writeFile(file.filePath.toString(),
+            all_code, function (err) {
+                if (err) throw err;
+                // if saved
+            });
+            // this is ultra big pog brain moment, the workspace is going to dom, that goes to text(xml)
+            // and that is the format we need
+            const xml_text = Blockly.Xml.domToPrettyText(Blockly.Xml.workspaceToDom(workspace));
+            fs.writeFile(file.filePath.toString(),
+                          xml_text, function (err) { if (err) throw err});
+          }
+    }).catch(err => {
+        // if error
+    });
+}

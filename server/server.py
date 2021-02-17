@@ -1,77 +1,90 @@
 from flask import Flask
-from flask_restful import Api, Resource, reqparse
-from time import time
+from flask_restful import Api, Resource, reqparse, abort, fields, marshal_with
+from flask_sqlalchemy import SQLAlchemy
+
 app = Flask(__name__)
 api = Api(app)
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///database.db'
+db = SQLAlchemy(app)
 
-apiArgs = reqparse.RequestParser()
-apiArgs.add_argument("message", type=str)
-apiArgs.add_argument("channel", type=str)
+@app.route('/')
+def home():
+    page = """
+    <h1> this is the main page</h1>
+    <p> nothing too much to see here </p>
+    <p> seriously. <p>
+    """
+    return page
 
-# TODO: add rsa validation or something asymmetric, symmetric validation is cursed
+class MessageModel(db.Model):
+	id = db.Column(db.Integer, primary_key=True)
+	author = db.Column(db.String(120), nullable=False)
+	message = db.Column(db.String(500), nullable=False)
+	channelPath = db.Column(db.String(150), nullable=False)
 
-# now is valid:
+	def __repr__(self):
+		return f"message(author = {author}, message = {message}, channel path = {channelPath})"
 
-# if is multiple of two primes
-# the number isn't a square
+# db.create_all() # uncomment if first time
 
-
-def is_prime(n):
-    if n == 1:
-        return False
-    i = 2
-    while i * i <= n:
-        if n % i == 0:
-            return False
-        i += 1
-
-    return True
-
-
-def try_division(tok):
-    n = 2
-    while tok % n != 0:
-        n += 1
-        if n >= tok:
-            return tok
-    return n
+message_send = reqparse.RequestParser()
+message_send.add_argument("message", type=str, help="what to send", required=True)
+message_send.add_argument("channelPath", type=int, help="where to send", required=True)
 
 
-def authenticate(token):
-    token = int(token, 16)
-    div1 = try_division(token)
+resource_fields = {
+	'id': fields.Integer,
+	'name': fields.String,
+	'views': fields.Integer,
+	'likes': fields.Integer
+}
 
-    if not is_prime(div1) or div1 % 2 == 0 or div1 % 5 == 0:
-        return False
+class message(Resource):
+	@marshal_with(resource_fields)
+	def get(self, video_id):
+		result = VideoModel.query.filter_by(id=video_id).first()
+		if not result:
+			abort(404, message="Could not find video with that id")
+		return result
 
-    token /= div1
+	@marshal_with(resource_fields)
+	def put(self, video_id):
+		args = video_put_args.parse_args()
+		result = VideoModel.query.filter_by(id=video_id).first()
+		if result:
+			abort(409, message="Video id taken...")
 
-    if not is_prime(token) or div1 == token or token % 2 == 0 or token % 5 == 0:
-        return False
-    return True
+		video = VideoModel(id=video_id, name=args['name'], views=args['views'], likes=args['likes'])
+		db.session.add(video)
+		db.session.commit()
+		return video, 201
+
+	@marshal_with(resource_fields)
+	def patch(self, video_id):
+		args = video_update_args.parse_args()
+		result = VideoModel.query.filter_by(id=video_id).first()
+		if not result:
+			abort(404, message="Video doesn't exist, cannot update")
+
+		if args['name']:
+			result.name = args['name']
+		if args['views']:
+			result.views = args['views']
+		if args['likes']:
+			result.likes = args['likes']
+
+		db.session.commit()
+
+		return result
 
 
-def validate_token(token):
-    return authenticate(token)
+	def delete(self, video_id):
+		abort_if_video_id_doesnt_exist(video_id)
+		del videos[video_id]
+		return '', 204
 
 
-class LastMessage(Resource):
-    def get(self, channel, token):
+api.add_resource(Video, "/api/<int:videoid>")
 
-        if validate_token(token):
-            return ["onChannel", channel, "last_message", 'blahblahblah', "author", 'me69lol']
-        else:
-            return ["notValidTokenError"]
-
-
-class sendMessage(Resource):
-    def put(self):
-        args = apiArgs.parse_args()
-        return {'a': args}
-
-
-api.add_resource(LastMessage, "/api/<string:token>/get/<string:channel>")
-api.add_resource(sendMessage, "/api/<string:token>/set/<string:channel>")
-
-if __name__ == '__main__':
-    app.run(debug=True)
+if __name__ == "__main__":
+	app.run(debug=True)
