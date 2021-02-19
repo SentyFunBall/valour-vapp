@@ -1,6 +1,7 @@
 const {BrowserWindow} = require('electron').remote
 const fs = require('fs'); 
 const newWindowBtn = document.getElementById('new-window')
+const path = require('path');
 
 newWindowBtn.addEventListener('click', (event) => {
   const modalPath = path.join('file://', __dirname, 'modal.html')
