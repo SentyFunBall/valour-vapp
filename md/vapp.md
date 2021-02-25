@@ -1,7 +1,7 @@
 # Welcome to Valour VAPP, the community built, open source bot maker for Valour.
 
 # What is Valour?
-Valour is a chat client make by Vooper Media, LLC. Learn more at https://github.com/SpikeViper/Valour
+Valour is a chat client make by Vooper Media, LLC. Learn more at [here](https://github.com/Vooper-Media-LLC/Valour)
 
 # What is Valour VAPP?
 ## About
@@ -13,10 +13,10 @@ VAPP is a coding lauguage designed to be easy, and fun. (more later)
 # How to use Valour VAPP
 ## The IDE
 ### Installation
-First things first, you want to install the Nautilus Code IDE, our custom built IDE just for making the code blocks. Download it at (link here), and run the nautilus.exe program.
+First things first, you want to install the Nautilus Code IDE, our custom built IDE just for making the code blocks. Download it at [link here](), and run the nautilus.exe program.
 
 ### How to use the IDE
-First, click on "New bot". This will open up the block editor, a modified version of Google's Blockly. Then build your code. After that, save your file. It will be saved as a .vapp for the IDE to read, and as .js for Valour.
+First, click on "New project". This will open up the block editor, a modified version of Google's Blockly. Then build your code. After that, click run. It will run the code you created.
 
 # The Code
-COMING SOON
+COMING SOON ([or will it?](https://www.youtube.com/watch?v=TN25ghkfgQA))
