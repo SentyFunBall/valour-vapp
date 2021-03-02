@@ -1,6 +1,0 @@
-{
-  "dependencies": {
-    "electron-forge": "^5.2.4",
-    "electron-osx-prompt": "^1.4.1"
-  }
-}
