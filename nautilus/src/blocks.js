@@ -392,7 +392,7 @@ function onMessageRecived(get) {
     var xmlHttp = new XMLHttpRequest();
     xmlHttp.open( "GET", theUrl, false ); // false for synchronous request
     xmlHttp.send( null );
-    console.log(JSON.parse(xmlHttp.responseText));
+    console.log(xmlHttp.responseText);
     return(JSON.parse(xmlHttp.responseText));
   
 }
