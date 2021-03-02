@@ -1,3 +1,5 @@
+import './Valour.js';
+
 Blockly.Blocks['token_auth'] = {
     init: function() {
     this.appendValueInput("token")
@@ -375,14 +377,25 @@ var value_path = Blockly.JavaScript.valueToCode(block, 'path', Blockly.JavaScrip
 const code = 'Valour.send_message(content, author, path)\n';
 return code;
 };
-
 Blockly.JavaScript['message_get'] = function(block) {
 var value_get = Blockly.JavaScript.valueToCode(block, 'get', Blockly.JavaScript.ORDER_ATOMIC);
 var statements_no = Blockly.JavaScript.statementToCode(block, 'no');
  
-const code = 'Valour.message_get(get);\n';
+const code = 'onMessageRecived(function(message) { \n' + '  if(message.StartsWith(' + value_get + ')) { \n' + '  ' +statements_no + '    } \n' + '});'
 return code;
-};
+}; 
+//currently, the function is executed here, not Valour.js (not commited) -senty
+function onMessageRecived(get) {
+    var theUrl = 'https://valour.gg/1043295380701184/1043295380701186'
+    
+    
+    var xmlHttp = new XMLHttpRequest();
+    xmlHttp.open( "GET", theUrl, false ); // false for synchronous request
+    xmlHttp.send( null );
+    console.log(JSON.parse(xmlHttp.responseText));
+    return(JSON.parse(xmlHttp.responseText));
+  
+}
 
 Blockly.JavaScript['role_add'] = function(block) {
 var value_name = Blockly.JavaScript.valueToCode(block, 'name', Blockly.JavaScript.ORDER_ATOMIC);
