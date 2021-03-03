@@ -1,3 +1,12 @@
+/*
+basic stricture:
+                        message
+                        /
+ValourApp(aka client) < 
+                        \
+                         channel
+
+*/
 class ValourApp{
     constructor(bot_token){
         this.bot_token = bot_token
