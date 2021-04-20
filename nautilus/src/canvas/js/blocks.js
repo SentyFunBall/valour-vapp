@@ -386,8 +386,7 @@ return code;
 }; 
 //currently, the function is executed here, not Valour.js (not commited) -senty
 function onMessageRecived(get) {
-    var theUrl = 'https://valour.gg/1043295380701184/1043295380701186' //no good, needs other t h i n g s. - senty
-    
+    var theUrl = ''
     
     var xmlHttp = new XMLHttpRequest();
     xmlHttp.open( "GET", theUrl, false ); // false for synchronous request
