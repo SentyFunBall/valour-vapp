@@ -1,3 +1,21 @@
-#download{
-    
+:root{
+    font: 1rem sans-serif;
+    --bg-1: #ffffff;
+    --bg-2: #0077ff;
+    --body-back: #4145AC;
+    --header-color: #2C2F83;
+    --heading: #eaeaea;
+    --para: #ffffff;
+    --btn-hov: #e6e6e6;
+}
+
+.download-button {
+    border-color: #4CAF50;
+    color: var(--para);
+    background-color: var(--body-back);
+}
+  
+.download-button:hover {
+    background-color: #4CAF50;
+    color: var(--btn-hov);
 }

@@ -1,12 +1,107 @@
 :root{
-    --gray: #888888;
-    --blue: #002b36; 
+    font: 1rem sans-serif;
+    --bg-1: #ffffff;
+    --bg-2: #0077ff;
+    --body-back: #4145AC;
+    --header-color: #2C2F83;
+    --heading: #eaeaea;
+    --para: #ffffff;
+    --btn-hov: #e6e6e6;
+    --h3: #de7054;
+    --link: #47bcff;
+    --link2:  #3c96c9;
 }
 
-code {
-    padding: 1% 3%;
-    color: var(--gray);
-    background-color: var(--blue);
-    border: 1px solid;
-    border-radius: 5px;
+.page{
+    margin:0 auto;
 }
+
+.button {
+    border: 2px solid black;
+    background-color: white;
+    color: black;
+    padding: 14px 28px;
+    font-size: 16px;
+    cursor: pointer;
+  }
+
+.github {
+    border-color: #a02525;
+    color: var(--para);
+    background-color: var(--body-back);
+}
+  
+.github:hover {
+    background-color: #a02525;
+    color: var(--btn-hov);
+}
+
+.github > a{
+    color: var(--para);
+}
+  
+.github:hover > a{
+    color: var(--btn-hov);
+}
+
+h3 {
+    color: var(--h3);
+    font-size: 48px;
+}
+
+.blockly {
+    color: var(--link);
+    font-size: 24px;
+}
+
+.blockly:hover {
+    color: var(--link2);
+    font-size: 24px;
+}
+
+  /* download */
+  .dload {
+    background-color: var(--header-color);
+    border-color: #4CAF50;
+    color: green;
+  }
+  
+  .dload:hover {
+    background-color: #4CAF50;
+    color: white;
+  }
+  
+  /* home */
+  .home {
+    background-color: var(--header-color);
+    border-color: #2196F3;
+    color: dodgerblue;
+  }
+  
+  .home:hover {
+    background: #2196F3;
+    color: white;
+  }
+  
+  /* contact */
+  .about {
+    background-color: var(--header-color);
+    border-color: #ff9800;
+    color: orange;
+  }
+  
+  .about:hover {
+    background: #ff9800;
+    color: white;
+  }
+  /* github */
+  .git {
+    background-color: var(--header-color);
+    border-color: #e7e7e7;
+    color: white;
+  }
+  
+  .git:hover {
+    background: #e7e7e7;
+    color: black
+  }

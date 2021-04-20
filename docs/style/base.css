@@ -25,14 +25,6 @@ nav{
     padding-left: 50%;
     display: flex;
     justify-content: space-evenly;
-    background-color: var(--header-color);
-    text-decoration: underline;
-    
-}
-
-.nav *{ 
-    color: var(--heading);
-    text-decoration: none;
 }
 
 .nav > a{
@@ -66,20 +58,12 @@ footer > p {
     cursor: pointer;
   }
 
-.download-button {
-    border-color: #4CAF50;
-    color: var(--para);
-    background-color: var(--body-back);
-  }
-  
-.download-button:hover {
-    background-color: #4CAF50;
-    color: var(--btn-hov);
-  }
+
 
 p{
     color: var(--para);
     font-size: 24px;
+    line-height: 35px;
 }
 
 h1{
@@ -90,3 +74,50 @@ h2{
     color: var(--heading);
     font-size: 36px;
 }
+
+  /* download */
+  .dload {
+    background-color: var(--header-color);
+    border-color: #4CAF50;
+    color: green;
+  }
+  
+  .dload:hover {
+    background-color: #4CAF50;
+    color: white;
+  }
+  
+  /* home */
+  .home {
+    background-color: var(--header-color);
+    border-color: #2196F3;
+    color: dodgerblue;
+  }
+  
+  .home:hover {
+    background: #2196F3;
+    color: white;
+  }
+  
+  /* contact */
+  .about {
+    background-color: var(--header-color);
+    border-color: #ff9800;
+    color: orange;
+  }
+  
+  .about:hover {
+    background: #ff9800;
+    color: white;
+  }
+  /* github */
+  .git {
+    background-color: var(--header-color);
+    border-color: #e7e7e7;
+    color: white;
+  }
+  
+  .git:hover {
+    background: #e7e7e7;
+    color: black
+  }

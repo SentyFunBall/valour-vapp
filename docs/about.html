@@ -4,58 +4,76 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style/base.css">
-    <title>VAPP About</title>
+    <link rel="stylesheet" href="style/download.css">
+    <meta property="og:url" content="https://sentyfunball.github.io/valour-vapp">
+    <meta property="og:title" content="Valour VAPP">
+    <meta property="og:description" content="Contact the VAPP team">
+    <link rel="icon" href="img/vapp_logo.png">
+    <title>Contact | VAPP</title>
 </head>
 <body>
     <nav>
         <div class="nav">
-            <a href="index.html">Home</a>
-            <a href="download.html">Download</a>
-            <a href="about.html">About us</a>
-            <a href="https://github.com/SentyFunBall/valour-vapp">Github</a>
+            <a href="index.html">
+                <div id="nav-logo" style="position: relative; left:-1020px; top:-43px">
+                    <img style="width: 100px; height: 100px;" src="img/vapp_logo.png">
+                </div>
+            </a>
+            <a class="button home" href="index.html">Home</a>
+            <a class="button dload" href="download.html">Nautilus</a>
+            <a class="button about" href="about.html">Contact</a>
+            <a class="button git" href="https://github.com/SentyFunBall/valour-vapp">Github</a>
         </div>
     </nav>
     <main>
-        <h1>
-            About Valour Applications and the developers:
-        </h1>
-		
-		<h2>
-			Who are we?
-		</h2>
-		
-		<p>
-			The VAPP Project was started because there hasn't been a way to make bots for Valour. Senty had the idea to have an "Extensions" system, and that morphed over time into Nautilus, VAPP, and everything else in the VAPP Project.
-		</p>
-		
-		<h3>
-			Team Members:
-		</h3>
-		
-		<p>
-			Lead app developer:<br> 
-			SentyFunBall<br><br>
-			Developers:<br>
-			Grimtin10<br>
-			droplt
-		</p>
-
-		<h2>
-			What do we do?
-		</h2>
-		
-		<p>
-			We develop VAPP, a way to make bots for Valour using an intuitive block style coding system.
-		</p>
-
-		<!--commenting this out because it isnt finished at all, uncomment if you want to keep it-->
-        <!--<p>
-            Valour applicatons were thought to be simple and very fast to be running,
-            (add more description).
-        </p>
-        <p>    
-            the Vapp team is (description).
-        </p>-->
+        <div class="page" style="width: 1000px;">
+            <div id="contact">
+                <h1>Contact</h1>
+                <p>For now, there are 3 ways to contact the devs:</p>
+                <ul>
+                    <li><a href="https://github.com/SentyFunBall/valour-vapp"><p>Github</p></a></li>
+                    <li><a href="https://discord.com/invite/BZmH2tu9gB"><p>Discord</p></a></li>
+                    <li><a href="https://twitter.com/SentyFunBall"><p>Twitter</p></a></li>
+                </ul>
+            </div>
+            <br>
+            <div id="about">
+                <div id=heading>
+                    <h1>
+                        About
+                    </h1>
+                </div>
+                <div id="who">
+                    <h2>
+                        Who are we?
+                    </h2>
+                    <p>
+                        The VAPP Project was started in January 2021 because there hadn't been a way to make bots for Valour. Senty had the idea to have an "Extensions" system, and that morphed over time into Nautilus, VAPP, and everything else in the VAPP Project.
+                    </p>
+                </div>
+                <div id="team">
+                    <h2>
+                        Team Members:
+                    </h2>
+                    <p>
+                        SentyFunBall - Front end dev, Project overseer
+                        <br>
+                        droplt - Block coder, did some things for the api
+                        <br>
+                        Grimtin10 - Backend dev
+                    </p>
+                </div>
+            </div>
+            <br>
+            <div id="faq">
+                <h1>FAQ</h1>
+                <h2>FAQ Coming soon.</h2>
+            </div>
+            <div id="space"><h1>‎</h1></div> <!--Invisable char lol-->
+        </div>
     </main>
+    <footer>
+        <p>Valour VAPP is not associated with Valour, Vooper Media, or any other Valour thing whatsoever. This is a project made by the community of Valour.</p>
+    </footer>
 </body>
 </html>
