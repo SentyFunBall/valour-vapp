@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Nautilus Home</title>
+    <link rel="stylesheet" href="start.css">
+    <pre>
+      <script defer src='./pages/create-window.js'></script>
+      <script defer src='./pages/log.html'></script>
+    </pre>  
+  </head>
+  <body>
+    <div id="text1">
+      <h1>Welcome to Nautilus.</h1>
+      <p>Click "New project" to make a new application, or load one from previously.</p>
+      <div id='logo_img' style="position: absolute; left: -200px; top: 50px;">
+        <img src="../img/icons/win_dark.png" alt="lol" >
+      </div>
+    </div>
+    <div style="position: absolute; left:2px; top:680px;"><p>Running Nautilus v0.6.1 This is a beta version of Nautilus. Code saves may not work in future versions. Everything you see is subject to change.</p></div>
+    <div id="buttonHolder" style="background-color: rgba(50, 50, 50, 0.5);">
+      <div style="position: absolute; left:10px;top:185px">
+        <button id="newBtn" type="button" style ="width:175px;height:25px;background-color: rgb(65, 108, 236);border:1px black;">
+          <a style="color:cornsilk; position: relative; top:0px; text-decoration: none;" href="../canvas/create.html">Block Projects</a>
+        </button>
+      </div>
+      <div style="position: absolute; left:10px;top:220px">
+        <button id="newBtn" type="button" style ="width:175px;height:25px;background-color: rgb(65, 108, 236);border:1px black;">
+          <a style="color:cornsilk; position: relative; top:0px; text-decoration: none;" href="../nodes/nodes.html">Node Projects <strong>(WIP)</strong></a>
+        </button>
+      </div>
+      <div style="position: absolute; left:10px;top:255px">
+        <button id="new-window" style ="width:175px;height:25px;background-color: rgb(65, 108, 236);border:1px black;">
+          <p style="color:cornsilk; position: relative; top:-8px; text-decoration: none;">VAPP Wiki</p>
+        </button>
+      </div>
+      <div style="position: absolute; left:10px; top: 290px">
+        <button id="log" style ="width:175px;height:25px;background-color: rgb(65, 108, 236);border:1px black;">
+          <a style="color:cornsilk; position: relative; top:0px; text-decoration: none;" href="./pages/log.html">Changelog/Credits</a>
+        </button>
+      </div>
+      <div style="position: absolute; left:10px; top: 325px">
+        <button id="log" style ="width:175px;height:25px;background-color: rgb(65, 108, 236);border:1px black;">
+          <a style="color:cornsilk; position: relative; top:0px; text-decoration: none;" href="./pages/settings.html">Settings</a>
+        </button>
+      </div>
+    </div>
+</html>

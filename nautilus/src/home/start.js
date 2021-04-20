@@ -126,7 +126,7 @@ const createWindow = () => {
   Menu.setApplicationMenu(menu)
   console.log("Creating window")
   //Set the window to be start.html
-  mainWindow.loadFile(path.join(__dirname, 'start.html'));
+  mainWindow.loadFile(path.join(__dirname, 'index.html'));
   var appRoot = path.join(__dirname, '../..');
   require('electron-compile').init(appRoot, require.resolve('./start'));
 };
