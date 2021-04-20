@@ -1,7 +1,9 @@
 :root{
     font: 1rem sans-serif;
-    --bg-var-1: #ffffff;
-    --bg-var-2: #0077ff;
+    --bg-1: #ffffff;
+    --bg-2: #0077ff;
+    --body-back: #4145AC;
+    --header-color: #2C2F83;
     --text-1: #eaeaea;
     --text-2: #ffffff;
 }
@@ -9,11 +11,12 @@
 body{
     margin: 0;
     padding: 0;
-    background-color: var(--bg-var-1);
+    background-color: var(--body-back);
 }
 nav{
     width: 100%;
     height: 7vh;
+    background-color: var(--header-color);
 }
 
 .nav{
@@ -21,7 +24,8 @@ nav{
     padding-left: 50%;
     display: flex;
     justify-content: space-evenly;
-    background-color: var(--bg-var-2);
+    background-color: var(--header-color);
+    text-decoration: underline;
     
 }
 
@@ -38,7 +42,7 @@ nav{
 }
 #download{
     margin-top: 10px;
-    border: 1px solid lightblue;
+    border: 10px solid lightblue;
     padding: 1%;
 } 
 footer > p {
@@ -49,10 +53,26 @@ footer > p {
     bottom: 0;
     margin: 0;
     padding: 2%;
+    font-size: 15px;
 }
 
-#button{
-    background-color:rgb(65, 108, 236);
-    border:1px black;
-    color:cornsilk;
+button{
+    background-color: var(--body-back);
+    border:50px crimson;
+    color: var(--text-1);
+    font-size: 20px;
+}
+
+p{
+    color: var(--text-2);
+    font-size: 24px;
+}
+
+h1{
+    color: var(--text-1);
+    font-size: 48px;
+}
+h2{
+    color: var(--text-1);
+    font-size: 36px;
 }
