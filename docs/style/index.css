@@ -19,3 +19,18 @@
     background-color: #4CAF50;
     color: var(--btn-hov);
 }
+
+.quote-text{
+    margin:0 auto;
+}
+
+.discord {
+    background-color: transparent;
+    border-color: #2196F3;
+    color: white;
+  }
+  
+  .discord:hover {
+    background: #2196F3;
+    color: white;
+  }
