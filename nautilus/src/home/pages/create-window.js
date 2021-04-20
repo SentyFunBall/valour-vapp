@@ -14,7 +14,7 @@ newWindowBtn.addEventListener('click', (event) => {
     },
   })
   console.log("Opening wiki");
-  mainWindow.removeMenu();
+  win.removeMenu();
 
   win.on('close', () => { win = null })
   win.loadURL(modalPath)
