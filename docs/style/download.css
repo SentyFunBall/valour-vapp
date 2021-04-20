@@ -44,6 +44,33 @@
     color: var(--btn-hov);
 }
 
+.wiki {
+  border-color: #00c3ff;
+  color: var(--para);
+  background-color: var(--body-back);
+}
+
+.wiki:hover {
+  background-color: #00c3ff;
+  color: var(--btn-hov);
+}
+
+.wiki > a{
+  color: var(--para);
+}
+
+.wiki:hover > a{
+  color: var(--btn-hov);
+}
+
+h4{
+  font-size: 28px;
+  color: var(--heading)
+
+}
+
+
+
 h3 {
     color: var(--h3);
     font-size: 48px;
