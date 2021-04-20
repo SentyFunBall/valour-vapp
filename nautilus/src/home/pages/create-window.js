@@ -13,7 +13,8 @@ newWindowBtn.addEventListener('click', (event) => {
       enableRemoteModule: true,
     },
   })
-  console.log("Opening wiki")
+  console.log("Opening wiki");
+  mainWindow.removeMenu();
 
   win.on('close', () => { win = null })
   win.loadURL(modalPath)
