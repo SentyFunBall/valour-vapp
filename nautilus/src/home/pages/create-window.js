@@ -4,7 +4,7 @@ const newWindowBtn = document.getElementById('new-window')
 const path = require('path');
 
 newWindowBtn.addEventListener('click', (event) => {
-  const modalPath = path.join('file://', __dirname, 'modal.html')
+  const modalPath = path.join('file://', __dirname, '/pages/modal.html')
   let win = new BrowserWindow({ 
     width: 800, 
     height: 600,
