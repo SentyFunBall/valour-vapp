@@ -1,3 +1,8 @@
+html, body {
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
 :root{
     font: 1rem sans-serif;
     --bg-1: #ffffff;
@@ -83,13 +88,13 @@ h2{
     font-size: 36px;
 }
 
-  /* download */
+  /* download height: 70px*/
   .dropbtn {
     background-color: var(--header-color);
     border-color: #4CAF50;
     color: green;
     width: 117px;
-    height: 70px;
+    height: 1px;
     font-size: 16px;
     padding-top: 3%;
     align-items: center;
