@@ -1,0 +1,187 @@
+html, body {
+    max-width: 100%;
+    overflow-x: hidden;
+  }
+  
+  :root{
+      font: 1rem sans-serif;
+      --bg-1: #ffffff;
+      --bg-2: #0077ff;
+      --body-back: #4145AC;
+      --header-color: #2C2F83;
+      --heading: #eaeaea;
+      --para: #ffffff;
+      --btn-hov: #e6e6e6;
+  }
+  
+  a{
+    text-decoration: none;
+  }
+  
+  .page{
+    margin:0 auto;
+  }
+  
+  body{
+      margin: 0;
+      padding: 0;
+      background-color: var(--body-back);
+  }
+  nav{
+      width: 100%;
+      height: 7vh;
+      background-color: var(--header-color);
+  }
+  
+  .nav{
+      height: 7vh;
+      padding-left: 50%;
+      display: flex;
+      justify-content: space-evenly;
+  }
+  
+  .nav > a{
+      padding-top: 3%;
+      align-items: center;
+      justify-content: center;
+  
+  }
+  #download{
+      margin-top: 10px;
+      border: 10px solid lightblue;
+      padding: 1%;
+  } 
+  
+  .footer{
+    background-color: var(--header-color);
+    width: 100%;
+    height: 70px;
+  }
+  .footer > p {
+    background-color: var(--header-color);
+    color: var(--para);
+    width: 100%;
+    text-align: center;
+    position: relative;
+    top: 20px;
+    font-size: 15px;
+  }
+  
+  .button {
+      border: 2px solid black;
+      background-color: white;
+      color: black;
+      padding: 14px 28px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+  
+  
+  
+  p{
+      color: var(--para);
+      font-size: 24px;
+      line-height: 35px;
+  }
+  
+  h1{
+      color: var(--heading);
+      font-size: 48px;
+  }
+  h2{
+      color: var(--heading);
+      font-size: 36px;
+  }
+  
+    /* download height: 70px*/
+    .dropbtn {
+      background-color: var(--header-color);
+      border-color: #4CAF50;
+      color: green;
+      width: 117px;
+      height: 70px;
+      font-size: 16px;
+      padding-top: 3%;
+      align-items: center;
+      justify-content: center;
+    }
+    
+    .dropbtn:hover {
+      background-color: #4CAF50;
+      color: white;
+    }
+    
+    /* home */
+    .home {
+      background-color: var(--header-color);
+      border-color: #2196F3;
+      color: dodgerblue;
+    }
+    
+    .home:hover {
+      background: #2196F3;
+      color: white;
+    }
+  
+    .forum {
+      background-color: var(--header-color);
+      border-color: red;
+      color: red;
+    }
+    
+    .forum:hover {
+      background: red;
+      color: white;
+    }
+    
+    /* contact */
+    .about {
+      background-color: var(--header-color);
+      border-color: #ff9800;
+      color: orange;
+    }
+    
+    .about:hover {
+      background: #ff9800;
+      color: white;
+    }
+    /* github */
+    .git {
+      background-color: var(--header-color);
+      border-color: #e7e7e7;
+      color: white;
+    }
+    
+    .git:hover {
+      background: #e7e7e7;
+      color: black
+    }
+  
+    /*nautilus dropdown lol*/
+  
+    .dropdown {
+      position: relative;
+      display: inline-block;
+    }
+    
+    .dropdown-content {
+      display: none;
+      position: absolute;
+      background-color: #f1f1f1;
+      min-width: 160px;
+      box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+      z-index: 1;
+    }
+    
+    .dropdown-content a {
+      color: black;
+      padding: 12px 16px;
+      text-decoration: none;
+      display: block;
+    }
+    
+    .dropdown-content a:hover {background-color: #ddd;}
+    
+    .dropdown:hover .dropdown-content {display: block;}
+    
+    .dropdown:hover .dropbtn {background-color: #3e8e41;}
