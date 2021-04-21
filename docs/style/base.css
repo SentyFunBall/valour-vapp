@@ -51,15 +51,20 @@ nav{
     border: 10px solid lightblue;
     padding: 1%;
 } 
-footer > p {
-    background-color: black;
-    color: var(--para);
-    position: fixed;
-    width: 100%;
-    bottom: 0;
-    margin: 0;
-    padding: 2%;
-    font-size: 15px;
+
+.footer{
+  background-color: var(--header-color);
+  width: 100%;
+  height: 70px;
+}
+.footer > p {
+  background-color: var(--header-color);
+  color: var(--para);
+  width: 100%;
+  text-align: center;
+  position: relative;
+  top: 20px;
+  font-size: 15px;
 }
 
 .button {
