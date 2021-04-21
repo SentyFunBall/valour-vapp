@@ -1,5 +1,5 @@
 function send_message(content, author, path) {
-
+    console.log("hello - valour.js")
 }
 function message_get(get) {
   
