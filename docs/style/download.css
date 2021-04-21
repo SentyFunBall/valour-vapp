@@ -97,6 +97,17 @@ h3 {
     background-color: #4CAF50;
     color: white;
   }
+
+  .forum {
+    background-color: var(--header-color);
+    border-color: red;
+    color: red;
+  }
+  
+  .forum:hover {
+    background: red;
+    color: white;
+  }
   
   /* home */
   .home {
