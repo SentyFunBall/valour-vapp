@@ -13,6 +13,10 @@ a{
   text-decoration: none;
 }
 
+.page{
+  margin:0 auto;
+}
+
 body{
     margin: 0;
     padding: 0;
@@ -80,13 +84,19 @@ h2{
 }
 
   /* download */
-  .dload {
+  .dropbtn {
     background-color: var(--header-color);
     border-color: #4CAF50;
     color: green;
+    width: 117px;
+    height: 70px;
+    font-size: 16px;
+    padding-top: 3%;
+    align-items: center;
+    justify-content: center;
   }
   
-  .dload:hover {
+  .dropbtn:hover {
     background-color: #4CAF50;
     color: white;
   }
@@ -125,3 +135,32 @@ h2{
     background: #e7e7e7;
     color: black
   }
+
+  /*nautilus dropdown lol*/
+
+  .dropdown {
+    position: relative;
+    display: inline-block;
+  }
+  
+  .dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f1f1f1;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+  }
+  
+  .dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+  }
+  
+  .dropdown-content a:hover {background-color: #ddd;}
+  
+  .dropdown:hover .dropdown-content {display: block;}
+  
+  .dropdown:hover .dropbtn {background-color: #3e8e41;}
