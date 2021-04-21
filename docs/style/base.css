@@ -117,6 +117,17 @@ h2{
     background: #2196F3;
     color: white;
   }
+
+  .forum {
+    background-color: var(--header-color);
+    border-color: red;
+    color: red;
+  }
+  
+  .forum:hover {
+    background: red;
+    color: white;
+  }
   
   /* contact */
   .about {
