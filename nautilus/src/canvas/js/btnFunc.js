@@ -20,7 +20,7 @@ const home = () =>{
         console.log(data.response);
 
         if(data.response == 1) {
-            window.location.href = "./start.html"
+            window.location.href = "./../home/index.html"
         }
         
     })

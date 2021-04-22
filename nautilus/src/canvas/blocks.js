@@ -1,4 +1,4 @@
-import './Valour.js';
+import './js/Valour.js';
 
 Blockly.Blocks['token_auth'] = {
     init: function() {
