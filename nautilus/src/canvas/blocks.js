@@ -498,8 +498,7 @@ const code = 'eval('+value_eval+');\n';
 return code;
 };
 Blockly.JavaScript['input'] = function(block) {
-var sync = Blockly.JavaScript.valueToCode(block, 'sync', Blockly.JavaScript.ORDER_ATOMIC);
- 
+var sync = Blockly.JavaScript.valueToCode(block, 'sync', Blockly.JavaScript.ORDER_ATOMIC); 
 var code = 'input()';
  
 return [code, Blockly.JavaScript.ORDER_ASSIGNMENT];
@@ -554,6 +553,7 @@ const console_print = (to_print) =>{
 }
 const clear_console = () =>{
     document.getElementById("console").innerHTML = "";
+    inputVar = '';
 }
 const sleep = (milliseconds) => {
     const date = Date.now();
@@ -567,9 +567,7 @@ var inputVar = '';
 var inputOld = '';
 
 const input = () =>{
-    const inp = inputVar
-    inputVar = '';
-    return inp
+    return inputVar;
 }
 
 const node = document.getElementById("textarea");
@@ -578,6 +576,7 @@ node.addEventListener("keydown", function(event) {
         event.preventDefault();
         console_print(node.innerHTML);
         inputOld = node.innerHTML;
+        inputVar = node.innerHTML;
     }
 });
 
