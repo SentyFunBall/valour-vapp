@@ -70,7 +70,49 @@
             </ol>
         </div>
         <div class="page" style="width: 1000px;">
-            <h1>Welcome to the Nautilus IDE Documentation.</h1>
+            <h1>Nautilus Tutorial: <code>Hello World!</code></h1>
+            <img src="https://cdn.discordapp.com/attachments/755145139139379351/834656955556954142/unknown.png">
+            <h2>Disclaimer: only the console version works as of v0.6.2 and below. In v1.0, the valour version will work</h2>
+            <p>Welcome to the first Nautilus Tutorial. Here, we will show you how to create a simple Hello World program.</p>
+            <h2>Hello Console</h2>
+            <p>The first one we will do will be super quick!</p>
+            <p>To start, go to the "Debugging" section in the Block Selection Menu. Grab a "Clear console" node, and drag it onto the canvas.</p>
+            <p>Your canvas should look like this:</p>
+            <img src="https://cdn.discordapp.com/attachments/755145139139379351/834657330159288330/unknown.png">
+            <p>Next, grab a "Print to console" block and drag it below the clear console block. They should snap together.</p>
+            <img src="https://cdn.discordapp.com/attachments/755145139139379351/834657757646159903/unknown.png">
+            <p>Finally, go to "Text" in the menu, and grab a basic text block:</p>
+            <img src="https://cdn.discordapp.com/attachments/755145139139379351/834658033622843402/unknown.png">
+            <p>Take that block, and snap it to the right of the print block. It should snap together. Click in the little bubble, and put "Hello World!" in it.</p>
+            <p>Your finished code should look like this:</p>
+            <img src="https://cdn.discordapp.com/attachments/755145139139379351/834658340054237184/unknown.png">
+            <p>Now, click "Run" and look in the console! It should say "Hello World!"</p>
+            <img src="https://cdn.discordapp.com/attachments/755145139139379351/834658669428736030/unknown.png">
+            <h2>Expanding on this:</h2>
+            <p>Change the text from hello world to whatever you want! Maybe add more print blocks? It's all up to you!</p>
+            <br>
+            <h2>Hello Valour</h2>
+            <p>This one is a little more complex, but you can do it! Let's start by clearing our canvas except from the clear console block. If you don't have one, add one from the "Debugging" section.</p>
+            <img src="https://cdn.discordapp.com/attachments/755145139139379351/834657330159288330/unknown.png">
+            <p>Now, go to "Valour" and grab a "Message received" block. Place it so it snaps to the clear console block. Grab a basic text block from "Text", and snap it to the right of the message block. Your canvas should look like this:</p>
+            <img src="https://cdn.discordapp.com/attachments/755145139139379351/834659948159434773/unknown.png">
+            <p>Change the text bubble to say "!hi". This will be the command that summons our bot.</p>
+            <p>Next, go to "Valour" and get a "Message content" block. Place it INSIDE of the message received block, to the right of "do".</p>
+            <p>Listen up! Get 8 blocks:</p>
+            <ol>
+                <li><p>3 basic text</p></li>
+                <li><p>1 "create text with", found in "Text"</p></li>
+                <li><p>2 "Message part:" from "Valour"</p></li>
+                <li><p>1 "Planet" from "Valour"</p></li>
+                <li><p>1 "Channel" from "Valour"</p></li>
+            </ol>
+            <p>Phew, you got all of that? Now, instead of explaining it all, heres an image on how to set it up:</p>
+            <img src="https://cdn.discordapp.com/attachments/755145139139379351/834663234539749466/unknown.png">
+            <p>Make sure the "Token" is your bots actual token. To get this, log into your bot account, press F12 or CTRL+SHIFT+I, go to "Application" tab, select "Local Storage", "https://valour.gg", and grab your token value: a long string of letters and numbers. Paste this key in the token slot, and DO NOT SHARE WITH ANYONE!!</p>
+            <p>To edit the number of units the create text block has, click the blue gear icon.</p>
+            <p>Now, press run, and on your main account, type "!h", and say hello to your bot!</p>
+            <h2>Expansion:</h2>
+            <p>Theres a lot to do to compact and expand upon this. Make your token a var so you only type it once, make the message path a var and set the var after every message. You could make the prefix a var, and use a "create text block" to change the prefix and/or command withen Valour.</p>
         </div>
     </main>
 </body>
