@@ -12,15 +12,19 @@ html, body {
       --heading: #eaeaea;
       --para: #ffffff;
       --btn-hov: #e6e6e6;
+      --link: #47bcff;
+      --link2:  #3c96c9;
   }
   
   a{
-    color:var(--header-color);
-    text-decoration: underline;
-  } 
-  a:hover{
-    color:var(--body-back);
-  }
+    color: var(--link);
+    font-size: 24px;
+}
+
+a:hover {
+    color: var(--link2);
+    font-size: 24px;
+}
   p{
     color: var(--para);
     font-size: 24px;
@@ -120,6 +124,11 @@ html, body {
   h2{
       color: var(--heading);
       font-size: 36px;
+  }
+  
+  h3 {
+    color: var(--heading);
+    font-size: 30px;
   }
   
     /* download height: 70px*/
