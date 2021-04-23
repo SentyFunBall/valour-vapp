@@ -16,6 +16,23 @@ html, body {
       --link2:  #3c96c9;
   }
   
+
+  ol > p{
+    color: var(--para);
+    font-size: 18px;
+    line-height: 35px;
+    margin-left: -10%;
+    margin-top: -5%;
+  }
+  li > a{
+    color: var(--para);
+    font-size: 18px;
+  }
+  li > a:hover{
+    color: var(--link2);
+    font-size: 18px;
+  }
+
   a{
     color: var(--link);
     font-size: 24px;
@@ -73,13 +90,6 @@ a:hover {
     height:max-content;
     position: absolute;
     margin-left: 0%;
-  }
-  ol > p{
-    color: var(--para);
-    font-size: 18px;
-    line-height: 35px;
-    margin-left: -10%;
-    margin-top: -5%;
   }
   .toc > a{
     color:white;
