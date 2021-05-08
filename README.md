@@ -10,3 +10,14 @@ Valour VAPP is a community built, open source way to build bots for Valour. Usin
 
 ## What?
 Go to [our website](https://sentyfunball.github.io/valour-vapp/) to learn more about what we are.
+
+## if you came here for wrappers and not the IDE itself
+
+there are some links that you would be proabably interested:
+
+| language | link | author(s) |
+| :-: | :-: | :-:
+|for python: | [Valour.py](https://github.com/drop-lt/Valour.py)        | droplt |
+|for ts /js: | [Valour.ts](https://github.com/drop-lt/Valour.ts)        | droplt, work in progress |
+|for c/ c++: | [Valour.h](https://github.com/drop-lt/Valour.h)          | droplt, work in progress |
+|for c#:     | [Valour.Net](https://github.com/superjacobl/Valour.Net) | superjacobl, coca162, NiamiTv |
