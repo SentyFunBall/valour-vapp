@@ -3,10 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="stylesheet" href="../start.css">
+    <link rel="stylesheet" href="./misc/sheet.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Settings</title>
 </head>
 <body>
-    <p>Coming soon to Nautlius. For now, go back <a href="../index.html">home</a> :)</p>
+    <h1>Change or create bot account login info</h1>
+    <h3>Email:</h3>
+    <pre id="email" contenteditable="true"></pre>
+    <h4>Password:</h4>
+    <pre id="pass" contenteditable="true"></pre>
+    <br>
+    <button id="confirm">Save and return</button>
+    <button id="delete">Reset all data</button>
+    <p id="errText"></p>
+    <br>
+    <a href="../index.html" id="back">Back</a>
+    <script type="text/javascript" src="./misc/settings.js"></script>
 </body>
 </html>
