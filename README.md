@@ -17,7 +17,7 @@ There are some links that you would be proabably interested in:
 
 | Language | Link | Author(s) |
 | :-: | :-: | :-:
-|Python: | [Valour.py](https://github.com/drop-lt/Valour.py)        | droplt |
+|Python: | [Valour.py](https://github.com/drop-lt/Valour.py)        | droplt, work in progress |
 |ts /js: | [Valour.ts](https://github.com/drop-lt/Valour.ts)        | droplt, work in progress |
 |c/ c++: | [Valour.h](https://github.com/drop-lt/Valour.h)          | droplt, work in progress |
-|c#:     | [Valour.Net](https://github.com/superjacobl/Valour.Net) | superjacobl, coca162, NiamiTv |
+|c#:     | [Valour.Net](https://github.com/superjacobl/Valour.Net)  | superjacobl, coca162, NiamiTv |
