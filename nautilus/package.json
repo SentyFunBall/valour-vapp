@@ -19,8 +19,8 @@
   "license": "MIT",
   "config": {
     "forge": {
-      "packagerConfig": {
-        "icon": "./src/img/icons/icn.ico"
+      "electronPackagerConfig": {
+        "icon": "./src/img/icons/icon.ico"
       },
       "makers": [
         {

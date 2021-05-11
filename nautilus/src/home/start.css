@@ -16,14 +16,8 @@ body {
   max-width: 90rem;
   padding: 5rem;
   font-size: 15px;
+  overflow: hidden;
 }
-.light {
-  --bg: var(--gray0);
-  --theme-switcher: var(--gray2);
-  --theme-switcher-ball: var(var(--gray1));
-  --text: var(--gray6);
-}
-
 
 .dark {
   --bg: var(--gray5);
@@ -43,84 +37,125 @@ body {
   left:10px; 
   top:10px; 
   width:200px;
-  height:650px;
-  background-color:rgba(10, 10, 10, 1);
+  height:93vh;
+  background-color: rgba(50, 50, 50, 0.5);
+  border-radius: 25px;
 }
 
-#btn1{
+#version-text{
   position: absolute; 
-  left:10px;
-  top:200px
+  left:4px; 
+  top:94vh;
 }
 
-#newBtn{
-  width:175px;
-  height:25px;
-  background-color: rgb(65, 108, 236);
-  border:1px black;
-}
-
-#btn2{
-  position: absolute; 
-  left:10px;
-  top:240px
-}
-
-#loadBtn{
-  width:175px;
-  height:25px;
-  background-color: rgb(65, 108, 236);
-  border:1px black;
-}
-.sbtn > a{
-  color: cornsilk;
+h3{
+  color:lightslategray;
+  font-size: 30pt;
   position: relative;
+  top:-50px;
+  text-decoration: none;
 }
-.bButtonText{
-  color: cornsilk;
+h4{
+  color:gainsboro;
+  font-size: 20pt;
   position: relative;
-  top:-8px;
+  top:-50px;
+  text-decoration: none;
 }
 
-/* for now its ok because for now on i sorta know whats happening */
+a{
+  color:rgb(63, 155, 197);
+  text-decoration: none;
+  font-size: 16pt;
+}
+a.hover{
+  color:rgb(43, 104, 133);
+}
+
+#title{
+  position: absolute;
+  left:250px
+}
+#title > h1{
+  color:aliceblue;
+  font-size: 72pt;
+  text-decoration: none;
+}
+
+#start-buttons{
+  position: relative;
+  left: 300px;
+  top: 100px;
+}
+#start-links > a{
+  position: relative;
+  top:-90px;
+}
+#start-box{
+  position: relative;
+  top: 150px;
+  left: -25px;
+  width:200px;
+  height:200px;
+  background-color: rgba(50, 50, 50, 0.5);
+  border-radius: 25px;
+}
+
+#bot-buttons{
+  position: relative;
+  left: 300px;
+  top: -32px;
+}
+#bot-links > a{
+  position: relative;
+  top:-90px;
+}
+#bot-box{
+  position: relative;
+  top: 110px;
+  left: -25px;
+  width:200px;
+  height:150px;
+  background-color: rgba(50, 50, 50, 0.5);
+  border-radius: 25px;
+}
+
+#help-buttons{
+  position: absolute;
+  left: 550px;
+  top: 50px;
+}
+#help-links > a{
+  position: relative;
+  top:-90px;
+}
+#help-box{
+  position: relative;
+  top: 245px;
+  left: -25px;
+  width:200px;
+  height:270px;
+  background-color: rgba(50, 50, 50, 0.5);
+  border-radius: 25px;
+}
+
+
+#quit {
+  background-color: var(--header-color);
+  border-color: #2196F3;
+  color: dodgerblue;
+  font-size: 24px;
+}
+
+#quit:hover {
+  background: #2196F3;
+  color: white;
+}
+
 #logo_img > img{
-    position: absolute; 
-    left:500px;
-    top: 100px;
-}
-
-#version{
-    position: absolute; 
-    left:2px; 
-    top:680px;
-}
-
-#buttonHolder{
-    background-color: rgba(50, 50, 50, 0.5);
-}
-
-#buttonHolder:nth-child(1){
-    position: absolute; 
-    left:10px;
-    top:185px;
-}
-
-#newBtn{
-    width:175px;
-    height:25px;
-    background-color: rgb(65, 108, 236);
-    border:1px black;
-}
-#buttonHolder:nth-child(2){
-    position: absolute; 
-    left:10px;
-    top:220px
-}
-#loadBtn{
-    width:175px;
-    height:50px;
-    background-color: rgb(65, 108, 236);
-    border:1px black;
+  position: absolute; 
+  left: 500px; 
+  top: 130px;
 }
 
 body::-webkit-scrollbar {

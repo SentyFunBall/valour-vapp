@@ -19,7 +19,7 @@
     <script src="../../blockly/javascript_compressed.js"></script>
     <script src="../../blockly/msg/js/en.js"></script> <!-- was this path brruh-->
     <!-- xml things -->
-    <xml xmlns="https://developers.google.com/blockly/xml" id="toolbox" style="display: none">
+    <xml xmlns="https://developers.google.com/blockly/xml" id="toolbox" style="display:none">
         <category name="Logic" colour="%{BKY_LOGIC_HUE}">
             <block type="controls_if"></block>
             <block type="logic_compare"></block>
@@ -329,26 +329,27 @@
         <category name="Functions" colour="%{BKY_PROCEDURES_HUE}" custom="PROCEDURE"></category>
         <sep></sep>
         <category name="Valour" colour="%{BKY_LOGIC_HUE}">
-            <block type="token_auth"></block>
             <block type="message_get"></block>
             <block type="send_message"></block>
             <block type="role_add"></block>
             <block type="role_remove"></block>
             <block type="kick"></block>
             <block type="ban"></block>
-            <block type="get_value"></block>
-            <block type="message_info"></block>
+            <block type="embed"></block>
             <block type="message_author"></block>
             <block type="info_channel"></block>
             <block type="info_planet"></block>
             <block type="message_id"></block>
         </category>
-        <category name="Networking" colour="%{BKY_TEXTS_HUE}">
-            
-            
+        <category name="Networking" colour="%{BKY_LISTS_HUE}">
+            <block type="token_auth"></block>
+            <block type="get_info"></block>
+            <block type="startbot"></block>
+            <block type="message_get"></block>
+            <block type="send_message"></block>
         </category>
         <sep></sep>
-        <category name="Debugging" colour="{%BKY_LISTS_HUE">
+        <category name="Debugging" colour="%{BKY_TEXTS_HUE}">
             <block type="console_print">
             </block>
             <block type="clear_console">
@@ -372,9 +373,9 @@
         var workspace = Blockly.inject('blok',
                         {toolbox: document.getElementById('toolbox'),
                         grid:{
-                            spacing: 20,
+                            spacing: 30,
                             length: 3,
-                            colour: '#ccc',
+                            colour: 'rgb(100, 100, 100)',
                             snap: true
                         },
                         trashcan: true
@@ -394,19 +395,19 @@
             }
         };
       </script>
-        <button type="button" style="top:30px" onclick="home()">
+        <button type="button" style="top:40px" onclick="home()">
             <p>Home</p>
         </button>
-        <button type="button" id="save" onclick="save()">
+        <button type="button" id="save" style="top: 80px;" onclick="save()">
             <p>Save</p>
         </button>
-        <button type="button" id="run" style="top: 90px;" onclick="run()">
+        <button type="button" id="run" style="top: 120px;" onclick="run()">
             <p>Run</p>
         </button>  
-        <button type="button" id="load" style="top: 120px;" onclick="loadfiles()">
+        <button type="button" id="load" style="top: 160px;" onclick="loadfiles()">
             <p>Load</p>
         </button>
-        <button type="button" id="var" style="top: 150px;" onclick="createVar()">
+        <button type="button" id="var" style="top: 200px;" onclick="createVar()">
             <p>New Var</p>
         </button>
     <div id="holder">
@@ -415,8 +416,10 @@
         <pre id="textarea" contenteditable="true">input here</pre>
     </div>
     
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/microsoft-signalr/3.1.7/signalr.min.js"></script>
     <script src="./blocks.js"></script>
     <script src="./js/btnFunc.js"></script>
-    <script src="./compressed/makeText.min.js"></script>
+    <script type="text/javascript" src="./compressed/makeText.min.js"></script>
+    <script type="text/javascript" src="./js/Valour.js"></script>
 </body>
 </html>

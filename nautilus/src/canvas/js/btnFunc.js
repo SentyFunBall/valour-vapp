@@ -35,7 +35,6 @@ const run = () => {
     }
 }
 
-
 const save = () =>{
     dialog.showSaveDialog({
         title: 'Save as',

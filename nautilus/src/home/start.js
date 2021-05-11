@@ -1,132 +1,40 @@
 //Includes
-const { app, BrowserWindow, Menu } = require('electron');
+const { app, BrowserWindow, shell} = require('electron');
 const path = require('path');
+let json = require(__dirname + "/pages/misc/settings.json");
 
-const template = [
-  {
-    label: 'File',
-    submenu: [
-      {
-        role: 'Save'
-      },
-      {
-        role: 'Load'
-      },
-      {
-        role: 'Run'
-      },
-      {
-        role: 'Export'
-      },
-      {
-        role: 'Quit'
-      }
-    ]
-  },
-  {
-    label: 'Edit',
-    submenu: [
-       {
-          role: 'undo'
-       },
-       {
-          role: 'redo'
-       },
-       {
-          type: 'separator'
-       },
-       {
-          role: 'cut'
-       },
-       {
-          role: 'copy'
-       },
-       {
-          role: 'paste'
-       }
-    ]
-  },
-  {
-    label: 'View',
-    submenu: [
-      {
-          role: 'reload'
-      },
-      {
-          role: 'toggledevtools'
-      },
-      {
-          type: 'separator'
-      },
-      {
-          role: 'resetzoom'
-      },
-      {
-          role: 'zoomin'
-      },
-      {
-          role: 'zoomout'
-      },
-      {
-          type: 'separator'
-      },
-      {
-          role: 'togglefullscreen'
-      }
-    ]
-  },
-  {
-    role: 'window',
-    submenu: [
-      {
-          role: 'minimize'
-      },
-      {
-          role: 'close'
-      }
-    ]
-  },
-  {
-    role: 'help',
-    submenu: [
-      {
-          role: 'Website'
-      },
-      {
-        role: 'Docs'
-      },
-      {
-        role: 'Discord'
-      },
-      {
-        role: 'Github'
-      }
-    ]
-  }
-]
+var page;
 
 if (require('electron-squirrel-startup')) {
   app.quit();
+}
+
+if (json['1'] == null || json['1']['emailText'] == null) {
+  page = '/pages/settings.html';
+} else {
+  page = '/index.html';
 }
 
 //Function to create a browser window
 const createWindow = () => {
   // Create the browser window.
   const mainWindow = new BrowserWindow({
-    width: 1250, //Window width
-    height: 800, //Window height
-    minWidth: 1100,
+    width: 1600, //Window width
+    height: 900, //Window height
+    minWidth: 1000,
+    minHeight: 800,
     webPreferences: { //Preferences
       nodeIntegration: true,
       enableRemoteModule: true,
-      slashes: true,
     },
   });
-  const menu = Menu.buildFromTemplate(template)
-  Menu.setApplicationMenu(menu)
+
+  
   console.log("Creating window")
   //Set the window to be start.html
-  mainWindow.loadFile(path.join(__dirname, 'index.html'));
+  mainWindow.loadFile(path.join(__dirname, page));
+  //mainWindow.removeMenu();
+
   var appRoot = path.join(__dirname, '../..');
   require('electron-compile').init(appRoot, require.resolve('./start'));
 };
@@ -142,7 +50,5 @@ app.on('window-all-closed', () => {
 
 //When app activates, if there are no browser windows, create one.
 app.on('activate', () => {
-  if (BrowserWindow.getAllWindows().length === 0) {
-    createWindow();
-  }
+  createWindow();
 });
