@@ -16,6 +16,12 @@
     margin: auto;
 }
 
+li {
+  color:#fff;
+  text-align: left;
+  font-size: 18px;
+}
+
 .button {
     border: 2px solid black;
     background-color: white;
