@@ -367,7 +367,7 @@ Blockly.JavaScript['startbot'] = function(block) {
     var value_planet = Blockly.JavaScript.valueToCode(block, 'planet', Blockly.JavaScript.ORDER_ATOMIC);
     var value_channel = Blockly.JavaScript.valueToCode(block, 'channel', Blockly.JavaScript.ORDER_ATOMIC);
     // TODO: Assemble JavaScript into code variable.
-    var code = 'startBot('+value_lanept+', '+value_channel+');\n';
+    var code = 'startBot('+value_planet+', '+value_channel+');\n';
     return code;
   };
 Blockly.JavaScript['token_auth'] = function(block) {

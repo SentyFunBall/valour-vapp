@@ -15,7 +15,7 @@ confirm.addEventListener("click",function() {
     emailText = email.innerHTML;
     passText = pass.innerHTML;
 
-    if(!settings[bot]) settings[bot] = {
+    if(!settings['1']) settings['1'] = {
         emailText: null,
         passText: null,
         token: null,
