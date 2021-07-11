@@ -1,13 +1,15 @@
 {
   "name": "nautilus",
   "productName": "Nautilus",
-  "version": "0.0.1",
-  "description": "Create bots easily, for free.",
+  "version": "0.7.3",
+  "description": "Bots for Valour.",
   "main": "./src/home/start.js",
   "scripts": {
     "start": "electron-forge start",
     "package": "electron-forge package",
     "make": "electron-forge make",
+    "make-mac": "npx @electron-forge/cli make --platform darwin",
+    "make-linux": "npx @electron-forge/cli make --platform linux --targets deb",
     "publish": "electron-forge publish",
     "lint": "echo \"No linting configured\""
   },
@@ -20,13 +22,13 @@
   "config": {
     "forge": {
       "electronPackagerConfig": {
-        "icon": "./src/img/icons/icon.ico"
+        "icon": "./src/assets/icons/icon"
       },
       "makers": [
         {
           "name": "@electron-forge/maker-squirrel",
           "config": {
-            "name": "senit_code"
+            "name": "Nautilus"
           }
         },
         {
@@ -37,7 +39,9 @@
         },
         {
           "name": "@electron-forge/maker-deb",
-          "config": {}
+          "config": {
+            "icon": ".src/assets/icons/icon.png"
+          }
         },
         {
           "name": "@electron-forge/maker-rpm",
@@ -47,30 +51,23 @@
     }
   },
   "dependencies": {
-    "@electron-forge/cli": "^6.0.0-beta.54",
-    "@electron-forge/maker-deb": "^6.0.0-beta.54",
-    "@electron-forge/maker-rpm": "^6.0.0-beta.54",
-    "@electron-forge/maker-squirrel": "^6.0.0-beta.54",
-    "@electron-forge/maker-zip": "^6.0.0-beta.54",
     "@ftnk/electron-prebuilt-compile": "^1.7.3",
     "electron": "11.2.0",
     "electron-compile": "^6.4.4",
     "electron-forge": "^5.2.4",
-    "electron-prebuilt-compile": "8.2.0",
-    "electron-prompt": "^1.6.1",
+    "electron-prompt": "^1.6.2",
     "electron-squirrel-startup": "^1.0.0"
   },
   "devDependencies": {
-    "@electron-forge/cli": "^6.0.0-beta.54",
-    "@electron-forge/maker-deb": "^6.0.0-beta.54",
-    "@electron-forge/maker-rpm": "^6.0.0-beta.54",
-    "@electron-forge/maker-squirrel": "^6.0.0-beta.54",
-    "@electron-forge/maker-zip": "^6.0.0-beta.54",
+    "@electron-forge/cli": "^6.0.0-beta.57",
+    "@electron-forge/maker-deb": "^6.0.0-beta.57",
+    "@electron-forge/maker-rpm": "^6.0.0-beta.57",
+    "@electron-forge/maker-squirrel": "^6.0.0-beta.57",
+    "@electron-forge/maker-zip": "^6.0.0-beta.57",
     "@ftnk/electron-prebuilt-compile": "^1.7.3",
     "electron": "11.2.0",
     "electron-compile": "^6.4.4",
     "electron-forge": "^5.2.4",
-    "electron-prebuilt-compile": "8.2.0",
     "electron-squirrel-startup": "^1.0.0"
   }
 }
