@@ -3,17 +3,16 @@ const { app, BrowserWindow, shell} = require('electron');
 const path = require('path');
 let json = require(__dirname + "/pages/misc/settings.json");
 
-var startupPage;
+var page;
 
 if (require('electron-squirrel-startup')) {
   app.quit();
-  return;
 }
 
-if (json['1'] == null || json['1']['emailText'] == null) {
-  startupPage = '/pages/welcome.html';
+if (json['1']['emailText'] == null || json['1']['emailText'] == '') {
+  page = '/pages/welcome.html';
 } else {
-  startupPage = '/index.html';
+  page = '/index.html';
 }
 
 //Function to create a browser window
@@ -30,13 +29,13 @@ const createWindow = () => {
     },
   });
 
-  var appRoot = path.join(__dirname, '../..');
-
+  
   console.log("Creating window")
   //Set the window to be start.html
-  mainWindow.loadFile(path.join(__dirname, startupPage));
-  mainWindow.setIcon(path.join(appRoot, './src/assets/icons/icon.ico'));
+  mainWindow.loadFile(path.join(__dirname, page));
   //mainWindow.removeMenu();
+
+  var appRoot = path.join(__dirname, '../..');
   require('electron-compile').init(appRoot, require.resolve('./start'));
 };
 

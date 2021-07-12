@@ -361,16 +361,16 @@
       <script>
         // inject to workspace
         var workspace = Blockly.inject('blok',
-                        {toolbox: document.getElementById('toolbox'),
-                        grid:{
-                            spacing: 30,
-                            length: 3,
-                            colour: 'rgb(100, 100, 100)',
-                            snap: true
-                        },
-                        trashcan: true
-                        }
-                        );
+            {toolbox: document.getElementById('toolbox'),
+            grid:{
+                spacing: 35,
+                length: 4,
+                colour: 'rgb(100, 100, 100)',
+                snap: true
+            },
+            trashcan: true
+            }
+        );
 
         //keybinds
         document.onkeyup = function(e) {

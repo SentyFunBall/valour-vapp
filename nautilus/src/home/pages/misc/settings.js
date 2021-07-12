@@ -26,7 +26,7 @@ confirm.addEventListener("click",function() {
     fs.writeFile(__dirname + '/misc/settings.json', JSON.stringify(settings), (err) => {
         if (err) {
             console.log('Couldnt save settings!');
-            errText.innerHTML = "There was an error saving. Please try again.\n Error code: noSave";
+            errText.innerHTML = "There was an error saving. Please try again. Err:"+err;
         } else {
             window.location.assign('../index.html')
         }
@@ -42,8 +42,6 @@ delButton.addEventListener("click",function() {
     fs.writeFile(__dirname + '/misc/settings.json', JSON.stringify(settings), (err) => {
         if (err) {
             console.log('Couldnt save settings!');
-            console.log(err);
-            errText.innerHTML = "There was an error deleting your infomation. Please try again.\n Error code: noDel";
         }
     });
     errText.innerHTML = "All data erased."

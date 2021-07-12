@@ -4,39 +4,42 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <link rel="stylesheet" href="../start.css">
-    <link rel="stylesheet" href="../welcome.css">
+    <link rel="stylesheet" href="./welcome.css">
     <link rel="stylesheet" href="./misc/sheet.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>First time setup</title>
 </head>
 <body>
-    <h1 style="text-align: center;">Welcome to Nautilus</h1>
-    <div id="startPage">
-        <h2>There are a few things we need to do before you can start coding.</h2>
-        <br><br><br>
-        <button id="start" class="btn" onclick="openQues1()">Get started</button>
-        <button id="no" class="btn" onclick="no()">Skip setup</button>
-    </div>
-    <div id="ques1">
-        <h2>First, are you using Nautilus for Valour bots or casually?</h2>
-        <br><br><br>
-        <button id="valour" class="btn" onclick="openLogin()">Valour</button>
-        <button id="casual" class="btn" onclick="openCasual()">Casually</button>
-    </div>
-    <div id="login">
-        <h2>Now we need your Valour bots credentials.</h2>
-        <p>This information is <strong>never</strong> shared, and can be changed at any time.</p>
-        <h3>Email:</h3>
-        <pre id="email" contenteditable="true"></pre>
-        <h4>Password:</h4>
-        <pre id="pass" contenteditable="true"></pre>
+    <img id="img" src="../../img/setup-background.jpg">
+    <div id="blur">
         <br>
-        <button id="confirm" class="btn">Start coding</button>
-        <br>
-        <p id="errText"></p>
-    </div>
-    <div id="casual">
-        <h2></h2>
+        <div id="content" style="position: relative; top:-5px">
+            <h1 style="text-align: center;">Welcome to Nautilus</h1>
+            <div id="startPage">
+                <h2>There are a few things we need to do before you can start coding.</h2>
+                <br><br><br>
+                <button id="start" class="btn" onclick="openQues1()">Get started</button>
+                <button id="no" class="btn" onclick="no()">Skip setup</button>
+            </div>
+            <div id="ques1">
+                <h2>First, are you using Nautilus for Valour bots or casually?</h2>
+                <br><br><br>
+                <button id="valour" class="btn" onclick="openLogin()">Valour</button>
+                <button id="casual" class="btn" onclick="no()">Casually</button>
+            </div>
+            <div id="login">
+                <h2>Now we need your Valour bots credentials.</h2>
+                <p>This information is <strong>never</strong> shared, and can be changed at any time.</p>
+                <h3>Email:</h3>
+                <pre id="email" contenteditable="true"></pre>
+                <h4>Password:</h4>
+                <pre id="pass" contenteditable="true"></pre>
+                <br>
+                <button id="confirm" class="btn" style="position: relative; left: 500px; top: -275px">Start coding</button>
+                <br>
+                <p id="errText"></p>
+            </div>
+        </div>
     </div>
     <script type="text/javascript" src="./misc/settings.js"></script>
     <script type="text/javascript" src="../buttons.js"></script>
