@@ -45,3 +45,15 @@ dics.addEventListener("click", function(event) {
         shell.openExternal(event.target.href);
     }
 });
+
+function openQues1() {
+    document.getElementById("ques1").style.display = "block";
+    document.getElementById("startPage").style.display = "none"
+}
+function openLogin() {
+    document.getElementById("login").style.display = "block";
+    document.getElementById("ques1").style.display = "none"
+}
+function no() {
+    window.location.href="../index.html"
+}

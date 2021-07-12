@@ -1,0 +1,49 @@
+.btn {
+    background-color: var(--header-color);
+    border-color: #2196F3;
+    color: dodgerblue;
+    position: relative;
+    top:-50px;
+    font-size: 18px;
+    width:120px;
+    height:80px;
+  }
+  
+  .btn:hover {
+    background: #2196F3;
+    color: white;
+  }
+
+  #startPage {
+    width: 1000px; 
+    height: 300px;
+    margin: auto; 
+    margin-top: 10vh;
+    text-align: center;
+  }
+
+  #ques1 {
+    width: 1000px; 
+    height: 300px;
+    margin: auto; 
+    margin-top: 10vh;
+    text-align: center;
+    display: none;
+  }
+  
+  #login {
+    width: 700px; 
+    height: 300px;
+    margin: auto; 
+    margin-top: 10vh;
+    text-align: left;
+    display: none;
+  }
+
+  #login>h2 {
+      text-align: center;
+  }
+
+  #login>p {
+      text-align: center;
+  }
