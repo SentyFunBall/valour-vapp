@@ -1,7 +1,6 @@
 const electron = require('electron');
 const path = require('path');
 const fs = require('fs');
-const { type } = require('os');
 const dialog = electron.remote.dialog;
 const prompt = require('electron-prompt');
 

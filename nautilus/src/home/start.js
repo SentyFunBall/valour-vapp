@@ -1,5 +1,5 @@
 //Includes
-const { app, BrowserWindow, shell} = require('electron');
+const {app, BrowserWindow} = require('electron');
 const path = require('path');
 let json = require(__dirname + "/pages/misc/settings.json");
 
