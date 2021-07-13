@@ -22,7 +22,7 @@
   "config": {
     "forge": {
       "electronPackagerConfig": {
-        "icon": "./src/assets/icons/icon"
+        "icon": "./src/img/icons/icon"
       },
       "makers": [
         {

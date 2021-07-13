@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:NautilusInstaller"
         mc:Ignorable="d"
-        Title="Nautilus Installer" Height="450" Width="600" ResizeMode="CanMinimize" Icon="/win_light.png">
+        Title="Nautilus Manager" Height="450" Width="600" ResizeMode="CanMinimize" Icon="/win_light.png">
     <Grid Background="#FF272727">
         <Label x:Name="mainLable" Content="We're almost there" HorizontalAlignment="Center" Margin="0,32,0,0" VerticalAlignment="Top" Background="{x:Null}" Foreground="#FFFDFDE6" FontFamily="Microsoft JhengHei" FontSize="30"/>
         <Label x:Name="osLable" Content="What OS are you using?" HorizontalAlignment="Center" Margin="0,87,0,0" VerticalAlignment="Top" FontSize="22" Foreground="#FFFDFDE6" FontFamily="Microsoft JhengHei"/>
@@ -13,9 +13,10 @@
         <RadioButton x:Name="osx" Content="MacOS" HorizontalAlignment="Left" Margin="101,177,0,0" VerticalAlignment="Top" Foreground="#FFFDFDE6" FontFamily="Microsoft JhengHei"/>
         <RadioButton x:Name="deb" Content="Debian" HorizontalAlignment="Left" Margin="438,177,0,0" VerticalAlignment="Top" Foreground="#FFFDFDE6" FontFamily="Microsoft JhengHei"/>
         <Button Content="Install Nautilus" HorizontalAlignment="Center" Margin="0,257,0,0" VerticalAlignment="Top" FontFamily="Microsoft JhengHei" FontSize="16" Click="Button_Click" Foreground="#FF060605"/>
-        <Label x:Name="status" Content="" HorizontalAlignment="Center" Margin="0,336,0,0" VerticalAlignment="Top" Foreground="#FFFDFDE6" FontFamily="Microsoft JhengHei" FontSize="22"/>
+        <Label x:Name="status" Content="" HorizontalAlignment="Center" Margin="0,355,0,0" VerticalAlignment="Top" Foreground="#FFFDFDE6" FontFamily="Microsoft JhengHei" FontSize="22"/>
         <CheckBox x:Name="shortcut" Content="Create desktop shortcut" HorizontalAlignment="Left" Margin="131,205,0,0" VerticalAlignment="Top" Foreground="#FFFFFDF3" FontFamily="Microsoft JhengHei"/>
         <CheckBox x:Name="launch" Content="Launch when done" HorizontalAlignment="Left" Margin="356,205,0,0" VerticalAlignment="Top" Foreground="#FFFEFFF0" FontFamily="Microsoft JhengHei"/>
+        <Button Content="Uninstall Nautilus" HorizontalAlignment="Center" Margin="0,306,0,0" VerticalAlignment="Top" FontFamily="Microsoft JhengHei" FontSize="16" Click="Uninstall" Foreground="#FF060605"/>
 
     </Grid>
 </Window>

@@ -1,21 +1,13 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 using System.Net;
 using System.IO;
 using System.IO.Compression;
 using IWshRuntimeLibrary;
+using System.ComponentModel;
+using System.Diagnostics;
+using System.Windows.Threading;
+using System.Threading.Tasks;
 
 namespace NautilusInstaller
 {
@@ -24,7 +16,8 @@ namespace NautilusInstaller
     /// </summary>
     public partial class MainWindow : Window
     {
-        string pathWin32 = @"E:\Program Files (x86)\Nautilus";
+        string pathWin32 = @"C:\Program Files (x86)\Nautilus";
+        Uri uri = new Uri("https://github.com/SentyFunBall/vapp-test/releases/download/v0.7.3b1/nautWin32.zip");
         public MainWindow()
         {
             InitializeComponent();
@@ -32,80 +25,100 @@ namespace NautilusInstaller
 
         private void Button_Click(object sender, EventArgs e)
         {
-            status.Content = " ";
             if(win32.IsChecked == true)
             {
+                Task.Factory.StartNew(() => Download());
+
+            } else if(osx.IsChecked == true)
+            {
+                status.Content = "How? You can't run this installer on MacOS!";
+            } else
+            {
+                status.Content = "How? You can't run this installer on Debian!";
+            }
+        }
+
+        private void Uninstall(object sender, EventArgs e)
+        {
+            Task.Factory.StartNew(() => doTheDel());
+        }
+
+        private void Download()
+        {
+            Dispatcher.BeginInvoke(new Action(() => {
                 //checks for install dir
                 status.Content = "Checking system";
-                System.Threading.Thread.Sleep(3000);
                 if (!Directory.Exists(pathWin32))
                 {
                     Directory.CreateDirectory(pathWin32);
                 }
 
-                //sleep
-                System.Threading.Thread.Sleep(1000);
-
                 //downloads win32 zip file
-                status.Content = "Downloading";
-                System.Threading.Thread.Sleep(1000);
-                WebClient webClient = new WebClient();
-                webClient.DownloadFile("https://github.com/SentyFunBall/valour-vapp/releases/download/v0.7/NautilusSetup.exe", pathWin32 + @"\Nautilus.zip");
+                if (!Directory.Exists(pathWin32 + @"\Nautilus-win32-x64"))
+                {
+                    status.Content = "Downloading";
+                    WebClient webClient = new WebClient();
+                    webClient.DownloadFile(uri, pathWin32 + @"\Nautilus.zip");
+                }
 
                 //extracts and installs
-                status.Content = "Extracting";
-                ZipFile.ExtractToDirectory(pathWin32 + @".\Nautilus.zip", pathWin32);
+                if (!Directory.Exists(pathWin32 + @"\Nautilus-win32-x64"))
+                {
+                    status.Content = "Extracting";
+                    status.Content = "Extracting";
+                    status.Content = "Extracting";
+                    ZipFile.ExtractToDirectory(pathWin32 + @"\Nautilus.zip", pathWin32);
+                }
 
                 //deletes zip file
                 status.Content = "Finalizing";
-                System.IO.File.Delete(pathWin32 + @".\Nautilus.zip");
+                System.IO.File.Delete(pathWin32 + @"\Nautilus.zip");
 
                 //desktop shortcut (if checked)
-                if(shortcut.IsChecked == true)
+                if (shortcut.IsChecked == true)
                 {
+                    status.Content = "Creating desktop icon";
                     object shDesktop = (object)"Desktop";
                     WshShell shell = new WshShell();
                     string shortcutAddress = (string)shell.SpecialFolders.Item(ref shDesktop) + @"\Nautilus.lnk";
                     IWshShortcut shortcut = (IWshShortcut)shell.CreateShortcut(shortcutAddress);
                     shortcut.Description = "Bots for Valour";
-                    shortcut.TargetPath = pathWin32 + @"\Nautilus.exe";
+                    shortcut.TargetPath = pathWin32 + @"\Nautilus-win32-x64\Nautilus.exe";
                     shortcut.Save();
                 }
-                
+
                 //launch
-                if(launch.IsChecked == true)
+                if (launch.IsChecked == true)
                 {
-                    System.Diagnostics.Process.Start(pathWin32 + @"\Nautilus.exe");
-                } else
-                {
-                    System.Diagnostics.Process.Start("explorer.exe", pathWin32);
+                    status.Content = "Launching Nautilus";
+                    Process.Start(pathWin32 + @"\Nautilus-win32-x64\Nautilus.exe");
                 }
-
-            } else if(osx.IsChecked == true)
-            {
-
-            } else
-            {
-
-            }
+                else
+                {
+                    status.Content = "Finshed";
+                    Process.Start("explorer.exe", pathWin32);
+                }
+            }), DispatcherPriority.Normal);
         }
 
-
-
-        private void Completed(object sender)
+        private void doTheDel()
         {
-            if (win32.IsChecked == true)
+            Dispatcher.BeginInvoke(new Action(() =>
             {
-                MessageBox.Show("Nautilus for Windows was installed");
-            }
-            else if (osx.IsChecked == true)
-            {
-                MessageBox.Show("Nautilus for MacOS was installed");
-            }
-            else
-            {
-                MessageBox.Show("Nautilus for Debian was installed");
-            }
+                string pathWin32 = @"C:\Program Files (x86)\Nautilus";
+
+                if (Directory.Exists(pathWin32))
+                {
+                    Directory.Delete(pathWin32, true);
+                    string desktopPath = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
+                    System.IO.File.Delete(Path.Combine(desktopPath, "Nautilus.lnk"));
+                    status.Content = "Nautilus Deleted";
+                }
+                else
+                {
+                    status.Content = "No install detected";
+                }
+            }), DispatcherPriority.Normal);
         }
     }
 }
