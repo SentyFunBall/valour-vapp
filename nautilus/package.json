@@ -9,7 +9,7 @@
     "package": "electron-forge package",
     "make": "electron-forge make",
     "make-mac": "npx @electron-forge/cli package --platform darwin",
-    "make-linux": "npx @electron-forge/cli package --platform linux --targets deb",
+    "make-linux": "npx @electron-forge/cli package --platform linux",
     "publish": "electron-forge publish",
     "lint": "echo \"No linting configured\""
   },
