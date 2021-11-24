@@ -49,3 +49,5 @@ delButton.addEventListener("click",function() {
         errText.innerHTML = '';
     }, 5000);
 })
+
+document.getElementById("platform").innerHTML = process.platform;
