@@ -23,8 +23,9 @@ const createWindow = () => {
     height: 900, //Window height
     minWidth: 1000,
     minHeight: 800,
-    //frame: false,
-    autoHideMenuBar: true,
+    titleBarStyle: 'hiddenInset',
+    frame: false,
+    fullscreen: false,
     webPreferences: { //Preferences
       nodeIntegration: true,
       enableRemoteModule: true,
@@ -37,7 +38,7 @@ const createWindow = () => {
   mainWindow.loadFile(path.join(__dirname, page));
   //mainWindow.removeMenu();
 
-  var appRoot = path.join(__dirname, '../..');
+  var appRoot = path.join(__dirname, '../..');  
   require('electron-compile').init(appRoot, require.resolve('./start'));
 };
 

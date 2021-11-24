@@ -13,8 +13,14 @@ if(process.platform === "darwin") {
     new customTitlebar.Titlebar({
         backgroundColor: customTitlebar.Color.fromHex('#444'),
         titleWindowAlignment: 'center',
+        drag: true,
+        maximizable: false,
+        minimizable: true,
+        closeable: true,
+        icon: '.img/icons/icon.icns',
+        overflow: 'hidden',
+        menu: null
     });
-    customTitlebar.updateIcon('./img/icons/icon.icns');
 }
 
 //what the hell is this code
