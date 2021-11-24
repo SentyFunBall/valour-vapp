@@ -43,5 +43,20 @@
     </div>
     <script type="text/javascript" src="./misc/settings.js"></script>
     <script type="text/javascript" src="../buttons.js"></script>
+    <script>
+        if(process.platform === "darwin") {
+    const customTitlebar = require('custom-electron-titlebar');
+    new customTitlebar.Titlebar({
+        backgroundColor: customTitlebar.Color.fromHex('#444'),
+        titleWindowAlignment: 'center',
+        drag: true,
+        maximizable: false,
+        minimizable: true,
+        closeable: true,
+        icon: '.img/icons/icon.icns',
+        overflow: 'hidden',
+    });
+}
+    </script>
 </body>
 </html>

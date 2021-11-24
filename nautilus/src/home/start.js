@@ -20,12 +20,11 @@ const createWindow = () => {
   // Create the browser window.
   const mainWindow = new BrowserWindow({
     width: 1600, //Window width
-    height: 900, //Window height
+    height: 800, //Window height
     minWidth: 1000,
-    minHeight: 800,
-    titleBarStyle: 'hiddenInset',
+    minHeight: 700,
+    titleBarStyle: 'hidden',
     frame: false,
-    fullscreen: false,
     webPreferences: { //Preferences
       nodeIntegration: true,
       enableRemoteModule: true,

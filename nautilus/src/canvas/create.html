@@ -411,5 +411,20 @@
     <script src="./js/btnFunc.js"></script>
     <script type="text/javascript" src="./compressed/makeText.min.js"></script>
     <script type="text/javascript" src="./js/Valour.js"></script>
+    <script>
+        if(process.platform === "darwin") {
+      const customTitlebar = require('custom-electron-titlebar');
+      new customTitlebar.Titlebar({
+          backgroundColor: customTitlebar.Color.fromHex('#1c1c1c'),
+          titleWindowAlignment: 'center',
+          drag: true,
+          maximizable: false,
+          minimizable: true,
+          closeable: true,
+          icon: '.img/icons/icon.icns',
+          overflow: 'hidden',
+      });
+  }
+      </script>
 </body>
 </html>
