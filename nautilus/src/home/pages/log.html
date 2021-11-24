@@ -1,6 +1,6 @@
 <style>
     body {
-      font-family: system, -apple-system, '.SFNSText-Regular', 'SF UI Text', 'Lucida Grande', 'Segoe UI', Ubuntu, Cantarell, sans-serif;
+      font-family: sans-serif;
       color: #fff;
       background-color: #030227;
       text-align: left;
@@ -17,7 +17,33 @@
       font-size: 12px;
       text-decoration: none;
     }
+    button{
+    /* button */
+    position: absolute; 
+    top: 25px;
+    left: 6%;  
+    width:100px;
+    height:35px;
+    background-color: rgba(50, 50, 50, 0.5);
+    border:1px black;
+    border-radius: 10px;
+}
+button > *{
+    /* to <a> and <p> tags */
     
+    position: relative; 
+    color:rgb(63, 155, 197);
+    text-decoration: bold;
+    font-size: 12pt;
+    top: -9px;
+}
+button > *:hover{
+    color:rgb(43, 104, 133);
+}
+button:hover{
+    background-color: rgba(75, 75, 75, 0.5);
+    color:rgb(43, 104, 133);
+}
 </style>
 <body>
     <meta charset="UTF-8">
@@ -27,6 +53,12 @@
 
     </pre>
     <h3 id="changelog-">Changelog:</h3>
+    <h4>v0.7.4 "Better HTML Update"</h4>
+    <ul>
+      <li>Changed font</li>
+      <li>Made first time set up actually first time</li>
+      <li>Updated old buttons to new style</li>
+    </ul>
     <h4>v0.7.3 "Everyone's Welcome Update"</h4>
     <ul>
       <li>MacOS 10.11+ and Debian 8+ now have official support</li>
@@ -200,9 +232,30 @@
     <p>Grim - Backend dev</p>
         
     <a href="../index.html">
-      <button type="button" style="width:75px;height:25px;background-color: rgb(65, 108, 236);border:1px black; position:absolute;left:30;top:30px">
-        <p style="color:cornsilk; position: relative; top:0px; text-decoration: none;position: relative; top: -8px;">Home</p>
+      <button type="button" style="top:40px" onclick="home()">
+        <p>Home</p>
       </button>
     </a>
+    <script>
+      const home = () =>{
+    //opens an info box, and depending on user action, goes home.
+    const options = {
+        type: 'warning',
+        buttons: ['Cancel', 'Yes'],
+        defaultId: 2,
+        title: 'Warning',
+        message: 'Are you sure you want to go back home?',
+        detail: 'All unsaved progress will be lost!',
+    }
 
+    dialog.showMessageBox(null, options).then ( (data) => {
+        console.log(data.response);
+
+        if(data.response == 1) {
+            window.location.href = "./../home/index.html"
+        }
+        
+    });
+}
+    </script>
 </body>

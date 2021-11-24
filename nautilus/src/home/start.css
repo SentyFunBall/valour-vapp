@@ -7,9 +7,13 @@
   --gray5: #0f1c31;
   --gray6: #002030;
 
+  --title: #e1eaed;
+  --sub: #848484;
+  --head: #b8b8b8;
+  --button: #379ab9;
 }
 body {
-  font-family: system, -apple-system, '.SFNSText-Regular', 'SF UI Text', 'Lucida Grande', 'Segoe UI', Ubuntu, Cantarell, sans-serif;
+  font-family: sans-serif;
   color: #fff;
   background-color: #000000;
   margin: auto;
@@ -17,6 +21,7 @@ body {
   padding: 5rem;
   font-size: 15px;
   overflow: hidden;
+  user-select: none;
 }
 
 .dark {
@@ -48,49 +53,63 @@ body {
   top:94vh;
 }
 
+#title{
+  position: absolute;
+  left:300px;
+}
+#title > h1{
+  color:var(--title);
+  font-size: 72pt;
+  text-decoration: none;
+  font-weight: normal;
+}
+
 h3{
-  color:lightslategray;
+  color:var(--sub);
   font-size: 30pt;
   position: relative;
   top:-50px;
   text-decoration: none;
+  font-weight: normal;
 }
 h4{
-  color:gainsboro;
+  color: var(--head);
   font-size: 20pt;
   position: relative;
   top:-50px;
   text-decoration: none;
+  font-weight: normal;
 }
 
 a{
-  color:rgb(63, 155, 197);
+  color: var(--button);
   text-decoration: none;
   font-size: 16pt;
+  font-weight: normal;
 }
 a.hover{
   color:rgb(43, 104, 133);
 }
 
-#title{
-  position: absolute;
-  left:250px
-}
-#title > h1{
-  color:aliceblue;
-  font-size: 72pt;
-  text-decoration: none;
+#recents{
+  position: relative;
+  left: 50px;
+  top: 50px;
+  height: 160px;
+  width: 100px;
 }
 
 #start-buttons{
   position: relative;
   left: 300px;
-  top: 115px;
+  top: 50px;
   height: 160px;
+  width: 300px;
 }
 #start-links > a{
   position: relative;
   top:-90px;
+  left: 10px;
 }
 #start-box{
   position: relative;
@@ -105,12 +124,13 @@ a.hover{
 #bot-buttons{
   position: relative;
   left: 300px;
-  top: 260px;
+  top: 100px;
   height: 150px;
 }
 #bot-links > a{
   position: relative;
   top:-90px;
+  left: 10px;
 }
 #bot-box{
   position: relative;
@@ -124,13 +144,15 @@ a.hover{
 
 #help-buttons{
   position: absolute;
-  left: 520px;
-  top: 70px;
+  left: 300px;
+  top: 500px;
   height: 270px;
+  width: 200px;
 }
 #help-links > a{
   position: relative;
   top:-90px;
+  left: 10px;
 }
 #help-box{
   position: relative;
