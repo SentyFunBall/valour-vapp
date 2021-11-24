@@ -42,13 +42,17 @@ const createWindow = () => {
 app.on('ready', createWindow); //When app is ready, create the window
 
 //When all windows are closed, quit the app.
+//if running macOS (darwin), dont quit the app upon window close. 
+//the user will explicitly quit the app with CMD+Q on macOS.
 app.on('window-all-closed', () => {
   if (process.platform !== 'darwin') {
     app.quit();
   }
 });
 
-//When app activates, if there are no browser windows, create one.
+//when focus is returned or started, and there are no windows open, create a new window.
 app.on('activate', () => {
-  createWindow();
+  if (BrowserWindow.getAllWindows().length === 0) {
+    createWindow();
+  }
 });
