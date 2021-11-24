@@ -1,3 +1,7 @@
+body {
+  overflow: hidden;
+}
+
 .btn {
     background-color: var(--header-color);
     border-color: #2196F3;
