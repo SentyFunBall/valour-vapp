@@ -23,6 +23,8 @@ const createWindow = () => {
     height: 900, //Window height
     minWidth: 1000,
     minHeight: 800,
+    //frame: false,
+    autoHideMenuBar: true,
     webPreferences: { //Preferences
       nodeIntegration: true,
       enableRemoteModule: true,

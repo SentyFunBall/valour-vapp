@@ -7,6 +7,16 @@ var docs = document.getElementById("docs");
 var tuts = document.getElementById("tuts");
 var dics = document.getElementById("disc");
 
+const customTitlebar = require('custom-electron-titlebar');
+
+if(process.platform === "darwin") {
+    new customTitlebar.Titlebar({
+        backgroundColor: customTitlebar.Color.fromHex('#444'),
+        titleWindowAlignment: 'center',
+    });
+    customTitlebar.updateIcon('./img/icons/icon.icns');
+}
+
 //what the hell is this code
 
 codex.addEventListener("click", function(event) {
@@ -57,3 +67,4 @@ function openLogin() {
 function no() {
     window.location.href="../index.html"
 }
+
