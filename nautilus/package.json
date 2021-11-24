@@ -57,6 +57,7 @@
     "@electron-forge/maker-squirrel": "^6.0.0-beta.54",
     "@electron-forge/maker-zip": "^6.0.0-beta.54",
     "@ftnk/electron-prebuilt-compile": "^1.7.3",
+    "custom-electron-titlebar": "^3.2.7",
     "electron": "11.2.0",
     "electron-compile": "^6.4.4",
     "electron-forge": "^5.2.4",
