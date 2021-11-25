@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>New Project</title>
+    <title>Untitled - Nautilus</title>
     <link rel="stylesheet" href="./create.css">
     
 </head>
@@ -324,7 +324,7 @@
         </category>
         <sep></sep>
         <category name="Variables" colour="%{BKY_VARIABLES_HUE}" custom="VARIABLE">
-            <button text="A button" callbackKey="varButton"></button>
+            
         </category>
         <category name="Functions" colour="%{BKY_PROCEDURES_HUE}" custom="PROCEDURE"></category>
         <sep></sep>
@@ -347,14 +347,16 @@
         </category>
         <sep></sep>
         <category name="Debugging" colour="%{BKY_TEXTS_HUE}">
-            <block type="console_print">
-            </block>
-            <block type="clear_console">
-            </block>
-            <block type="cast">
-            </block>
-            <block type="input">
-            </block>
+            <block type="console_print"></block>
+            <block type="clear_console"></block>
+            <block type="cast"></block>
+            <block type="input"></block>
+            <!--<block type="waitforinput"></block> 
+                Issue with this is the fact that it sleeps. 
+                I dont know how to wait for the input without forking the code, which breaks it more-->
+            <block type="alert"></block>
+            <block type="throw"></block>
+            <block type="try_catch"></block>
         </category>
     </xml>
     
@@ -400,6 +402,9 @@
         <button type="button" id="var" style="top: 200px;" onclick="createVar()">
             <p>New Var</p>
         </button>
+        <button type="button" id="new" style="top:240px;" onclick="newFile()">
+            <p>New File</p>
+        </button>
     <div id="holder">
         <pre id="code">//Your code will show up here.</pre>
         <pre id="console">This is the console.</pre>
@@ -413,18 +418,18 @@
     <script type="text/javascript" src="./js/Valour.js"></script>
     <script>
         if(process.platform === "darwin") {
-      const customTitlebar = require('custom-electron-titlebar');
-      new customTitlebar.Titlebar({
-          backgroundColor: customTitlebar.Color.fromHex('#1c1c1c'),
-          titleWindowAlignment: 'center',
-          drag: true,
-          maximizable: false,
-          minimizable: true,
-          closeable: true,
-          icon: '.img/icons/icon.icns',
-          overflow: 'hidden',
-      });
-  }
+            const customTitlebar = require('custom-electron-titlebar');
+            new customTitlebar.Titlebar({
+                backgroundColor: customTitlebar.Color.fromHex('#1c1c1c'),
+                titleWindowAlignment: 'center',
+                drag: true,
+                maximizable: false,
+                minimizable: true,
+                closeable: true,
+                icon: '../img/icons/icon.icns',
+                overflow: 'hidden',
+            });
+        }
       </script>
 </body>
 </html>
