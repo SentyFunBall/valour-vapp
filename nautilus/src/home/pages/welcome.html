@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="./welcome.css">
     <link rel="stylesheet" href="./misc/sheet.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>First time setup</title>
+    <title>First time setup - Nautilus</title>
 </head>
 <body>
     <img id="img" src="../../img/setup-background.jpg">
@@ -45,18 +45,18 @@
     <script type="text/javascript" src="../buttons.js"></script>
     <script>
         if(process.platform === "darwin") {
-    const customTitlebar = require('custom-electron-titlebar');
-    new customTitlebar.Titlebar({
-        backgroundColor: customTitlebar.Color.fromHex('#444'),
-        titleWindowAlignment: 'center',
-        drag: true,
-        maximizable: false,
-        minimizable: true,
-        closeable: true,
-        icon: '.img/icons/icon.icns',
-        overflow: 'hidden',
-    });
-}
+            const customTitlebar = require('custom-electron-titlebar');
+            new customTitlebar.Titlebar({
+                backgroundColor: customTitlebar.Color.fromHex('#444'),
+                titleWindowAlignment: 'center',
+                drag: true,
+                maximizable: false,
+                minimizable: true,
+                closeable: true,
+                icon: '../img/icons/icon.icns',
+                overflow: 'hidden',
+            });
+        }
     </script>
 </body>
 </html>
