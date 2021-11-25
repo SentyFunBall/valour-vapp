@@ -374,13 +374,13 @@
 
         //keybinds
         document.onkeyup = function(e) {
-            if (e.ctrlKey && e.which == 83) {
+            if (e.ctrlKey && e.which == 83) { // Ctrl+S
                 save();
-            } else if (e.ctrlKey && e.which == 76) {
+            } else if (e.ctrlKey && e.which == 79) { //CTRL + O
                 loadfiles();
-            } else if (e.ctrlKey && e.which == 78) {
+            } else if (e.ctrlKey && e.which == 78) { //CTRL + N
                 createVar();
-            } else if (e.ctrlKey && e.which == 69) { //nice
+            } else if (e.ctrlKey && e.which == 69) { //CTRL + E
                 exportProject();
             }
         };
@@ -401,9 +401,9 @@
             <p>New Var</p>
         </button>
     <div id="holder">
-        <pre id="code">// Your code will show up here.</pre>
+        <pre id="code">//Your code will show up here.</pre>
         <pre id="console">This is the console.</pre>
-        <pre id="textarea" contenteditable="true">input here</pre>
+        <pre id="textarea" contenteditable="true">This is the input box.</pre>
     </div>
     
     <script src="https://cdnjs.cloudflare.com/ajax/libs/microsoft-signalr/3.1.7/signalr.min.js"></script>

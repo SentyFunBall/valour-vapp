@@ -71,10 +71,29 @@ const loadfiles = () => {
         const xml = fs.readFileSync(response.filePaths[0]).toString();
         if (xml.startsWith("<xml") && xml.endsWith("</xml>")){            
             Blockly.Xml.appendDomToWorkspace(Blockly.Xml.textToDom(xml), workspace)
+            var fullPath = response.filePaths[0].toString();
+            var startIndex = (fullPath.indexOf('\\') >= 0 ? fullPath.lastIndexOf('\\') : fullPath.lastIndexOf('/'));
+            var filename = fullPath.substring(startIndex);
+            if (filename.indexOf('\\') === 0 || filename.indexOf('/') === 0) {
+                filename = filename.substring(1);
+            }
+            document.title = filename;
         } else {
             // if file couldn't be loaded
+            console.log("file not loaded");
+            const options = {
+                type: 'error',
+                buttons: ['Ok'],
+                defaultId: 2,
+                title: 'Error',
+                message: 'WHoops!',
+                detail: 'oh uh there was some kind of error. idk maybe the file is corrupted',
+            }
+        
+            dialog.showMessageBox(null, options).then ( (data) => {
+                //uhhh
+            })
         }
-
 
         } else {
         // if no file were selected

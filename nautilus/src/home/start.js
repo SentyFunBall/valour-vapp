@@ -9,16 +9,19 @@ if (require('electron-squirrel-startup')) {
   app.quit();
 }
 
-if (json['1']['setup'] != true) {
-  page = '/pages/welcome.html';
-} else {
-  page = '/index.html';
-}
-
 //Function to create a browser window
 const createWindow = () => {
   // Create the browser window.
   var mainWindow
+
+  //check if setup is already completed
+  if (json['1']['setup'] != true) {
+    page = '/pages/welcome.html';
+  } else {
+    page = '/index.html';
+  }
+
+  //create window settings based on platform (linux coming Soon™)
   if(process.platform === 'darwin') {
     mainWindow = new BrowserWindow({
       width: 1600, //Window width
@@ -47,9 +50,8 @@ const createWindow = () => {
 
   
   console.log("Creating window")
-  //Set the window to be start.html
+  //Set the window to be index or welcome, depending on setup bool
   mainWindow.loadFile(path.join(__dirname, page));
-  //mainWindow.removeMenu();
 
   var appRoot = path.join(__dirname, '../..');  
   require('electron-compile').init(appRoot, require.resolve('./start'));

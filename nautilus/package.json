@@ -1,7 +1,7 @@
 {
   "name": "nautilus",
   "productName": "Nautilus",
-  "version": "0.7.3",
+  "version": "0.7.5",
   "description": "Bots for Valour.",
   "main": "./src/home/start.js",
   "scripts": {
