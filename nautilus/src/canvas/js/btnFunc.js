@@ -58,8 +58,15 @@ const save = () =>{
             // and that is the format we need
             const xml_text = Blockly.Xml.domToPrettyText(Blockly.Xml.workspaceToDom(workspace));
             fs.writeFile(file.filePath.toString(),
-                          xml_text, function (err) { if (err) throw err});
-          }
+                xml_text, function (err) { if (err) throw err});
+            }
+            var fullPath = file.filePath.toString();
+                var startIndex = (fullPath.indexOf('\\') >= 0 ? fullPath.lastIndexOf('\\') : fullPath.lastIndexOf('/'));
+                var filename = fullPath.substring(startIndex);
+                if (filename.indexOf('\\') === 0 || filename.indexOf('/') === 0) {
+                    filename = filename.substring(1);
+                }
+                document.title = filename + ' - Nautilus';
     }).catch(err => {
         // if error
     });
@@ -68,32 +75,37 @@ const save = () =>{
 const loadfiles = () => {
     dialog.showOpenDialog({properties: ['openFile'] }).then(function (response) {
         if (!response.canceled) {
-        const xml = fs.readFileSync(response.filePaths[0]).toString();
-        if (xml.startsWith("<xml") && xml.endsWith("</xml>")){            
-            Blockly.Xml.appendDomToWorkspace(Blockly.Xml.textToDom(xml), workspace)
-            var fullPath = response.filePaths[0].toString();
-            var startIndex = (fullPath.indexOf('\\') >= 0 ? fullPath.lastIndexOf('\\') : fullPath.lastIndexOf('/'));
-            var filename = fullPath.substring(startIndex);
-            if (filename.indexOf('\\') === 0 || filename.indexOf('/') === 0) {
-                filename = filename.substring(1);
+            //get the file wooo
+            const xml = fs.readFileSync(response.filePaths[0]).toString();
+            //check if xml is valid
+            if (xml.startsWith("<xml") && xml.endsWith("</xml>")){          
+                //if valid, load it  
+                Blockly.Xml.appendDomToWorkspace(Blockly.Xml.textToDom(xml), workspace)
+
+                //set the title of the window to the name of the file (i dont fuckin know why its this complex)
+                var fullPath = response.filePaths[0].toString();
+                var startIndex = (fullPath.indexOf('\\') >= 0 ? fullPath.lastIndexOf('\\') : fullPath.lastIndexOf('/'));
+                var filename = fullPath.substring(startIndex);
+                if (filename.indexOf('\\') === 0 || filename.indexOf('/') === 0) {
+                    filename = filename.substring(1);
+                }
+                document.title = filename + ' - Nautilus';;
+            } else {
+                // if file couldn't be loaded
+                console.log("file not loaded");
+                const options = {
+                    type: 'error',
+                    buttons: ['Ok'],
+                    defaultId: 2,
+                    title: 'Error',
+                    message: 'WHoops!',
+                    detail: 'oh uh there was some kind of error. idk maybe the file is corrupted',
+                }
+            
+                dialog.showMessageBox(null, options).then ( (data) => {
+                    //uhhh
+                })
             }
-            document.title = filename;
-        } else {
-            // if file couldn't be loaded
-            console.log("file not loaded");
-            const options = {
-                type: 'error',
-                buttons: ['Ok'],
-                defaultId: 2,
-                title: 'Error',
-                message: 'WHoops!',
-                detail: 'oh uh there was some kind of error. idk maybe the file is corrupted',
-            }
-        
-            dialog.showMessageBox(null, options).then ( (data) => {
-                //uhhh
-            })
-        }
 
         } else {
         // if no file were selected
