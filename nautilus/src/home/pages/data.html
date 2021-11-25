@@ -1,4 +1,51 @@
 <!DOCTYPE html>
+<style>
+  body {
+    font-family: sans-serif;
+    color: #fff;
+    background-color: #030227;
+    text-align: left;
+    font-size: 14px;
+  }
+  
+  #close {
+    color: white;
+    opacity: 0.7;
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 12px;
+    text-decoration: none;
+  }
+  button{
+  /* button */
+  position: absolute; 
+  top: 25px;
+  left: 6%;  
+  width:100px;
+  height:35px;
+  background-color: rgba(50, 50, 50, 0.5);
+  border:1px black;
+  border-radius: 10px;
+}
+button > *{
+  /* to <a> and <p> tags */
+  
+  position: relative; 
+  color:rgb(63, 155, 197);
+  text-decoration: bold;
+  font-size: 14pt;
+  top: -9px;
+}
+button > *:hover{
+  color:rgb(43, 104, 133);
+}
+button:hover{
+  background-color: rgba(75, 75, 75, 0.5);
+  color:rgb(43, 104, 133);
+}
+</style>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -9,6 +56,7 @@
     <title>Data</title>
 </head>
 <body>
+    
     <h1>Review all stored data from Nautilus</h1>
     <h3>Email:</h3>
     <p style="font-size: 28px;" id="emailVisual"></p>
@@ -18,9 +66,9 @@
     <p style="font-size: 28px;" id="infoVis"></p>
     <script type="text/javascript" src="./misc/data.js"></script>
     <a href="../index.html">
-        <button type="button" style="width:75px;height:25px;background-color: rgb(65, 108, 236);border:1px black; position:absolute;left:30;top:30px">
-          <p style="color:cornsilk; position: relative; top:0px; text-decoration: none;position: relative; top: -8px;">Home</p>
-        </button>
-      </a>
+      <button type="button" style="top:40px" onclick="home()">
+        <p>Home</p>
+      </button>
+    </a>
 </body>
 </html>
