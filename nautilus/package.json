@@ -35,7 +35,10 @@
           "name": "@electron-forge/maker-zip",
           "platforms": [
             "darwin"
-          ]
+          ],
+          "config": {
+            "icon": "./src/img/icons/icon.icns"
+          }
         },
         {
           "name": "@electron-forge/maker-deb",
