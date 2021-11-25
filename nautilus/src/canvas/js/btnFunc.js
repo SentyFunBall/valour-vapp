@@ -66,7 +66,11 @@ const save = () =>{
                 if (filename.indexOf('\\') === 0 || filename.indexOf('/') === 0) {
                     filename = filename.substring(1);
                 }
-                document.title = filename + ' - Nautilus';
+                if(process.platform === 'win32' || 'deb')  {
+                    document.title = filename + ' - Nautilus';
+                } else {
+                    //cant call any functions from custom-electron-titlebar, so mac cant update title
+                }
     }).catch(err => {
         // if error
     });
@@ -89,7 +93,11 @@ const loadfiles = () => {
                 if (filename.indexOf('\\') === 0 || filename.indexOf('/') === 0) {
                     filename = filename.substring(1);
                 }
-                document.title = filename + ' - Nautilus';;
+                if(process.platform === 'win32' || 'deb')  {
+                    document.title = filename + ' - Nautilus';
+                } else {
+                    //cant call any functions from custom-electron-titlebar, so mac cant update title
+                }
             } else {
                 // if file couldn't be loaded
                 console.log("file not loaded");
