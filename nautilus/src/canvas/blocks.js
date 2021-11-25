@@ -193,44 +193,6 @@ this.setTooltip("");
 this.setHelpUrl("");
 }
 };
-
-Blockly.Blocks['try_catch'] = {
-init: function() {
-    this.appendDummyInput()
-        .appendField("try doing");
-    this.appendStatementInput("try")
-        .setCheck(null)
-        .appendField("this:");
-    this.appendDummyInput()
-        .appendField("in case of error:");
-    this.appendValueInput("var")
-        .setCheck(null)
-        .setAlign(Blockly.ALIGN_CENTRE)
-        .appendField("set");
-    this.appendDummyInput()
-        .appendField("to error and");
-    this.appendStatementInput("catch")
-        .setCheck(null)
-        .appendField("do this:");
-    this.setPreviousStatement(true, null);
-    this.setNextStatement(true, null);
-    this.setColour(230);
-this.setTooltip("it does the first block, in case of an error, gets the error value do the next block");
-this.setHelpUrl("https://www.w3schools.com/js/js_errors.asp");
-}
-};
-Blockly.Blocks['throw'] = {
-init: function() {
-    this.appendValueInput("name")
-        .setCheck(null)
-        .appendField("error text:");
-    this.setPreviousStatement(true, null);
-    this.setNextStatement(true, null);
-    this.setColour(230);
-this.setTooltip("makes a custom error");
-this.setHelpUrl("https://www.w3schools.com/js/js_errors.asp");
-}
-};
 Blockly.Blocks['console_print'] = {
 init: function() {
     this.appendValueInput("to_print")
@@ -263,7 +225,7 @@ init: function() {
     this.setNextStatement(true, null);
     this.setColour(260);
 this.setTooltip("runs a string as code");
-this.setHelpUrl("");
+this.setHelpUrl("https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/eval");
 }
 };
 Blockly.Blocks['input'] = {
@@ -272,8 +234,8 @@ init: function() {
         .appendField("input");
     this.setOutput(true, null);
     this.setColour(160);
-this.setTooltip("gets the input");
-this.setHelpUrl("");
+this.setTooltip("Gets the most recent user input");
+this.setHelpUrl("https://sentyfunball.github.io/valour-vapp/wiki.html#:~:text=input%3A%20Get%20the%20most%20recent%20input%20from%20the%20mini%20console.");
 }
 };
 Blockly.Blocks['cast'] = {
@@ -299,7 +261,7 @@ init: function() {
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
     this.setColour(65);
-this.setTooltip("start the timer");
+this.setTooltip("start the timer. Must provide variable");
 this.setHelpUrl("");
 }
 };
@@ -311,7 +273,7 @@ init: function() {
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
     this.setColour(65);
-this.setTooltip("end the timer");
+this.setTooltip("end the timer. Must provide variable");
 this.setHelpUrl("");
 }
 };
@@ -323,7 +285,7 @@ init: function() {
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
     this.setColour(65);
-this.setTooltip("wait the time in milliseconds");
+this.setTooltip("Wait the time in milliseconds.");
 this.setHelpUrl("");
 }
 };
@@ -337,8 +299,8 @@ init: function() {
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
     this.setColour(65);
-this.setTooltip("the program stops until the condition inside the loop is true");
-this.setHelpUrl("");
+this.setTooltip("while() loop. Runs the code inside as long as the condition is true. while(true) freezes the program.");
+this.setHelpUrl("https://www.w3schools.com/js/js_loop_while.asp");
 }
 };
 Blockly.Blocks['startbot'] = {
@@ -357,29 +319,9 @@ Blockly.Blocks['startbot'] = {
       this.setPreviousStatement(true, null);
       this.setNextStatement(true, null);
       this.setColour(65);
-   this.setTooltip("");
+   this.setTooltip("Starts the bot, and listens to the given planet and channel IDs for messages");
    this.setHelpUrl("");
     }
-  };
-//CODE GENS
-Blockly.JavaScript['try_catch'] = function(block) {
-    const statements_try = Blockly.JavaScript.statementToCode(block, 'try');
-    const value_name = Blockly.JavaScript.valueToCode(block, 'var', Blockly.JavaScript.ORDER_ATOMIC);
-    const statements_catch = Blockly.JavaScript.statementToCode(block, 'catch');
-     
-    const code = 'try { \n'+ statements_try +'} catch ('+ value_name +'){\n'+ statements_catch +'} \n';
-    return code;
-};
-Blockly.JavaScript['startbot'] = function(block) {
-    var value_planet = Blockly.JavaScript.valueToCode(block, 'planet', Blockly.JavaScript.ORDER_ATOMIC);
-    var value_channel = Blockly.JavaScript.valueToCode(block, 'channel', Blockly.JavaScript.ORDER_ATOMIC);
-    // TODO: Assemble JavaScript into code variable.
-    var code = 'startBot('+value_planet+', '+value_channel+');\n';
-    return code;
-  };
-Blockly.JavaScript['token_auth'] = function(block) {
-    var code = 'getToken()';
-    return [code, Blockly.JavaScript.ORDER_NONE];
   };
 
 Blockly.Blocks['timeout'] = {
@@ -394,8 +336,8 @@ Blockly.Blocks['timeout'] = {
       this.setPreviousStatement(true, null);
       this.setNextStatement(true, null);
       this.setColour(230);
-   this.setTooltip("");
-   this.setHelpUrl("");
+   this.setTooltip("setTimeout() function. after x milliseconds, it will execute whatever is inside it.");
+   this.setHelpUrl("https://developer.mozilla.org/en-US/docs/Web/API/setTimeout");
     }
   };
   Blockly.Blocks['embed'] = {
@@ -424,7 +366,7 @@ Blockly.Blocks['timeout'] = {
       this.setPreviousStatement(true, null);
       this.setNextStatement(true, null);
       this.setColour(260);
-   this.setTooltip("Make an embed");
+   this.setTooltip("Make a Valour embed.");
    this.setHelpUrl("");
     }
   };
@@ -436,7 +378,7 @@ Blockly.Blocks['timeout'] = {
           .appendField(new Blockly.FieldVariable("token"), "token");
       this.setOutput(true, null);
       this.setColour(230);
-   this.setTooltip("requires token");
+   this.setTooltip("Returns user info, and saves it to disk. Will throw error if token is null");
    this.setHelpUrl("");
     }
   };
@@ -449,7 +391,7 @@ Blockly.Blocks['timeout'] = {
       this.setInputsInline(false);
       this.setOutput(true, null);
       this.setColour(160);
-   this.setTooltip("waits for user input, and outputs it");
+   this.setTooltip("Waits for user input, and returns it");
    this.setHelpUrl("");
     }
   };
@@ -463,8 +405,8 @@ Blockly.Blocks['timeout'] = {
       this.setPreviousStatement(true, null);
       this.setNextStatement(true, null);
       this.setColour(160);
-   this.setTooltip("creates a pop up on top of Nautilus");
-   this.setHelpUrl("");
+   this.setTooltip("Creates a pop up.");
+   this.setHelpUrl("https://www.w3schools.com/jsref/met_win_alert.asp");
     }
   };
   
@@ -476,7 +418,7 @@ Blockly.Blocks['timeout'] = {
       this.setInputsInline(false);
       this.setPreviousStatement(true, null);
       this.setColour(160);
-   this.setTooltip("throws an error. often used in try/catch statements");
+   this.setTooltip("Throws an error. Often used in funcions or try/catch statements");
    this.setHelpUrl("https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/throw");
     }
   };
@@ -496,12 +438,34 @@ Blockly.Blocks['timeout'] = {
       this.setPreviousStatement(true, null);
       this.setNextStatement(true, null);
       this.setColour(120);
-   this.setTooltip("throws an error. often used in try/catch statements");
-   this.setHelpUrl("https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/throw");
+   this.setTooltip("Tries running the code inside try. If an error is thrown, catch(error) is run. Must provide error argument.");
+   this.setHelpUrl("https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/try...catch");
     }
   };
 
 //Valour code gens
+
+Blockly.JavaScript['try_catch'] = function(block) {
+    const statements_try = Blockly.JavaScript.statementToCode(block, 'try');
+    const value_name = Blockly.JavaScript.valueToCode(block, 'var', Blockly.JavaScript.ORDER_ATOMIC);
+    const statements_catch = Blockly.JavaScript.statementToCode(block, 'catch');
+     
+    const code = 'try { \n'+ statements_try +'} catch ('+ value_name +'){\n'+ statements_catch +'} \n';
+    return code;
+};
+Blockly.JavaScript['startbot'] = function(block) {
+    var value_planet = Blockly.JavaScript.valueToCode(block, 'planet', Blockly.JavaScript.ORDER_ATOMIC);
+    var value_channel = Blockly.JavaScript.valueToCode(block, 'channel', Blockly.JavaScript.ORDER_ATOMIC);
+    // TODO: Assemble JavaScript into code variable.
+    var code = 'startBot('+value_planet+', '+value_channel+');\n';
+    return code;
+  };
+Blockly.JavaScript['token_auth'] = function(block) {
+    var code = 'getToken()';
+    return [code, Blockly.JavaScript.ORDER_NONE];
+  };
+
+
 Blockly.JavaScript['get_info'] = function(block) {
     var variable_token = Blockly.JavaScript.variableDB_.getName(block.getFieldValue('token'), Blockly.Variables.NAME_TYPE);
     // TODO: Assemble JavaScript into code variable.
