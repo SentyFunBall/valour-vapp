@@ -9,7 +9,7 @@ if (require('electron-squirrel-startup')) {
   app.quit();
 }
 
-if (json['1']['emailText'] == null || json['1']['emailText'] == '') {
+if (json['1']['setup'] != true) {
   page = '/pages/welcome.html';
 } else {
   page = '/index.html';
@@ -18,18 +18,32 @@ if (json['1']['emailText'] == null || json['1']['emailText'] == '') {
 //Function to create a browser window
 const createWindow = () => {
   // Create the browser window.
-  const mainWindow = new BrowserWindow({
-    width: 1600, //Window width
-    height: 800, //Window height
-    minWidth: 1000,
-    minHeight: 700,
-    titleBarStyle: 'hidden',
-    frame: false,
-    webPreferences: { //Preferences
-      nodeIntegration: true,
-      enableRemoteModule: true,
-    },
-  });
+  var mainWindow
+  if(process.platform === 'darwin') {
+    mainWindow = new BrowserWindow({
+      width: 1600, //Window width
+      height: 800, //Window height
+      minWidth: 1000,
+      minHeight: 700,
+      titleBarStyle: 'hidden',
+      frame: false,
+      webPreferences: { //Preferences
+        nodeIntegration: true,
+        enableRemoteModule: true,
+      },
+    });
+  } else {
+    mainWindow = new BrowserWindow({
+      width: 1600, //Window width
+      height: 900, //Window height
+      minWidth: 1000,
+      minHeight: 800,
+      webPreferences: { //Preferences
+        nodeIntegration: true,
+        enableRemoteModule: true,
+      },
+    });
+  }
 
   
   console.log("Creating window")

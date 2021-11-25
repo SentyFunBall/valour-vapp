@@ -20,9 +20,11 @@ confirm.addEventListener("click",function() {
         passText: null,
         token: null,
         info: null,
+        setup: false,
     };
     settings['1']['emailText'] = emailText;
     settings['1']['passText'] = passText;
+    settings['1']['setup'] = true;
     fs.writeFile(__dirname + '/misc/settings.json', JSON.stringify(settings), (err) => {
         if (err) {
             console.log('Couldnt save settings!');
@@ -39,11 +41,12 @@ delButton.addEventListener("click",function() {
     settings['1'].passText = null;
     settings['1'].token = null;
     settings['1'].info = null;
+    settings['1'].setup = false;
     fs.writeFile(__dirname + '/misc/settings.json', JSON.stringify(settings), (err) => {
         if (err) {
             console.log('Couldnt save settings!');
         }
-    });
+    })
     errText.innerHTML = "All data erased."
     setTimeout(function() {
         errText.innerHTML = '';

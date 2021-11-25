@@ -55,6 +55,15 @@ function openLogin() {
     document.getElementById("ques1").style.display = "none"
 }
 function no() {
-    window.location.href="../index.html"
-}
+    const fs = require('fs');
+    var settings = JSON.parse(fs.readFileSync(__dirname + "/misc/settings.json", 'utf8'));
+    settings['1']['setup'] = true;
 
+    fs.writeFile(__dirname + '/misc/settings.json', JSON.stringify(settings), (err) => {
+        if (err) {
+            console.log('Couldnt save settings!');
+        } else {
+            window.location.assign('../index.html')
+        }
+    });
+}
