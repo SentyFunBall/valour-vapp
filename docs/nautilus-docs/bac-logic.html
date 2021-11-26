@@ -22,11 +22,9 @@
 
         <div class="page" style="width: 1000px;">
             <h1>Basics of Coding - Logic</h1>
-            <h2>Logic</h2>
-            <p>
-                <strong>Logic</strong> is the process of deciding what to do based on the information you have.
-            </p>
-            <h3>What is logic?</h3>
+            <h2 id="intro">Logic</h2>
+            <p><strong>Logic</strong> is the process of deciding what to do based on the information you have.</p>
+            <h3 id="what-is-logic">What is logic?</h3>
             <p>Boolean logic, shortened to just "logic" here, are stored as either On or Off in memory. True or False. 0 or 1.</p>
             <p>Computers can decide weather or not to do something based on if the logic is true or false. For example, if your age is less than 10, you get the ice cream for free. Otherwise, the ice cream costs $10.</p>
             <p>There are several operators when dealing with logic: AND, OR and NOT. These can be used to combine logic statements to allow for more conditionality.</p>
@@ -35,13 +33,46 @@
             <p>Less than is true if A is less than B (10 is less than 15). If A is not less than B, the statement will be false (15 is less than 10)</p>
             <p>Greater than is true if A is greater than B (15 is greater than 10). If A is not greater than B, the statement will be false (10 is greater than 15)</p>
             <p>Equal to is true if A is equal to B (10 is equal to 10). If A is not equal to B, the statement will be false (10 is equal to 15)</p>
-            <h2>Logic in Nautilus</h2>
+            <h2 id="logic-in-nautilus">Logic in Nautilus</h2>
             <p>In Nautilus, all of the explained logic conditions exist. There is a single block for comparing two things.</p>
             <img src="https://cdn.discordapp.com/attachments/755145139139379351/913532547034673242/unknown.png">
-            <p>The <code>=</code> block can be configured for less than, greater than and NOT equal as well.</p>
-            
-                
-
+            <p>The "=" block can be configured for less than, greater than and NOT equal as well.</p>
+            <p>The "AND" block can be configured for AND and OR.</p>
+            <p>The NOT block inverts whatever its input is. True input means false output, and vise versa.</p>
+            <h3>Ok cool, but how do I use these in my code?</h3>
+            <p>To actually use logic in Nautilus, we use the <code>if</code> block. The if block tests whatever condition is connected to it, and if that condition is true, then whatever is inside the block is run.</p>
+            <p>For example, if you wanted to check if your age is less than 10, then you would use the following code:</p>
+            <img src="https://cdn.discordapp.com/attachments/755145139139379351/913590617328721991/unknown.png">
+            <p>The above code will print "The ice cream is free!" if your age is less than 10. If your age is greater than 10, then the code will not run, and nothing will happen.</p>
+            <p>The <code>if</code> block can also be used to check if your age is greater than 10, and if it is, then the code will run. If your age is less than 10, then the code will not run.</p>
+            <p>To do this, just change the sign to be > instead of <, as it "opens" to the larger number</p>
+            <p>You can also check if something is equal to something else with this code:</p>
+            <img src="https://cdn.discordapp.com/attachments/755145139139379351/913590918492340254/unknown.png">
+            <p>The above code will print "The ice cream is $5" if your age is equal to 10. If your age is not equal to 10, then the code will not run, and nothing will happen.</p>
+            <p>The equal sign with a slash through it means NOT equal to. So if your age was anything other than 10, it would print "The ice cream is $5"</p>
+            <h3 id="else-if-else">if else if else</h3>
+            <p>There is more to the logic story than that though. We can configure the if block to have multiple conditions, and do different things depending on which condition is true.</p>
+            <p>We can complete our ice cream story with this. We want it so if our age is less than 10, the ice cream is free. If our age is between 10 and 18, it costs $5, and any other age it costs $10.</p>
+            <p>This is a multi-step process, so lets go through and explain how else if statements work.</p>
+            <br>
+            <p id="else">The else statement</p>
+            <p>The else statement is used to run code if none of the conditions are true. This is useful for when you want to run code if none of the conditions are true.</p>
+            <p>Example: our code checks if age is less than 10. If age is 15, then the if statement would be false. With an else statement added on, the code inside the else would run if none of the conditions in the if statement are true.</p>
+            <br>
+            <p id="else-if">The else if statement</p>
+            <p>The else if statement is used to extend conditionality of the if statement. It acts like a chain: If the first if statement returns false, the second if statement, called the else if, is checked. If that is true, the code inside it is run, otherwise it runs to the next link in the chain.</p>
+            <p>Example: our code checks if age is less than 10. If age is 15, then the if statement would be false. With an else if statement added on, we can check if the age is something other than less than 10. We can check for if age is between 10 and 18 with this.</p>
+            <br>
+            <p>Now, lets finish our ice cream storyline. We want to check several things. If the age is less than 10, the ice cream should be free. If the age is between 10 and 18, it should cost $5, and for all other ages it should cost $10.</p>  
+            <p>The code to do this would look like this:</p>
+            <img src="https://cdn.discordapp.com/attachments/755145139139379351/913594558238031922/unknown.png">
+            <p>This looks a bit chonky, doesn't it? That's because of how much it's doing. First, we check if the age is less than 10. If it is less than 10, then the statement evaluates as true, and it says "The ice cream is free!" and skips everything else inside the if block.</p>
+            <p>If the age is greater than 10, the first statement is false, so we move on to the next link, the else if statement. This one checks if the age is greater than or equal to 10 <strong>AND</strong> if the age is less than or equal to 18. If the age is between 10 and 18, it evaluates as true and runs the code inside it.</p>
+            <p>Finally, if neither of those statements evaluate as true, we move on to the else statement. This will only run if the age is above 18.</p>
+            <br>
+            <p>Well, thanks for reading all of this. Let's move on to the next section: variables and their magic.</p>
+            <button class="button" id="download" onclick="window.location.href='./bac-intro.html'">Previous</button>
+            <button class="button" id="download" onclick="window.location.href='./bac-vars.html'">Next</button>
         </div>
     </main>
     <script src="./hfg.js"></script>

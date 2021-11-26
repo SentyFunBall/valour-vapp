@@ -21,7 +21,33 @@
         </div> 
 
         <div class="page" style="width: 1000px;">
-            
+            <h1>Basics of Coding - Loops</h1>
+            <h2 id="intro">What is a loop?</h2>
+            <p>A loop is a way to repeat a block of code until a condition is met</p>
+            <p>For example, if you want to print out the numbers 1 through 10, you can do this:</p>
+            <img src="https://cdn.discordapp.com/attachments/755145139139379351/913612495883755520/unknown.png">
+            <p>To do this, we use the <code>count with</code> block. It acts just like a for loop in any other language.</p>
+            <h2 id="for">For loops</h2>
+            <p>The <code>count with</code> block has four parameters: which variable to count with, set to i (iteration) by default, the number to start with, the number to end with, and how much to change the variable each iteration.</p>
+            <p>These can all be changed, and set to other variables to make really dynamic and fun loops. There is also a much more simple version of this that just repeats the code block x times.</p>
+            <h2 id="while">While loops</h2>
+            <p>The <code>while</code> block has one parameter, the condition to check. It will repeat the code block until the condition is met.</p>
+            <p>While loops can be deadly. a <code>while(true)</code> loop is one that will <strong>never stop.</strong></p>
+            <p>An example of a good while loop follows as this:</p>
+            <img src="https://cdn.discordapp.com/attachments/755145139139379351/913621597703770122/unknown.png">
+            <p>This code is just a manual for loop. While i is less than 5, we print i to the console and then increase i by 1. At which point the while condition is evaluated again and ran, until i has been increased 5 times.</p>
+            <h2 id="foreach">for each loops</h2>
+            <p>The <code>for each</code> block has one parameter, the variable to iterate through. It will repeat the code block for each item in the list.</p>
+            <p>For example, if you wanted to print out all the numbers in the "numbers" list you can do this:</p>
+            <img src="https://cdn.discordapp.com/attachments/755145139139379351/913623024320806932/unknown.png">
+            <p>This code does 2 things: creates a list called <code>numbers</code>, and gives it 10 items, the numbers 1-10. It then uses a <code>for each item in list</code> loop, also called a for each loop, to go through each item in a list, using the iterator i, and prints out whatever item is in the list at position i. This lets it print all 10 items in the list.</p>
+            <h2 id="lists">Lists</h2>
+            <p>Lists are a way to store multiple items in one variable. Lists are created in Nautilus by using the <code>create list with</code> block. It can be configured to store as many items as you want.</p>
+            <p>Lists can store any type of data, and can be used in many different ways. For example, you can store a list of numbers, and then use the <code>for each item in list</code> loop to print out each number in the list, as shown previously. You could also store strings, other lists, or mix them all up.</p>
+            <br>
+            <p>Now that we know a little bit about loops and lists, we can continue into the final part of the Basics of Coding series: Functions!</p>
+            <button class="button" id="download" onclick="window.location.href = './bac-vars.html'">Previous</button>
+            <button class="button" id="download" onclick="window.location.href = './bac-functions.html'">Next</button>
         </div>
     </main>
     <script src="./hfg.js"></script>

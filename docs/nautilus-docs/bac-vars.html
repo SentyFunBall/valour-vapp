@@ -21,7 +21,53 @@
         </div> 
 
         <div class="page" style="width: 1000px;">
-            
+            <h1>Basics of Coding - Variables</h1>
+            <p id="intro">Variables are used to store data. They are used to store data in a way that can be used later.</p>
+            <p>Variables are declared with the <code>var</code> keyword, or in Nautilus, by clicking the "New Var" button on the right hand side.</p>
+            <img src="https://cdn.discordapp.com/attachments/755145139139379351/913597101437485076/unknown.png">
+            <p>Variables can be of any type, and can be of any length. They can be named anything, but they must be unique.</p>
+            <p>Variables can be assigned to values, and can be used in expressions.</p>
+            <p id="declaring-vars">Variables can be declared in the following ways:</p>
+            <img src="https://cdn.discordapp.com/attachments/755145139139379351/913597732709625946/unknown.png">
+            <p>Once creating a variable, you want to define it using the <code>set var to</code> block. They can be anything, not just words or numbers, but that is the most common use cases for them.</p>
+            <p>Variables can be used in expressions, and can be used in the following ways:</p>
+            <img src="https://cdn.discordapp.com/attachments/755145139139379351/913598848969101362/unknown.png">
+            <p>This is a great way to expand upon our ice cream experiment from last time. We can define what the age is with the <code>set age to</code> block. It is set to 12 in this example, which means it will ouput "The ice cream is $5". You can change age to whatever you want and see how it reacts.</p>
+            <h2 id="user-input">User input</h2>
+            <p>What fun is coding if you can't talk to it? Nautilus has great ways to talk to your code, using the <a href="b-console_code.html#input">input box</a>, located on the lower right part of your window.</p>
+            <p>You can use the input box to ask the user for input, and then use that input in your code.</p>
+            <p>For example, if you want to ask the user for their age, you can use the <code>input</code> block to ask for their age. You can then use the <code>set age to</code> block to set the age variable to the user's age.</p>
+            <p>Of which that code would look like so:</p>
+            <img src="https://cdn.discordapp.com/attachments/755145139139379351/913601129768706078/unknown.png">
+            <p>This code asks the user for their age, then waits 5 seconds. We need to wait 5 seconds so the user actually has time to input something. After the 5 seconds are up, it sets the userAge variable to the input, which is whatever the user said their age is.</p>
+            <p>You can use the <code>input</code> block to ask the user for their name, and then use the <code>set name to</code> block to set the name variable to the user's name.</p>
+            <p>Of which that code would look like so:</p>
+            <img src="https://cdn.discordapp.com/attachments/755145139139379351/913601922504728576/unknown.png">
+            <p>We can see the 2 code snippets look very similar. Nautilus converts all inputs to strings, or words, to use in the code. You can use the <code>set to number</code> block to cast the age to a number, so you can do math with it.</p>
+            <h2 id="data-types">Data types</h2>
+            <h3>Wait, I got the age, but I can't just do math without extra steps? What?</h3>
+            <p>Ah, you discovered data types. There are multiple types of data, that serve different purposes. Today, let's look at the 2 of the big ones: ints and strings. We already covered Booleans in the last part.</p>
+            <p>Ints are numbers, and are used to store numbers. They are used to store whole numbers, and can be used in math. They can also be used in expressions.</p>
+            <p>Strings are words, and are used to store words. They are used to store words, and can be used in expressions.</p>
+            <p>One key difference between an int and string, is that you can do math with an int. You CANNOT do math on a string. Try to add "apple" and "6" together. Doesn't work.</p>
+            <!--<p>But you can do math with a string. You CAN do math with a string. Try to add "apple" and "6" together. Works!</p>
+            Not even joking, this is what github copilot suggested for the next line. Fuck you copilot-->
+            <h3>So how do I do math on the user input?</h3>
+            <p>We already explained it, but here it is again. You use the <code>set as number</code> block. This will take its input, and turn it into a number. There is also an option to turn its input into a string.</p>
+            <p>For example, if you want to add the user's age to the number 6, you would use the following code:</p>
+            <img src="https://cdn.discordapp.com/attachments/755145139139379351/913607406787911690/unknown.png">
+            <p>It doesn't have to be this complicated, but this is to explain it. First, we get the user's age, as before. We set the <code>ageAsInt</code> variable to the user's age made as an int. Next, we add 6 to this new variable, and store it in a new one called <code>newAge</code>.</p>
+            <p>Finally, we print the newAge to the console, which will say the user's age + 6.</p>
+            <p>One thing to note: the console doesn't care if you tell it to print a string or number, or even mix both! Nautilus will convert ints to strings automatically.</p>
+            <h2 id="merge-strings">Merging strings</h2>
+            <p>Strings can be merged together. This is done with the <code>create text with</code> block, in "text". For example, if you wanted to say "Hello" and "World", you would use the following code:</p>
+            <img src="https://cdn.discordapp.com/attachments/755145139139379351/913609698643705876/unknown.png">
+            <p>However, there is a minor issue. This code prints 'HelloWorld'. That's not what we want. We need to add a space. So adding a space to the end of 'Hello' lets us print "Hello World".</p>
+            <p>You can also add two variables together, as long as they are the same data type.</p>
+            <br>
+            <p>Now that we know about variables, let's move on to the next section: loops!</p>
+            <button class="button" id="download"onclick="window.location.href='./bac-logic.html'">Previous</button>
+            <button class="button" id="download"onclick="window.location.href='./bac-loops.html'">Next</button>
         </div>
     </main>
     <script src="./hfg.js"></script>
