@@ -1,7 +1,10 @@
 # Valour VAPP
 
-Valour VAPP: The community built block coding language for Valour. https://discord.gg/BZmH2tu9gB  
-traduzido para pt-br, olhe [aqui](README_PT.md)
+Valour VAPP: The community built block coding language for Valour. https://discord.gg/BZmH2tu9gB
+
+# Notice:
+Valour VAPP, Nautilus and VAPP are currently in a development hold while we wait for Valour to reach a more user friendly, active state.
+We may add Discord.JS support later in the year, join our [our discord](https://discord.gg/BZmH2tu9gB) for updates on Valour Vapp.
 
 Valour is an open-source, modern chat client which focuses on privacy and security while implementing features that bring it beyond the norm.
 https://github.com/SpikeViper/Valour
