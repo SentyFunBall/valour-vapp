@@ -16,7 +16,7 @@ namespace NautilusInstaller
     public partial class MainWindow : Window
     {
         string pathWin32 = @"C:\Program Files (x86)\Nautilus";
-        Uri uri = new Uri("https://github.com/SentyFunBall/vapp-test/releases/download/v0.7.3b1/nautWin32.zip");
+        Uri uri = new Uri("https://github.com/SentyFunBall/vapp-test/releases/download/0.7.6/Nautilus-win32-x64.zip");
         public MainWindow()
         {
             InitializeComponent();
@@ -97,6 +97,8 @@ namespace NautilusInstaller
                     status.Content = "Finshed";
                     Process.Start("explorer.exe", pathWin32);
                 }
+
+                Process.GetCurrentProcess().Kill();
             }), DispatcherPriority.Normal);
         }
 
@@ -112,6 +114,7 @@ namespace NautilusInstaller
                     string desktopPath = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
                     System.IO.File.Delete(Path.Combine(desktopPath, "Nautilus.lnk"));
                     status.Content = "Nautilus Deleted";
+                    Process.GetCurrentProcess().Kill();
                 }
                 else
                 {

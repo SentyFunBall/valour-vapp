@@ -1,0 +1,9 @@
+{
+  "runtimeOptions": {
+    "additionalProbingPaths": [
+      "C:\\Users\\senty_dml71xc\\.dotnet\\store\\|arch|\\|tfm|",
+      "C:\\Users\\senty_dml71xc\\.nuget\\packages",
+      "D:\\VSSHARED\\NuGetPackages"
+    ]
+  }
+}
