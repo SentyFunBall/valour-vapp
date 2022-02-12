@@ -54,3 +54,28 @@ delButton.addEventListener("click",function() {
 })
 
 document.getElementById("platform").innerHTML = process.platform;
+
+function getRecents() {
+    //get the raw recent files data
+    let recents = settings['1'].recents;
+    //put the data into an array
+    let recentFiles = [];
+    for(let i = 0; i < recents.length; i++) {
+        recentFiles.push(recents[i]);
+    }
+    //sort the array by date
+    recentFiles.sort(function(a, b) {
+        return b.date - a.date;
+    });
+    //create a div for each file
+    let recentDiv = document.getElementById("recent");
+    for(let i = 0; i < recentFiles.length; i++) {
+        let div = document.createElement("div");
+        div.className = "recentFile";
+        div.innerHTML = recentFiles[i].name;
+        div.addEventListener("click", function() {
+            window.location.assign("../index.html?file="+recentFiles[i].path);
+        });
+        recentDiv.appendChild(div);
+    }
+}
