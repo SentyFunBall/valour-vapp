@@ -4,6 +4,7 @@ const fs = require('fs');
 const dialog = electron.remote.dialog;
 const prompt = require('electron-prompt');
 const { fork } = require('child_process');
+const json = JSON.parse(fs.readFileSync(__dirname + "../../home/pages/misc/settings.json", "utf-8"));
 
 const home = () =>{
     //opens an info box, and depending on user action, goes home.
@@ -38,7 +39,7 @@ const run = () => {
             document.getElementById("console").innerHTML += ('<div class="console-text">' + message + '</div>');
         });*/
 
-        eval(Blockly.JavaScript.workspaceToCode(workspace));
+        eval(Blockly.JavaScript.workspaceToCode(workspace)); //i love how unsafe this is
     } catch (e) {
         console_print(e);
     }
@@ -67,20 +68,34 @@ const save = () =>{
             // this is ultra big pog brain moment, the workspace is going to dom, that goes to text(xml)
             // and that is the format we need
             const xml_text = Blockly.Xml.domToPrettyText(Blockly.Xml.workspaceToDom(workspace));
-            fs.writeFile(file.filePath.toString(),
-                xml_text, function (err) { if (err) throw err});
-            }
+            fs.writeFile(file.filePath.toString(), xml_text, function (err) { if (err) throw err});
+        
             var fullPath = file.filePath.toString();
-                var startIndex = (fullPath.indexOf('\\') >= 0 ? fullPath.lastIndexOf('\\') : fullPath.lastIndexOf('/'));
-                var filename = fullPath.substring(startIndex);
-                if (filename.indexOf('\\') === 0 || filename.indexOf('/') === 0) {
-                    filename = filename.substring(1);
+            var startIndex = (fullPath.indexOf('\\') >= 0 ? fullPath.lastIndexOf('\\') : fullPath.lastIndexOf('/'));
+            var filename = fullPath.substring(startIndex);
+            if (filename.indexOf('\\') === 0 || filename.indexOf('/') === 0) {
+                filename = filename.substring(1);
+            }
+            if(process.platform === 'win32' || 'deb')  {
+                document.title = filename + ' - Nautilus';
+            } else {
+                //cant call any functions from custom-electron-titlebar, so mac cant update title
+            }
+            //update the settings file with the name of the file
+
+            var keys = Object.keys(json["1"]["recents"]);
+            let keysLen = keys.length + 1
+            if (keysLen == 6) {keysLen = 1}
+            console.log(keysLen);
+            json["1"]["recents"][keysLen.toString()].filename = filename;
+            json["1"]["recents"][keysLen.toString()].path = file.filePath.toString();
+            console.log(json["1"]["recents"]);
+            fs.writeFile(__dirname + "../../home/pages/misc/settings.json", JSON.stringify(json), (err) => {
+                if (err) {
+                    console.log('Couldnt save settings!');
                 }
-                if(process.platform === 'win32' || 'deb')  {
-                    document.title = filename + ' - Nautilus';
-                } else {
-                    //cant call any functions from custom-electron-titlebar, so mac cant update title
-                }
+            })
+        }
     }).catch(err => {
         // if error
     });
