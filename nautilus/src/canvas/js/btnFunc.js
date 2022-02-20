@@ -83,18 +83,29 @@ const save = () =>{
             }
             //update the settings file with the name of the file
 
-            var keys = Object.keys(json["1"]["recents"]);
-            let keysLen = keys.length + 1
-            if (keysLen == 6) {keysLen = 1}
+            var keys = Object.keys(json["1"]["recents"]); //get the keys
+            let keysLen = keys.length + 1 
+            if (keysLen == 6) {keysLen = 1} //if the length is 6, reset it to 1 so that it doesnt go over the limit
             console.log(keysLen);
-            json["1"]["recents"][keysLen.toString()].filename = filename;
-            json["1"]["recents"][keysLen.toString()].path = file.filePath.toString();
-            console.log(json["1"]["recents"]);
-            fs.writeFile(__dirname + "../../home/pages/misc/settings.json", JSON.stringify(json), (err) => {
-                if (err) {
-                    console.log('Couldnt save settings!');
-                }
-            })
+            if (json["1"]["recents"][keysLen.toString()].filename == filename) { //if the file is already in the list, dont add it again, just update the list to put it on top, and lower the rest by one
+                json["1"]["recents"]["1"].filename = filename;
+                json["1"]["recents"]["1"].path = file.filePath.toString();
+                console.log(json["1"]["recents"]);
+                fs.writeFile(__dirname + "../../home/pages/misc/settings.json", JSON.stringify(json), (err) => {
+                    if (err) {
+                        console.log('Couldnt save settings!');
+                    }
+                })
+            } else {
+                json["1"]["recents"][keysLen.toString()].filename = filename;
+                json["1"]["recents"][keysLen.toString()].path = file.filePath.toString();
+                console.log(json["1"]["recents"]);
+                fs.writeFile(__dirname + "../../home/pages/misc/settings.json", JSON.stringify(json), (err) => {
+                    if (err) {
+                        console.log('Couldnt save settings!');
+                    }
+                })
+            }
         }
     }).catch(err => {
         // if error
