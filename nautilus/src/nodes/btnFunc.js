@@ -4,6 +4,7 @@ const fs = require('fs');
 const { type } = require('os');
 const dialog = electron.remote.dialog;
 const prompt = require('electron-prompt');
+const { app } = require('@electron/remote');
 class NodeBlock{
     constructor (nodeName){
         this.editor = document.getElementById("editor") //main frame
@@ -118,7 +119,7 @@ const run = () => {
 const save = () =>{
     dialog.showSaveDialog({
         title: 'Save as',
-        defaultPath: path.join(__dirname, '../workspace/'),
+        defaultPath: path.join(app.getPath('userData'), '/saves/'),
         buttonLabel: 'Save',
         filters: [
             {

@@ -2,13 +2,14 @@ body{
     /* basic css body styling */
     padding: 0;
     margin: 0;
+    font-family: sans-serif;
 }
 #blok{
     /* to use (almost) all the screen */
     position: absolute;
     left: 0;
     width: 75vw;
-    height: 100vh;
+    height: 96.7vh;
     
 }
 #holder{  

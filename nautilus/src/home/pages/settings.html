@@ -9,19 +9,64 @@
     <title>Settings</title>
 </head>
 <body>
-    <h1>Change or create bot account login info</h1>
-    <h3>Email:</h3>
-    <pre id="email" contenteditable="true"></pre>
-    <h4>Password:</h4>
-    <pre id="pass" contenteditable="true"></pre>
-    <br>
-    <button id="confirm">Save and return</button>
-    <button id="delete">Reset all data</button>
-    <br>
-    <a href="../index.html" id="back">Back</a>
-    <p style="position:relative; left:95px; top: -45px;">Platform: </p>
-    <p style="position: relative; left:165px; top: -77px;" id="platform"></p>
-    <p style="position: relative; top:-50px;" id="errText"></p>
+    <div id="container">
+        <h1>Change or create bot account login info</h1>
+        <h3>Email:</h3>
+        <pre id="email" contenteditable="true"></pre>
+        <h4>Password:</h4>
+        <pre id="pass" contenteditable="true"></pre>
+        <button type="button">
+            <a href="../index.html">
+                <p>Home</p>
+            </a>
+        </button>
+        <button type="button" onclick="" id="confirm"><p>Save and return</p></button>
+        <button type="button" onclick="" id="delete"><p>Reset all data</p></button>
+        <br>
+        <p style="position:relative; top:-100px">Platform: </p>
+        <p style="position: relative; left:70px; top: -134px;" id="platform"></p>
+        <p style="position: relative; top:-100px;" id="errText"></p>
+    </div>
     <script type="text/javascript" src="./misc/settings.js"></script>
+
+    <script>
+        if(process.platform === "darwin") {
+            const customTitlebar = require('custom-electron-titlebar');
+            new customTitlebar.Titlebar({
+                backgroundColor: customTitlebar.Color.fromHex('#1c1c1c'),
+                titleWindowAlignment: 'center',
+                drag: true,
+                maximizable: false,
+                minimizable: true,
+                closeable: true,
+                icon: '../../img/icons/icon.icns',
+                overflow: 'hidden',
+            });
+        } else if(process.platform === "linux") {
+            const customTitlebar = require('custom-electron-titlebar');
+            new customTitlebar.Titlebar({
+                backgroundColor: customTitlebar.Color.fromHex('#1c1c1c'),
+                titleWindowAlignment: 'center',
+                drag: true,
+                maximizable: true,
+                minimizable: true,
+                closeable: true,
+                icon: '../../img/icons/icon.png',
+                overflow: 'hidden',
+            })
+        } else {
+            const customTitlebar = require('custom-electron-titlebar');
+            new customTitlebar.Titlebar({
+                backgroundColor: customTitlebar.Color.fromHex('#1c1c1c'),
+                titleWindowAlignment: 'center',
+                drag: true,
+                maximizable: true,
+                minimizable: true,
+                closeable: true,
+                icon: '../../img/icons/icon.ico',
+                overflow: 'hidden',
+            })
+        }
+    </script>
 </body>
 </html>

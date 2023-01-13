@@ -1,12 +1,14 @@
 const electron = require('electron');
 const path = require('path');
 const fs = require('fs');
-const dialog = electron.remote.dialog;
+const {dialog} = require('@electron/remote')
 const prompt = require('electron-prompt');
 const { fork } = require('child_process');
-const json = JSON.parse(fs.readFileSync(__dirname + "../../home/pages/misc/settings.json", "utf-8"));
+const { app } = require('@electron/remote');
+const json = JSON.parse(fs.readFileSync(app.getPath('userData') + "/settings.json", "utf-8"));
+//const blocks = require("../blocks.js")
 
-const home = () =>{
+const home = () => {
     //opens an info box, and depending on user action, goes home.
     const options = {
         type: 'warning',
@@ -29,6 +31,7 @@ const home = () =>{
 
 const run = () => {
     // tries the code, just dont do recursion pls
+    var timer = Date.now()
     try{
         //dude how do child processes work
         /*const ls = fork(Blockly.JavaScript.workspaceToCode(workspace));
@@ -41,14 +44,29 @@ const run = () => {
 
         eval(Blockly.JavaScript.workspaceToCode(workspace)); //i love how unsafe this is
     } catch (e) {
-        console_print(e);
+        console.log("user err: "+e)
+        blocks.console_print(e);
+    }
+
+    timer = Date.now() - timer;
+    if (timer > 2000) {
+        const options = {
+            type: 'warning',
+            buttons: ['Ok'],
+            defaultId: 3,
+            title: 'Warning',
+            message: 'Your code took more than 2000ms to execute!',
+            detail: 'Consider optimizing your code.',
+        }
+    
+        dialog.showMessageBox(null, options).then ( (data) => {})
     }
 }
 
 const save = () =>{
     dialog.showSaveDialog({
         title: 'Save as',
-        defaultPath: path.join(__dirname, '../workspace/'),
+        defaultPath: path.join(app.getPath('userData'), '/saves/'),
         buttonLabel: 'Save',
         filters: [
             {
@@ -70,42 +88,41 @@ const save = () =>{
             const xml_text = Blockly.Xml.domToPrettyText(Blockly.Xml.workspaceToDom(workspace));
             fs.writeFile(file.filePath.toString(), xml_text, function (err) { if (err) throw err});
         
+            //update titlebar
             var fullPath = file.filePath.toString();
             var startIndex = (fullPath.indexOf('\\') >= 0 ? fullPath.lastIndexOf('\\') : fullPath.lastIndexOf('/'));
             var filename = fullPath.substring(startIndex);
             if (filename.indexOf('\\') === 0 || filename.indexOf('/') === 0) {
-                filename = filename.substring(1);
+                filename = filename.substring(1, filename.length - 4);
             }
-            if(process.platform === 'win32' || 'deb')  {
-                document.title = filename + ' - Nautilus';
-            } else {
-                //cant call any functions from custom-electron-titlebar, so mac cant update title
-            }
-            //update the settings file with the name of the file
 
+            let bar = document.getElementsByClassName("cet-window-title cet-center");
+            bar[0].innerHTML = filename + ' - Nautilus';
+
+            //update the settings file with the name of the file
             var keys = Object.keys(json["1"]["recents"]); //get the keys
-            let keysLen = keys.length + 1 
-            if (keysLen == 6) {keysLen = 1} //if the length is 6, reset it to 1 so that it doesnt go over the limit
-            console.log(keysLen);
-            if (json["1"]["recents"][keysLen.toString()].filename == filename) { //if the file is already in the list, dont add it again, just update the list to put it on top, and lower the rest by one
-                json["1"]["recents"]["1"].filename = filename;
-                json["1"]["recents"]["1"].path = file.filePath.toString();
-                console.log(json["1"]["recents"]);
-                fs.writeFile(__dirname + "../../home/pages/misc/settings.json", JSON.stringify(json), (err) => {
-                    if (err) {
-                        console.log('Couldnt save settings!');
-                    }
-                })
-            } else {
-                json["1"]["recents"][keysLen.toString()].filename = filename;
-                json["1"]["recents"][keysLen.toString()].path = file.filePath.toString();
-                console.log(json["1"]["recents"]);
-                fs.writeFile(__dirname + "../../home/pages/misc/settings.json", JSON.stringify(json), (err) => {
-                    if (err) {
-                        console.log('Couldnt save settings!');
-                    }
-                })
-            }
+            
+            //delete the 10th element
+            delete json['1']['recents']['10'];
+
+            //save fist 9 elements
+            const firstNine = keys.slice(0, 9).map(key => ({[key]: json['1']['recents'][key]}));
+
+            //remove first 9
+            keys.slice(0, 9).forEach(key => delete json['1']['recents'][key]);
+
+            //add them back in to the end
+            firstNine.forEach((obj, i) => Object.assign(json['1']['recents'], {[Number(Object.keys(obj)[0]) + 1]: obj[Object.keys(obj)[0]]}));
+
+            //add current file as index 1
+            console.log(json)
+            json['1']['recents']['1'] = {filename:"", path:""}
+
+            //assign values
+            json['1']['recents']['1']['filename'] = filename
+            json['1']['recents']['1']['path'] = file.filePath.toString()
+
+            fs.writeFileSync(app.getPath('userData') + "/settings.json", JSON.stringify(json));
         }
     }).catch(err => {
         // if error
@@ -126,7 +143,7 @@ const loadfiles = () => {
     dialog.showMessageBox(null, options).then ( (data) => {
 
         if(data.response == 1) {
-            dialog.showOpenDialog({properties: ['openFile'] }).then(function (response) {
+            dialog.showOpenDialog({properties: ['openFile'], defaultPath: path.join(app.getPath('userData'), '/saves/'), }).then(function (response) {
                 if (!response.canceled) {
                     //get the file wooo
                     const xml = fs.readFileSync(response.filePaths[0]).toString();
@@ -140,13 +157,37 @@ const loadfiles = () => {
                         var startIndex = (fullPath.indexOf('\\') >= 0 ? fullPath.lastIndexOf('\\') : fullPath.lastIndexOf('/'));
                         var filename = fullPath.substring(startIndex);
                         if (filename.indexOf('\\') === 0 || filename.indexOf('/') === 0) {
-                            filename = filename.substring(1);
+                            filename = filename.substring(1, filename.length - 4);
                         }
-                        if(process.platform === 'win32' || 'deb')  {
-                            document.title = filename + ' - Nautilus';
-                        } else {
-                            //cant call any functions from custom-electron-titlebar, so mac cant update title
-                        }
+
+                        let bar = document.getElementsByClassName("cet-window-title cet-center");
+                        bar[0].innerHTML = filename + ' - Nautilus';
+
+                        //update the settings file with the name of the file
+                        var keys = Object.keys(json["1"]["recents"]); //get the keys
+                        
+                        //delete the 10th element
+                        delete json['1']['recents']['10'];
+
+                        //save fist 9 elements
+                        const firstNine = keys.slice(0, 9).map(key => ({[key]: json['1']['recents'][key]}));
+
+                        //remove first 9
+                        keys.slice(0, 9).forEach(key => delete json['1']['recents'][key]);
+
+                        //add them back in to the end
+                        firstNine.forEach((obj, i) => Object.assign(json['1']['recents'], {[Number(Object.keys(obj)[0]) + 1]: obj[Object.keys(obj)[0]]}));
+
+                        //add current file as index 1
+                        console.log(json)
+                        json['1']['recents']['1'] = {filename:"", path:""}
+
+                        //assign values
+                        json['1']['recents']['1']['filename'] = filename
+                        json['1']['recents']['1']['path'] = response.filePaths[0].toString()
+
+                        fs.writeFileSync(app.getPath('userData') + "/settings.json", JSON.stringify(json));
+                         
                     } else {
                         // if file couldn't be loaded
                         console.log("file not loaded");
@@ -214,7 +255,7 @@ const newFile = () => {
 const exportProject = () =>{
     dialog.showSaveDialog({
         title: 'Save as',
-        defaultPath: __dirname,
+        defaultPath: app.getPath('userData')+"/exports/",
         buttonLabel: 'Save',
         filters: [
             {

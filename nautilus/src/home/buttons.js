@@ -1,4 +1,5 @@
 let shell = require('electron').shell
+const {app} = require('@electron/remote')
 
 var codex = document.getElementById("codex");
 var git = document.getElementById("git");
@@ -56,14 +57,22 @@ function openLogin() {
 }
 function no() {
     const fs = require('fs');
-    var settings = JSON.parse(fs.readFileSync(__dirname + "/misc/settings.json", 'utf8'));
+    var settings = JSON.parse(fs.readFileSync(app.getPath('userData') + "/settings.json", 'utf8'));
     settings['1']['setup'] = true;
 
-    fs.writeFile(__dirname + '/misc/settings.json', JSON.stringify(settings), (err) => {
+    fs.writeFile(app.getPath('userData') + '/settings.json', JSON.stringify(settings), (err) => {
         if (err) {
             console.log('Couldnt save settings!');
         } else {
             window.location.assign('../index.html')
         }
     });
+}
+
+var recent = document.getElementById("recent")
+
+let json = require(app.getPath('userData') + "/settings.json");
+
+for (const prop in json['1']['recents']) {
+    recent.innerHTML += "<a href=\"\">"+json['1']['recents'][prop]["filename"]+"</a><br><br>"
 }

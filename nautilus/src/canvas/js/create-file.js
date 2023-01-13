@@ -11,7 +11,7 @@ var save = document.getElementById('save');
 save.addEventListener('click', (event) => { 
     dialog.showSaveDialog({ //Show save file dialog
         title: 'Select the file path to save to', //Window title
-        defaultPath: path.join(__dirname, '../assets/sample.txt'), //Default file path 
+        defaultPath: path.join(app.getPath('userData'), '/saves/'), //Default file path 
         buttonLabel: 'Save', //Button label
         filters: [ //Extension filters
             { 

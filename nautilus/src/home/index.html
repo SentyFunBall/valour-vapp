@@ -62,12 +62,12 @@
       </div>
     <div id="version-text">
       <p>
-        Nautilus <a style="font-size: 16px;" href="pages/log.html">v0.7.8</a> This is a beta version of Nautilus. Code saves may not work in future versions. Everything you see is subject to change.
+        Nautilus <a style="font-size: 16px;" href="pages/log.html">v0.7.8 dev</a> This is a beta version of Nautilus. Code saves may not work in future versions. Some features may not be fully finished, and may change in the future. Everything you see is subject to change.
       </p>
     </div>
     <script src="buttons.js"></script>
     <script>
-      if(process.platform === "darwin") {
+        if(process.platform === "darwin") {
         const customTitlebar = require('custom-electron-titlebar');
         new customTitlebar.Titlebar({
             backgroundColor: customTitlebar.Color.fromHex('#000'),
@@ -79,7 +79,19 @@
             icon: '../img/icons/icon.icns',
             overflow: 'hidden',
         });
-      }
+        } else {
+        const customTitlebar = require('custom-electron-titlebar');
+        new customTitlebar.Titlebar({
+            backgroundColor: customTitlebar.Color.fromHex('#000'),
+            titleWindowAlignment: 'center',
+            drag: true,
+            maximizable: true,
+            minimizable: true,
+            closeable: true,
+            icon: '../img/icons/icon.ico',
+            overflow: 'hidden',
+        })
+        }
     </script>
   </body>
 </html>

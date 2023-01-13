@@ -386,35 +386,34 @@
             }
         };
       </script>
-        <button type="button" style="top:40px" onclick="home()">
-            <p>Home</p>
-        </button>
-        <button type="button" id="save" style="top: 80px;" onclick="save()">
-            <p>Save</p>
-        </button>
-        <button type="button" id="run" style="top: 120px;" onclick="run()">
-            <p>Run</p>
-        </button>  
-        <button type="button" id="load" style="top: 160px;" onclick="loadfiles()">
-            <p>Load</p>
-        </button>
-        <button type="button" id="var" style="top: 200px;" onclick="createVar()">
-            <p>New Var</p>
-        </button>
-        <button type="button" id="new" style="top:240px;" onclick="newFile()">
-            <p>New File</p>
-        </button>
-    <div id="holder">
-        <pre id="code">//Your code will show up here.</pre>
-        <pre id="console">This is the console.</pre>
-        <pre id="textarea" contenteditable="true">This is the input box.</pre>
-    </div>
-    
     <script src="https://cdnjs.cloudflare.com/ajax/libs/microsoft-signalr/3.1.7/signalr.min.js"></script>
     <script src="./blocks.js"></script>
     <script src="./js/btnFunc.js"></script>
     <script type="text/javascript" src="./compressed/makeText.min.js"></script>
     <script type="text/javascript" src="./js/Valour.js"></script>
+    <button type="button" id="home" style="top:40px" onclick="home()">
+        <p>Home</p>
+    </button>
+    <button type="button" id="save" style="top: 80px;" onclick="save()">
+        <p>Save</p>
+    </button>
+    <button type="button" id="run" style="top: 120px;" onclick="run()">
+        <p>Run</p>
+    </button>  
+    <button type="button" id="load" style="top: 160px;" onclick="loadfiles()">
+        <p>Load</p>
+    </button>
+    <button type="button" id="var" style="top: 200px;" onclick="createVar()">
+        <p>New Var</p>
+    </button>
+    <button type="button" id="new" style="top:240px;" onclick="newFile()">
+        <p>New File</p>
+    </button>
+    <div id="holder">
+        <pre id="code">//Your code will show up here.</pre>
+        <pre id="console">This is the console. <br>Code output or errors will show up here</pre>
+        <pre id="textarea" contenteditable="true">This is the input box. <br>You can communicate with your code here.</pre>
+    </div>
     <script>
         if(process.platform === "darwin") {
             const customTitlebar = require('custom-electron-titlebar');
@@ -428,7 +427,31 @@
                 icon: '../img/icons/icon.icns',
                 overflow: 'hidden',
             });
+        } else if(process.platform === "linux") {
+            const customTitlebar = require('custom-electron-titlebar');
+            new customTitlebar.Titlebar({
+                backgroundColor: customTitlebar.Color.fromHex('#1c1c1c'),
+                titleWindowAlignment: 'center',
+                drag: true,
+                maximizable: true,
+                minimizable: true,
+                closeable: true,
+                icon: '../img/icons/icon.png',
+                overflow: 'hidden',
+            })
+        } else {
+            const customTitlebar = require('custom-electron-titlebar');
+            new customTitlebar.Titlebar({
+                backgroundColor: customTitlebar.Color.fromHex('#1c1c1c'),
+                titleWindowAlignment: 'center',
+                drag: true,
+                maximizable: true,
+                minimizable: true,
+                closeable: true,
+                icon: '../img/icons/icon.ico',
+                overflow: 'hidden',
+            })
         }
-      </script>
+    </script>
 </body>
 </html>

@@ -681,14 +681,23 @@ Blockly.JavaScript['timeout'] = function(block) {
     // TODO: Assemble JavaScript into code variable.
     var code = 'try {\n'+statements_try+'} catch ('+value_error+') {\n'+statements_catch+'}\n';
     return code;
-  };
+};
 
 // helper functions
+let node = document.getElementById("textarea");
+let userConsole = document.getElementById("console");
+window.addEventListener("load", (event) => {
+    if(!node){node = document.getElementById("textarea")}
+    if(!userConsole){userConsole = document.getElementById("console")}
+    node.addEventListener("keydown", (event) => { add_user_text(event) });
+    console.log("Ready!")
+});
 const console_print = (to_print) =>{
-    document.getElementById("console").innerHTML += ('<div class="console-text">' + to_print + '</div>');
+    console.log("a")
+    userConsole.innerHTML += ('<div class="console-text">' + to_print + '</div>');
 }
 const clear_console = () =>{
-    document.getElementById("console").innerHTML = "";
+    userConsole.innerHTML = "";
     inputVar = '';
 }
 const sleep = (milliseconds) => {
@@ -707,19 +716,18 @@ const input = () =>{
 
 const waitForInput = () =>{
     inputVar = '';
-    document.getElementById("console").innerHTML += ('<div class="console-text">Waiting for input...</div>');
+    userConsole.innerHTML += ('<div class="console-text">Waiting for input...</div>');
     while(inputVar == ''){
         sleep(100);
     }
     return inputVar;
 }
 
-const node = document.getElementById("textarea");
-node.addEventListener("keydown", function(event) {
+function add_user_text(event){
     if (event.key === "Enter") {
         event.preventDefault();
         console_print(node.innerHTML);
         inputVar = node.innerHTML;
         node.innerHTML = "";
     }
-});
+}

@@ -49,8 +49,8 @@ body {
 
 #version-text{
   position: absolute; 
-  left:4px; 
-  top:92vh;
+  left:5px; 
+  top:91.5vh;
 }
 
 #title{
@@ -199,4 +199,9 @@ body::-webkit-scrollbar-thumb {
   font-size: 14px;
   font-family: sans-serif;
   font-weight: normal;
+}
+
+#recent > * {
+  position: relative;
+  top: -50px;
 }

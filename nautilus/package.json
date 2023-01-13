@@ -5,7 +5,7 @@
   "description": "Bots for Valour.",
   "main": "./src/home/start.js",
   "scripts": {
-    "start": "electron .",
+    "start": "electron-forge start",
     "package": "electron-forge package",
     "make": "electron-forge make",
     "make-mac": "npx @electron-forge/cli package --platform darwin",
@@ -21,14 +21,15 @@
   "license": "MIT",
   "config": {
     "forge": {
-      "electronPackagerConfig": {
+      "packagerConfig": {
         "icon": "./src/img/icons/icon"
       },
       "makers": [
         {
           "name": "@electron-forge/maker-squirrel",
           "config": {
-            "name": "Nautilus"
+            "name": "Nautilus",
+            "icon": "./src/img/icons/icon.ico"
           }
         },
         {
@@ -54,31 +55,27 @@
     }
   },
   "dependencies": {
-    "@electron-forge/cli": "^6.0.0-beta.54",
-    "@electron-forge/maker-deb": "^6.0.0-beta.54",
-    "@electron-forge/maker-rpm": "^6.0.0-beta.54",
-    "@electron-forge/maker-squirrel": "^6.0.0-beta.54",
-    "@electron-forge/maker-zip": "^6.0.0-beta.54",
+    "@electron/remote": "^2.0.9",
     "@ftnk/electron-prebuilt-compile": "^1.7.3",
-    "custom-electron-titlebar": "^3.2.7",
-    "electron": "11.2.0",
+    "custom-electron-titlebar": "^4.1.5",
     "electron-compile": "^6.4.4",
     "electron-forge": "^5.2.4",
     "electron-prebuilt-compile": "8.2.0",
     "electron-prompt": "^1.6.2",
-    "electron-squirrel-startup": "^1.0.0"
+    "electron-squirrel-startup": "^1.0.0",
+    "electron-window-state": "^5.0.3"
   },
   "devDependencies": {
-    "@electron-forge/cli": "^6.0.0-beta.54",
-    "@electron-forge/maker-deb": "^6.0.0-beta.54",
-    "@electron-forge/maker-rpm": "^6.0.0-beta.54",
-    "@electron-forge/maker-squirrel": "^6.0.0-beta.54",
-    "@electron-forge/maker-zip": "^6.0.0-beta.54",
+    "@electron-forge/cli": "^6.0.4",
+    "@electron-forge/maker-deb": "^6.0.4",
+    "@electron-forge/maker-rpm": "^6.0.4",
+    "@electron-forge/maker-squirrel": "^6.0.4",
+    "@electron-forge/maker-zip": "^6.0.4",
     "@ftnk/electron-prebuilt-compile": "^1.7.3",
-    "electron": "11.2.0",
     "electron-compile": "^6.4.4",
     "electron-forge": "^5.2.4",
-    "electron-prebuilt-compile": "8.2.0",
-    "electron-squirrel-startup": "^1.0.0"
+    "electron-prebuilt-compile": "22.0.0",
+    "electron-squirrel-startup": "^1.0.0",
+    "custom-electron-titlebar": "4.1.5"
   }
 }

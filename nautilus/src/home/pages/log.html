@@ -1,49 +1,56 @@
 <style>
-    body {
-      font-family: sans-serif;
-      color: #fff;
-      background-color: #030227;
-      text-align: left;
-      font-size: 14px;
-    }
-    
-    #close {
-      color: white;
-      opacity: 0.7;
-      position: absolute;
-      bottom: 20px;
-      left: 50%;
-      transform: translateX(-50%);
-      font-size: 12px;
-      text-decoration: none;
-    }
-    button{
+  body {
+    font-family: sans-serif;
+    color: #fff;
+    background-color: #030227;
+    text-align: left;
+    font-size: 14px;
+  }
+  
+  #close {
+    color: white;
+    opacity: 0.7;
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 12px;
+    text-decoration: none;
+  }
+
+  #logs {
+    position: relative;
+    left:3%;
+    width:97%;
+  }
+
+  button{
     /* button */
     position: absolute; 
     top: 25px;
-    left: 6%;  
+    left: 2%;  
     width:100px;
     height:35px;
     background-color: rgba(50, 50, 50, 0.5);
     border:1px black;
     border-radius: 10px;
-}
-button > *{
-    /* to <a> and <p> tags */
-    
-    position: relative; 
-    color:rgb(63, 155, 197);
-    text-decoration: bold;
-    font-size: 14pt;
-    top: -9px;
-}
-button > *:hover{
-    color:rgb(43, 104, 133);
-}
-button:hover{
-    background-color: rgba(75, 75, 75, 0.5);
-    color:rgb(43, 104, 133);
-}
+  }
+  button > *{
+      /* to <a> and <p> tags */
+      
+      position: relative; 
+      color:rgb(63, 155, 197);
+      text-decoration: bold;
+      font-size: 14pt;
+      top: -13px;
+  }
+  button > *:hover{
+      color:rgb(43, 104, 133);
+  }
+  button:hover{
+      background-color: rgba(75, 75, 75, 0.5);
+      color:rgb(43, 104, 133);
+  }
 </style>
 <body>
     <meta charset="UTF-8">
@@ -52,231 +59,265 @@ button:hover{
     <pre>
 
     </pre>
-    <h3 id="changelog-">Changelog:</h3>
-    <h4>v0.7.6 "Better Error Update"</h4>
+    <div id="logs">
+      <h3 id="changelog-">Changelog:</h3>
+      <h4>v0.7.8 "Recent Files Update"</h4>
       <ul>
-        <li>Swapped text colors in context menus</li>
-        <li>Input box clears with onConsoleUpdate()</li>
-        <li>Loading a file clears the workspace and all of its variables</li>
-        <li>New file button</li>
-        <li>3 new blocks:</li>
+        <li>Recent files now show up on the main menu for easy access</li>
+        <li>Default background color is now black (Won't flash white when resizing)</li>
+        <li>Nautilus will now save its position and size when closed, and will remember those next time it's opened</li>
+        <li>Settings, code saves, and exports are now saved to the appdata directory:</li>
         <ul>
-          <li>try/catch - tries code, and runs catch() if there's an error</li>
-          <li>alert(string) - creates a popup with text when called</li>
-          <li>throw(string) - throws an error in the console when called</li>
+          <li><code>%appdata%/Nautilus</code> on Windows</li>
+          <li><code>~/.config/Nautilus</code> on Linux</li>
+          <li><code>~/Library/Application Support/Nautilus</code> on macOS</li>
         </ul>
+        <li>Custom titlebar is now on Windows</li>
+        <li>Custom titlebar now exists on all pages</li>
+        <li>Added a warning when code takes more than 2s to execute</li>
+        <li>Updated all the stuff behind-the-scenes to hopefully work better</li>
+        <li>First Linux build</li>
       </ul>
-    <h4>v0.7.5</h4>
-    <ul>
-      <li>Minor fixes and UI change</li>
-      <li>Custom title bars on macOS (coming to win32 Soon™)<li>
-    </ul>
-    <h4>v0.7.4 "Better HTML Update"</h4>
-    <ul>
-      <li>Changed font</li>
-      <li>Made first time set up actually first time</li>
-      <li>Updated old buttons to new style</li>
-      <li>First OS X/macOS Build. Should run on OS X 10.11+</li>
-      <li>Title of window now shows the name of your project</li>
-      <li>Font size 14 app-wide</li>
-    </ul>
-    <h4>v0.7.3 "Everyone's Welcome Update"</h4>
-    <ul>
-      <li>MacOS 10.11+ and Debian 8+ now have official support</li>
-      <li>New user-friendly first time set up</li>
-      <li>Fixed color balance in the editor</li>
-      <li>Fixed a potential CTD when making a new variable</li>
-      <li>Fixed an issue where the success message would cover the back button when erasing data</li>
-      <li>Updated stored information terms</li>
-    </ul>
-    <h4>v0.7 "Foundation Update"</h4>
-    <ol>
-      <li>Block Editor</li>
-      <ul>
-        <li>Fixed a bug that would prevent you from saving if you used a few blocks</li>
-        <li>Fixed a bug where time would reverse when using timers</li>
-        <li>Fixed a bug where the "Debugging" category did not have a color</li>
-        <li>Able to connect to Valour and log in</li>
-        <li>Removed a few useless blocks</li>
-        <li>Updated UI + Dark mode</li>
-        <li>Added "Get Token" and "Get info" blocks</li>
-        <li>Moved some blocks to "Networking" category</li>
-      </ul>
-      <li>Home screen</li>
-      <ul>
-        <li>Homescreen was rebuilt</li>
-        <li>New login and data review sections</li>
-        <li>Will redirect to settings menu if there is no login info</li>
-      </ul>
-      <li>Window</li>
-      <ul>
-        <li>Window is larger</li>
-        <li>Entire program UI now scales with window size</li>
-        <li>Min window sizes</li>
-        <li>Menu is now hidden. May get reverted in future update.</li>
-      </ul>
-      <li>Misc</li>
-      <ul>
-        <li>Fixed a bug where exiting the node editor would bring you to the 0.6.1 home screen (???)</li>
-        <li>Fixed a bug where using MacOS would sometimes crash the program</li>
-        <li>Emoji support. Don't use as log in info.</li>
-        <li>Program now stores user information like password and token</li>
-        <li>REALLY fixed the bug where app icon wouldn't show</li>
-        <li>App start up time 2x faster</li>
-        <li>Block editor up to 3x faster</li>
-        <li>20+ smaller bug fixes</li>
-      </ul>
-    </ol>
-    <h4>v0.6.3</h4>
-      <ul>
-        <li>Fixed console inputs not working</li>
-      </ul>
-    <h4>v0.6.2</h4>
-    <ul>
-      <li>Fixed an error screen briefly occuring when returning home from block editor.</li>
-      <li>Fixed some categories not having colors</li>
-      <li>Fixed custom blocks not existing</li>
-    </ul>
-    <h4>v0.6.1</h4>
-    <ul>
-      <li>Nautilus icon now shows</li>
-      <li>New install wizard</li>
-    </ul>
-    <h4>v0.6.0 (Makup update)</h4>
-    <ul>
-      <li>Made the source file look nicer</li>
-      <li>Fixed a bug where entering settings could CTD</li>
-      <li>Links to to the github, discord, and website from Nautilus</li>
-    </ul>
-    <h4>v0.5.9 (Geff update 1)</h4>
-    <ul>
-      <li>Grammar and spelling fixes.</li>
-    </ul>
-    <h4>v0.5.8 (wiki update)</h4>
-    <ul>
-      <li>Made the wiki do things better. Now can be used.</li>
-    </ul>
-    <h4>v0.5.6 (for the world update)</h4>
-    <ul>
-      <li>now with ctrl+e you can make an html code of the program and run it later with just a double click</li>
-    </ul>
-    <h4>v0.5.2 (first lts version)</h4>
-    <ul>
-      <li>removed sync input, it usually made the ide crash</li>
-    </ul>
-    <h4>v0.5.0 (time update)</h4>
-    <ul>
-      <li>added time(literally)</li>
-      <li>new blocks:
+      <h4>v0.7.6 "Better Error Update"</h4>
         <ul>
-          <li>timer start</li>
-          <li>timer end</li>
-          <li>wait</li>
-          and
-          <li>wait until</li>
+          <li>Swapped text colors in context menus</li>
+          <li>Input box clears with onConsoleUpdate()</li>
+          <li>Loading a file clears the workspace and all of its variables</li>
+          <li>New file button</li>
+          <li>3 new blocks:</li>
+          <ul>
+            <li>try/catch - tries code, and runs catch() if there's an error</li>
+            <li>alert(string) - creates a popup with text when called</li>
+            <li>throw(string) - throws an error in the console when called</li>
+          </ul>
         </ul>
-      </li>
-    </ul>
-    <h4>v0.4.5 (input update)</h4>
-    <ul>
-      <li>added a input function</li>
-      <li>added first easter egg, try to find it out</li>
-    </ul>
-    <h4>v0.4.0</h4>
-    <ul>
-      <li>Added a "Networking" category.</li>
-      <li>Moved console blocks to "Debugging" category.</li>
-      <li>Renamed "Input/Output" category to "Valour".</li>
-      <li>Added 9 new blocks:
-        <li>Add role</li>
-        <li>Remove role</li>
-        <li>Kick member</li>
-        <li>Ban member</li>
-        <li>Grab value</li>
-        <li>Message info blocks</li>
-      </li>
-    </ul>
-    <h4>v0.3.0</h4>
-    <ul>
-      <li>Added a WIP node editor. This does not work at the moment.</li>
-      <li>Added a warning to the home buttons. This should prevent quiting without saving.</li>
-    </ul>
-    <h4>v0.2.3</h4>
-    <ul>
-      <li>Removed the load project button from the home menu</li>
-      <li>Moved the position of console buttons.</li>
-      <li>Fixed a bug where the app would crash if you didn't select a file to load</li>
-      <li>Fixed a bug where the app would stop updating code if you used a throw block</li>
-    </ul>
-    <h4>v0.2.2</h4>
-    <ul>
-        <li>Fixed a bug where saving and loading wouldnt work.</li>
-    </ul>
-    <h4>v0.2.1</h4>
-    <ul>
-      <li>fixed bug where the create var button wouldt work and print bug</li>
-    </ul>
-
-    <h4>v0.2.0</h4>
-    <ul>
-      <li>added console</li>
-    </ul>
-
-    <h4>v0.1.9</h4>
-    <ul>
-      <li>added error handling</li>
-    </ul>
-    
-    <h4>v0.1.8d:</h4>
-    <ul>
-      <li>Added custom variables</li>
-    </ul>
-    <h4>v0.1.7d:</h4>
-    <ul>
-      <li>
-        create error handlers
-      </li>
-    </ul>
-    <h4 id="v0-1-7c-">v0.1.7c:</h4>
-    <ul>
-    <li>Fixed a bug where the program wouldnt run.</li>
-    <li>Fixed a bug where the program would crash loading the canvas</li>
-    <li><p>Fixed a bug where the program would lag when loading multiple save dialogs</p>
-    </li>
-    <li><p>Added a changelog. You&#39;re looking at it now!</p>
-    </li>
-    <li>Added a credits menu, scroll down a bit.</li>
-    </ul>
-    <h3 id="credits-">Credits:</h3>
-    <p>SentyFunBall - Front end dev, Project overseer</p>
-    <p>dropLt - Block coder, did some things for the api</p>
-    <p>Grim - Backend dev</p>
-        
+      <h4>v0.7.5 "Titlebar update"</h4>
+      <ul>
+        <li>Minor fixes and UI change</li>
+        <li>Custom title bars on macOS (coming to win32 Soon™)<li>
+      </ul>
+      <h4>v0.7.4 "Better HTML Update"</h4>
+      <ul>
+        <li>Changed font</li>
+        <li>Made first time set up actually first time</li>
+        <li>Updated old buttons to new style</li>
+        <li>First OS X/macOS Build. Should run on OS X 10.11+</li>
+        <li>Title of window now shows the name of your project</li>
+        <li>Font size 14 app-wide</li>
+      </ul>
+      <h4>v0.7.3 "Everyone's Welcome Update"</h4>
+      <ul>
+        <li>macOS 10.11+ and Debian 8+ now have official support</li>
+        <li>New user-friendly first time set up</li>
+        <li>Fixed color balance in the editor</li>
+        <li>Fixed a potential CTD when making a new variable</li>
+        <li>Fixed an issue where the success message would cover the back button when erasing data</li>
+        <li>Updated stored information terms</li>
+      </ul>
+      <h4>v0.7 "Foundation Update"</h4>
+      <ol>
+        <li>Block Editor</li>
+        <ul>
+          <li>Fixed a bug that would prevent you from saving if you used a few blocks</li>
+          <li>Fixed a bug where time would reverse when using timers</li>
+          <li>Fixed a bug where the "Debugging" category did not have a color</li>
+          <li>Able to connect to Valour and log in</li>
+          <li>Removed a few useless blocks</li>
+          <li>Updated UI + Dark mode</li>
+          <li>Added "Get Token" and "Get info" blocks</li>
+          <li>Moved some blocks to "Networking" category</li>
+        </ul>
+        <li>Home screen</li>
+        <ul>
+          <li>Homescreen was rebuilt</li>
+          <li>New login and data review sections</li>
+          <li>Will redirect to settings menu if there is no login info</li>
+        </ul>
+        <li>Window</li>
+        <ul>
+          <li>Window is larger</li>
+          <li>Entire program UI now scales with window size</li>
+          <li>Min window sizes</li>
+          <li>Menu is now hidden. May get reverted in future update.</li>
+        </ul>
+        <li>Misc</li>
+        <ul>
+          <li>Fixed a bug where exiting the node editor would bring you to the 0.6.1 home screen (???)</li>
+          <li>Fixed a bug where using macOS would sometimes crash the program</li>
+          <li>Emoji support. Don't use as log in info.</li>
+          <li>Program now stores user information like password and token</li>
+          <li>REALLY fixed the bug where app icon wouldn't show</li>
+          <li>App start up time 2x faster</li>
+          <li>Block editor up to 3x faster</li>
+          <li>20+ smaller bug fixes</li>
+        </ul>
+      </ol>
+      <h4>v0.6.3</h4>
+        <ul>
+          <li>Fixed console inputs not working</li>
+        </ul>
+      <h4>v0.6.2</h4>
+      <ul>
+        <li>Fixed an error screen briefly occuring when returning home from block editor.</li>
+        <li>Fixed some categories not having colors</li>
+        <li>Fixed custom blocks not existing</li>
+      </ul>
+      <h4>v0.6.1</h4>
+      <ul>
+        <li>Nautilus icon now shows</li>
+        <li>New install wizard</li>
+      </ul>
+      <h4>v0.6.0 (Makup update)</h4>
+      <ul>
+        <li>Made the source file look nicer</li>
+        <li>Fixed a bug where entering settings could CTD</li>
+        <li>Links to to the github, discord, and website from Nautilus</li>
+      </ul>
+      <h4>v0.5.9 (Geff update 1)</h4>
+      <ul>
+        <li>Grammar and spelling fixes.</li>
+      </ul>
+      <h4>v0.5.8 (wiki update)</h4>
+      <ul>
+        <li>Made the wiki do things better. Now can be used.</li>
+      </ul>
+      <h4>v0.5.6 (for the world update)</h4>
+      <ul>
+        <li>now with ctrl+e you can make an html code of the program and run it later with just a double click</li>
+      </ul>
+      <h4>v0.5.2 (first lts version)</h4>
+      <ul>
+        <li>removed sync input, it usually made the ide crash</li>
+      </ul>
+      <h4>v0.5.0 (time update)</h4>
+      <ul>
+        <li>added time(literally)</li>
+        <li>new blocks:
+          <ul>
+            <li>timer start</li>
+            <li>timer end</li>
+            <li>wait</li>
+            and
+            <li>wait until</li>
+          </ul>
+        </li>
+      </ul>
+      <h4>v0.4.5 (input update)</h4>
+      <ul>
+        <li>added a input function</li>
+        <li>added first easter egg, try to find it out</li>
+      </ul>
+      <h4>v0.4.0</h4>
+      <ul>
+        <li>Added a "Networking" category.</li>
+        <li>Moved console blocks to "Debugging" category.</li>
+        <li>Renamed "Input/Output" category to "Valour".</li>
+        <li>Added 9 new blocks:
+          <li>Add role</li>
+          <li>Remove role</li>
+          <li>Kick member</li>
+          <li>Ban member</li>
+          <li>Grab value</li>
+          <li>Message info blocks</li>
+        </li>
+      </ul>
+      <h4>v0.3.0</h4>
+      <ul>
+        <li>Added a WIP node editor. This does not work at the moment.</li>
+        <li>Added a warning to the home buttons. This should prevent quiting without saving.</li>
+      </ul>
+      <h4>v0.2.3</h4>
+      <ul>
+        <li>Removed the load project button from the home menu</li>
+        <li>Moved the position of console buttons.</li>
+        <li>Fixed a bug where the app would crash if you didn't select a file to load</li>
+        <li>Fixed a bug where the app would stop updating code if you used a throw block</li>
+      </ul>
+      <h4>v0.2.2</h4>
+      <ul>
+          <li>Fixed a bug where saving and loading wouldnt work.</li>
+      </ul>
+      <h4>v0.2.1</h4>
+      <ul>
+        <li>fixed bug where the create var button wouldt work and print bug</li>
+      </ul>
+  
+      <h4>v0.2.0</h4>
+      <ul>
+        <li>added console</li>
+      </ul>
+  
+      <h4>v0.1.9</h4>
+      <ul>
+        <li>added error handling</li>
+      </ul>
+      
+      <h4>v0.1.8d:</h4>
+      <ul>
+        <li>Added custom variables</li>
+      </ul>
+      <h4>v0.1.7d:</h4>
+      <ul>
+        <li>
+          create error handlers
+        </li>
+      </ul>
+      <h4 id="v0-1-7c-">v0.1.7c:</h4>
+      <ul>
+      <li>Fixed a bug where the program wouldnt run.</li>
+      <li>Fixed a bug where the program would crash loading the canvas</li>
+      <li>Fixed a bug where the program would lag when loading multiple save dialogs</li>
+      <li>Added a changelog. You&#39;re looking at it now!</li>
+      <li>Added a credits menu, scroll down a bit.</li>
+      </ul>
+      <br>
+      <h3 id="credits-">Credits:</h3>
+      <p>SentyFunBall - Front end dev, Project overseer</p>
+      <p>dropLt - Block coder, did some things for the api</p>
+      <p>Grim - Backend dev</p>
+    </div>    
     <a href="../index.html">
-      <button type="button" style="top:40px" onclick="home()">
+      <button type="button" style="top:20px">
         <p>Home</p>
       </button>
     </a>
     <script>
-      const home = () =>{
-    //opens an info box, and depending on user action, goes home.
-    const options = {
-        type: 'warning',
-        buttons: ['Cancel', 'Yes'],
-        defaultId: 2,
-        title: 'Warning',
-        message: 'Are you sure you want to go back home?',
-        detail: 'All unsaved progress will be lost!',
-    }
-
-    dialog.showMessageBox(null, options).then ( (data) => {
-        console.log(data.response);
-
-        if(data.response == 1) {
-            window.location.href = "./../home/index.html"
-        }
-        
-    });
-}
-    </script>
+      if(process.platform === "darwin") {
+          const customTitlebar = require('custom-electron-titlebar');
+          new customTitlebar.Titlebar({
+              backgroundColor: customTitlebar.Color.fromHex('#1c1c1c'),
+              titleWindowAlignment: 'center',
+              drag: true,
+              maximizable: false,
+              minimizable: true,
+              closeable: true,
+              icon: '../../img/icons/icon.icns',
+              overflow: 'hidden',
+          });
+      } else if(process.platform === "linux") {
+          const customTitlebar = require('custom-electron-titlebar');
+          new customTitlebar.Titlebar({
+              backgroundColor: customTitlebar.Color.fromHex('#1c1c1c'),
+              titleWindowAlignment: 'center',
+              drag: true,
+              maximizable: true,
+              minimizable: true,
+              closeable: true,
+              icon: '../../img/icons/icon.png',
+              overflow: 'hidden',
+          })
+      } else {
+          const customTitlebar = require('custom-electron-titlebar');
+          new customTitlebar.Titlebar({
+              backgroundColor: customTitlebar.Color.fromHex('#1c1c1c'),
+              titleWindowAlignment: 'center',
+              drag: true,
+              maximizable: true,
+              minimizable: true,
+              closeable: true,
+              icon: '../../img/icons/icon.ico',
+              overflow: 'hidden',
+          })
+      }
+  </script>
 </body>

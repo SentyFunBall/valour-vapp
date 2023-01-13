@@ -1,12 +1,13 @@
+const { app } = require('@electron/remote');
 function getToken() {
-    let json = require(__dirname + '../../home/pages/misc/settings.json');
+    let json = require(app.getPath('userData') + '/settings.json');
     askToken();
     var bot = 1;
     return json[bot].token;
 }
 
 function getInfo(userToken) {
-    let json = require(__dirname + '../../home/pages/misc/settings.json');
+    let json = require(app.getPath('userData') + '/settings.json');
     askInfo(userToken);
     var mainInfo = '';
     try {
@@ -19,24 +20,24 @@ function getInfo(userToken) {
 }
 
 async function askToken() {
-    let json = require(__dirname + '../../home/pages/misc/settings.json');
+    let json = require(app.getPath('userData') + '/settings.json');
     var bot = 1;
     var Email = json[bot].emailText;
     var Password = json[bot].passText;
     var dcd= new TextDecoder()
     var info = JSON.parse(dcd.decode((await fetch(`https://valour.gg/User/RequestStandardToken?email=${Email}&password=${Password}`).then(response =>response.body.getReader().read()))["value"]))["data"]
     json[bot].token = info;
-    fs.writeFile(__dirname + '../../home/pages/misc/settings.json', JSON.stringify(json), (err) => {
+    fs.writeFile(app.getPath('userData')+'/settings.json', JSON.stringify(json), (err) => {
         if (err) console.log('Couldnt save settings!');
     });
 }
 
 async function askInfo(token) {
-    let json = require(__dirname + '../../home/pages/misc/settings.json');
+    let json = require(app.getPath('userData') + '/settings.json');
     var dcd= new TextDecoder()
     var userInfo= JSON.parse(dcd.decode((await fetch(`https://valour.gg/User/GetUserWithToken?token=${token}`).then(response =>response.body.getReader().read()))["value"]))
     json[1].info = userInfo;
-    fs.writeFile(__dirname + '../../home/pages/misc/settings.json', JSON.stringify(json), (err) => {
+    fs.writeFile(app.getPath('userData')+ '/settings.json', JSON.stringify(json), (err) => {
         if (err) console.log('Couldnt save settings!');
     });
 }
@@ -69,7 +70,7 @@ async function start() {
 async function connectToPlanet(planet, channel) {
     console.log("Connecting to planet");
     console.log("Connecting to "+planet+", "+channel);
-    let json = require(__dirname + '../../home/pages/misc/settings.json');
+    let json = require(app.getPath('userData') + '/settings.json');
     let token = json[1].token;
 
     connection.send("JoinPlanet", planet, token)

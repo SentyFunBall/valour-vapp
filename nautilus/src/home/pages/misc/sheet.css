@@ -8,7 +8,6 @@
     --gray6: #002030;
   
   }
-  
   h3{
     color:gainsboro;
     font-size: 26pt;
@@ -41,54 +40,60 @@
     font-size: 18px;
     top:-90px;
   }
-  #confirm {
-    background-color: var(--header-color);
-    border-color: #2196F3;
-    color: dodgerblue;
+
+  #container {
     position: relative;
-    top:-50px;
-    font-size: 18px;
-    width:120px;
-    height:80px;
+    left:3%;
+    width:80%;
   }
-  
-  #confirm:hover {
-    background: #2196F3;
-    color: white;
-  }
-  #delete {
-    background-color: var(--header-color);
-    border-color: #2196F3;
-    color: dodgerblue;
-    position: relative;
-    top:-50px;
-    left:25px;
-    font-size: 18px;
-    width:120px;
-    height:80px;
-  }
-  
-  #delete:hover {
-    background: #2196F3;
-    color: white;
-  }
-  #back {
-    background-color: var(--header-color);
-    border-color: #2196F3;
-    color: dodgerblue;
-    position: relative;
-    top:-10px;
-    font-size: 18px;
-    width:120px;
-    height:80px;
-  }
-  
-  #back:hover {
-    background: #2196F3;
-    color: white;
-  }
+
   h1{
     color:aliceblue;
     font-size: 32pt;
     text-decoration: none; 
+  }
+
+  
+  p{
+    font-size: 12pt;
+    font-family: sans-serif;
+    color: var(--gray0);
+  }
+
+  button{
+    /* button */
+    position: relative; 
+    top: -90px;
+    left: -20px;  
+    width:100px;
+    height:auto;
+    background-color: rgba(50, 50, 50, 0.5);
+    border:1px black;
+    border-radius: 10px;
+    margin: 15px;
+  }
+  button > * > *{
+      /* to <a> and <p> tags */
+      
+      position: relative; 
+      color:rgb(63, 155, 197);
+      text-decoration: bold;
+      font-size: 14pt;
+      top: 0px;
+  }
+  button > *{
+    /* to <a> and <p> tags */
+    
+    position: relative; 
+    color:rgb(63, 155, 197);
+    text-decoration: bold;
+    font-size: 14pt;
+    top: 0px;
+}
+  button > *:hover{
+      color:rgb(43, 104, 133);
+  }
+  button:hover{
+      background-color: rgba(75, 75, 75, 0.5);
+      color:rgb(43, 104, 133);
   }
